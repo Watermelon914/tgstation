@@ -15868,6 +15868,9 @@
 "cWc" = (
 /obj/structure/table,
 /obj/machinery/airalarm/directional/south,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 5
+	},
 /turf/open/floor/iron,
 /area/science/misc_lab)
 "cWl" = (
@@ -31180,9 +31183,10 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ibT" = (
-/obj/machinery/power/apc/auto_name/north,
-/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/rack,
+/obj/item/integrated_circuit/loaded/hello_world,
+/obj/item/integrated_circuit/loaded/speech_relay,
 /turf/open/floor/iron/white,
 /area/science/misc_lab)
 "icp" = (
@@ -36178,6 +36182,9 @@
 "jPj" = (
 /obj/structure/table,
 /obj/structure/cable,
+/obj/item/controller,
+/obj/item/controller,
+/obj/item/controller,
 /turf/open/floor/iron/white,
 /area/science/misc_lab)
 "jPt" = (
@@ -71334,6 +71341,9 @@
 	pixel_x = 7
 	},
 /obj/item/multitool/circuit,
+/obj/item/multitool/circuit{
+	pixel_x = -8
+	},
 /turf/open/floor/iron/white,
 /area/science/misc_lab/range)
 "vnv" = (
