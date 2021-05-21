@@ -15867,12 +15867,6 @@
 /area/command/heads_quarters/ce)
 "cWc" = (
 /obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/dropper{
-	pixel_y = -5
-	},
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron,
 /area/science/misc_lab)
@@ -36183,7 +36177,6 @@
 /area/science/lab)
 "jPj" = (
 /obj/structure/table,
-/obj/item/crowbar,
 /obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/science/misc_lab)
@@ -71335,9 +71328,12 @@
 /area/ai_monitored/turret_protected/ai)
 "vns" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
+/obj/item/multitool/circuit{
+	pixel_x = 7
+	},
+/obj/item/multitool/circuit,
 /turf/open/floor/iron/white,
 /area/science/misc_lab/range)
 "vnv" = (
@@ -77315,7 +77311,6 @@
 /turf/open/floor/iron,
 /area/commons/locker)
 "xtp" = (
-/obj/structure/table,
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
@@ -77323,6 +77318,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 4
 	},
+/obj/machinery/component_printer,
 /turf/open/floor/iron,
 /area/science/misc_lab)
 "xtw" = (
