@@ -28104,6 +28104,11 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
 /turf/open/floor/iron/white,
 /area/science/misc_lab)
 "drE" = (
@@ -28112,6 +28117,10 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
 /turf/open/floor/iron/white,
 /area/science/misc_lab)
 "drF" = (
@@ -47134,7 +47143,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron/white,
 /area/science/misc_lab)
 "gSi" = (
@@ -55181,6 +55189,12 @@
 	},
 /turf/open/floor/wood,
 /area/service/library/abandoned)
+"jdk" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/white,
+/area/science/misc_lab)
 "jdv" = (
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -138995,7 +139009,7 @@ deY
 oAw
 tCh
 gkB
-wei
+jdk
 wei
 dol
 myW
