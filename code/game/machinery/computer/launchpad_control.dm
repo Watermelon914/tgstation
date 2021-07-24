@@ -81,7 +81,7 @@
 	return ..()
 
 /obj/item/circuit_component/bluespace_launchpad/proc/fail(why)
-    why_fail.set_output(why)
+	why_fail.set_output(why)
 	on_fail.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/bluespace_launchpad/input_received(datum/port/input/port)
@@ -109,7 +109,7 @@
 
 	var/checks = attached_console.teleport_checks(the_pad)
 	if(!isnull(checks))
-	    return fail(checks)
+		return fail(checks)
 
 	if(COMPONENT_TRIGGERED_BY(send_trigger, port))
 		the_pad.doteleport(null, TRUE, alternate_log_name = parent.get_creator())
