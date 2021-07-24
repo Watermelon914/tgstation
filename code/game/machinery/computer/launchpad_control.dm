@@ -80,26 +80,22 @@
 	attached_console = null
 	return ..()
 
+/obj/item/circuit_component/bluespace_launchpad/proc/fail(why)
+    why_fail.set_output(why)
+	on_fail.set_output(COMPONENT_SIGNAL)
+
 /obj/item/circuit_component/bluespace_launchpad/input_received(datum/port/input/port)
 	. = ..()
 
 	if(.)
 		return
 
-	if(!attached_console || length(attached_console.launchpads) == 0)
-		why_fail.set_output("No launchpads connected!")
-		on_fail.set_output(COMPONENT_SIGNAL)
-		return
+	if(!attached_console)
+		return fail("No such console.")
 
-	var/current_launchpad = launchpad_id.input_value
-	if(isnull(current_launchpad) || current_launchpad < 1 || current_launchpad > length(attached_console.launchpads))
-		why_fail.set_output("Invalid launchpad selected!")
-		on_fail.set_output(COMPONENT_SIGNAL)
-		return
-
-	var/obj/machinery/launchpad/the_pad = attached_console.launchpads[current_launchpad]
-	if(isnull(the_pad))
-		return
+	var/obj/machinery/launchpad/the_pad = KEYBYINDEX(attached_console.launchpads, launchpad_id.input_value)
+	if(!the_pad)
+		return fail("No such launchpad.")
 
 	the_pad.set_offset(x_pos.input_value, y_pos.input_value)
 
@@ -113,9 +109,7 @@
 
 	var/checks = attached_console.teleport_checks(the_pad)
 	if(!isnull(checks))
-		why_fail.set_output(checks)
-		on_fail.set_output(COMPONENT_SIGNAL)
-		return
+	    return fail(checks)
 
 	if(COMPONENT_TRIGGERED_BY(send_trigger, port))
 		the_pad.doteleport(null, TRUE, alternate_log_name = parent.get_creator())
