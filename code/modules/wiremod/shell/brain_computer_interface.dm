@@ -164,7 +164,7 @@
 
 /obj/item/circuit_component/bci_core/populate_ports()
 
-	message = add_input_port("Message", PORT_TYPE_STRING)
+	message = add_input_port("Message", PORT_TYPE_STRING, trigger = null)
 	send_message_signal = add_input_port("Send Message", PORT_TYPE_SIGNAL)
 
 	user_port = add_output_port("User", PORT_TYPE_ATOM)
@@ -192,11 +192,6 @@
 		COMSIG_ORGAN_IMPLANTED,
 		COMSIG_ORGAN_REMOVED,
 	))
-
-/obj/item/circuit_component/bci_core/should_receive_input(datum/port/input/port)
-	if (!COMPONENT_TRIGGERED_BY(send_message_signal, port))
-		return FALSE
-	return ..()
 
 /obj/item/circuit_component/bci_core/input_received(datum/port/input/port)
 	var/sent_message = trim(message.value)

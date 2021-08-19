@@ -27,7 +27,7 @@
 		compare_ports += add_input_port(letter, PORT_TYPE_ANY)
 
 	populate_custom_ports()
-	compare = add_input_port("Compare", PORT_TYPE_SIGNAL)
+	compare = add_input_port("Compare", PORT_TYPE_SIGNAL, trigger = .proc/compare)
 
 	true = add_output_port("True", PORT_TYPE_SIGNAL)
 	false = add_output_port("False", PORT_TYPE_SIGNAL)
@@ -39,15 +39,11 @@
 /obj/item/circuit_component/compare/proc/populate_custom_ports()
 	return
 
-/obj/item/circuit_component/compare/input_received(datum/port/input/port)
+/obj/item/circuit_component/compare/proc/compare()
+	(do_comparisons(compare_ports) ? true : false).set_output(COMPONENT_SIGNAL)
 
-	var/logic_result = do_comparisons(compare_ports)
-	if(COMPONENT_TRIGGERED_BY(compare, port))
-		if(logic_result)
-			true.set_output(COMPONENT_SIGNAL)
-		else
-			false.set_output(COMPONENT_SIGNAL)
-	result.set_output(logic_result)
+/obj/item/circuit_component/compare/input_received(datum/port/input/port)
+	result.set_output(do_comparisons(compare_ports))
 
 /// Do the comparisons and return a result
 /obj/item/circuit_component/compare/proc/do_comparisons(list/ports)

@@ -230,8 +230,8 @@
 /obj/item/circuit_component/teleporter_control_console/populate_ports()
 
 	new_target = add_input_port("New Target", PORT_TYPE_STRING)
-	set_target_trigger = add_input_port("Set Target", PORT_TYPE_SIGNAL)
-	update_trigger = add_input_port("Update Targets", PORT_TYPE_SIGNAL)
+	set_target_trigger = add_input_port("Set Target", PORT_TYPE_SIGNAL, trigger = .proc/set_target)
+	update_trigger = add_input_port("Update Targets", PORT_TYPE_SIGNAL, trigger = .proc/update_targets)
 
 	current_target = add_output_port("Current Target", PORT_TYPE_STRING)
 	possible_targets = add_output_port("Possible Targets", PORT_TYPE_LIST)
@@ -249,30 +249,21 @@
 /obj/item/circuit_component/teleporter_control_console/unregister_usb_parent(atom/movable/parent)
 	UnregisterSignal(attached_console, COMSIG_TELEPORTER_NEW_TARGET)
 	attached_console = null
-	return attached_console
 
-/obj/item/circuit_component/teleporter_control_console/input_received(datum/port/input/port)
-	var/list/targets = attached_console.get_targets()
-
-	if (COMPONENT_TRIGGERED_BY(set_target_trigger, port))
-		var/target = targets[new_target.value]
-		if (!target)
-			on_fail.set_output(COMPONENT_SIGNAL)
-			return .
-
-		attached_console.investigate_log("Teleport location set to [target] by circuit. [parent.get_creator()]")
-
-		if (istype(target, /obj/machinery/teleport/station))
-			var/obj/machinery/teleport/station/station = target
-			attached_console.set_teleport_target(station.teleporter_hub)
-			attached_console.lock_in_station(station)
-		else
-			attached_console.set_teleport_target(target)
-
+/obj/item/circuit_component/teleporter_control_console/proc/set_target()
+	var/target = attached_console.get_targets()[new_target.value]
+	if (!target)
+		on_fail.set_output(COMPONENT_SIGNAL)
 		return .
 
-	if (COMPONENT_TRIGGERED_BY(update_trigger, port))
-		update_targets()
+	attached_console.investigate_log("Teleport location set to [target] by circuit. [parent.get_creator()]")
+
+	if (istype(target, /obj/machinery/teleport/station))
+		var/obj/machinery/teleport/station/station = target
+		attached_console.set_teleport_target(station.teleporter_hub)
+		attached_console.lock_in_station(station)
+	else
+		attached_console.set_teleport_target(target)
 
 /obj/item/circuit_component/teleporter_control_console/proc/on_teleporter_new_target(datum/source, atom/new_target)
 	SIGNAL_HANDLER

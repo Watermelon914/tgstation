@@ -105,8 +105,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	var/datum/port/output/closed
 
 /obj/item/circuit_component/digital_valve/populate_ports()
-	open = add_input_port("Open", PORT_TYPE_SIGNAL)
-	close = add_input_port("Close", PORT_TYPE_SIGNAL)
+	open = add_input_port("Open", PORT_TYPE_SIGNAL, trigger = .proc/open)
+	close = add_input_port("Close", PORT_TYPE_SIGNAL, trigger = .proc/close)
 
 	is_open = add_output_port("Is Open", PORT_TYPE_NUMBER)
 	opened = add_output_port("Opened", PORT_TYPE_SIGNAL)
@@ -125,20 +125,13 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 /obj/item/circuit_component/digital_valve/proc/handle_valve_toggled(datum/source, on)
 	is_open.set_output(on)
-	if(on)
-		opened.set_output(COMPONENT_SIGNAL)
-	else
-		closed.set_output(COMPONENT_SIGNAL)
+	(on ? opened : closed).set_output(COMPONENT_SIGNAL)
 
-/obj/item/circuit_component/digital_valve/input_received(datum/port/input/port)
+/obj/item/circuit_component/digital_valve/proc/open()
+	attached_valve?.set_open(TRUE)
 
-	if(!attached_valve)
-		return
-
-	if(COMPONENT_TRIGGERED_BY(open, port) && !attached_valve.on)
-		attached_valve.set_open(TRUE)
-	if(COMPONENT_TRIGGERED_BY(close, port) && attached_valve.on)
-		attached_valve.set_open(FALSE)
+/obj/item/circuit_component/digital_valve/proc/close()
+	attached_valve?.set_open(FALSE)
 
 /obj/machinery/atmospherics/components/binary/valve/digital/update_icon_nopipes(animation)
 	if(!is_operational)

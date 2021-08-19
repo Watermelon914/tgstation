@@ -38,8 +38,8 @@
 
 /obj/item/circuit_component/mmi/populate_ports()
 	message = add_input_port("Message", PORT_TYPE_STRING)
-	send = add_input_port("Send Message", PORT_TYPE_SIGNAL)
-	eject = add_input_port("Eject", PORT_TYPE_SIGNAL)
+	send = add_input_port("Send Message", PORT_TYPE_SIGNAL, .proc/send)
+	eject = add_input_port("Eject", PORT_TYPE_SIGNAL, .proc/remove_current_brain)
 
 	north = add_output_port("North", PORT_TYPE_SIGNAL)
 	east = add_output_port("East", PORT_TYPE_SIGNAL)
@@ -54,25 +54,11 @@
 	remove_current_brain()
 	return ..()
 
-/obj/item/circuit_component/mmi/input_received(datum/port/input/port)
-
-	if(!brain)
+/obj/item/circuit_component/mmi/proc/send(datum/port/input/port)
+	if(!message.value)
 		return
-
-	if(COMPONENT_TRIGGERED_BY(eject, port))
-		remove_current_brain()
-	if(COMPONENT_TRIGGERED_BY(send, port))
-		if(!message.value)
-			return
-
-		var/msg_str = copytext(html_encode(message.value), 1, max_length)
-
-		var/mob/living/target = brain.brainmob
-		if(!target)
-			return
-
-		to_chat(target, "[span_bold("You hear a message in your ear: ")][msg_str]")
-
+	var/msg_str = copytext(html_encode(message.value), 1, max_length)
+	to_chat(brain?.brainmob, "[span_bold("You hear a message in your ear: ")][msg_str]")
 
 /obj/item/circuit_component/mmi/register_shell(atom/movable/shell)
 	. = ..()

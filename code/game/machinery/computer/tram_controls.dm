@@ -129,7 +129,7 @@
 
 /obj/item/circuit_component/tram_controls/populate_ports()
 	new_destination = add_input_port("Destination", PORT_TYPE_STRING, trigger = null)
-	trigger_move = add_input_port("Send Tram", PORT_TYPE_SIGNAL)
+	trigger_move = add_input_port("Send Tram", PORT_TYPE_SIGNAL, trigger = .proc/move)
 
 	location = add_output_port("Location", PORT_TYPE_STRING)
 	travelling_output = add_output_port("Travelling", PORT_TYPE_NUMBER)
@@ -148,21 +148,11 @@
 	UnregisterSignal(tram_part, list(COMSIG_TRAM_SET_TRAVELLING, COMSIG_TRAM_TRAVEL))
 	return ..()
 
-/obj/item/circuit_component/tram_controls/input_received(datum/port/input/port)
-	if (!COMPONENT_TRIGGERED_BY(trigger_move, port))
+/obj/item/circuit_component/tram_controls/proc/move(datum/port/input/port)
+	if (!computer?.powered())
 		return
 
-	if (isnull(computer))
-		return
-
-	if (!computer.powered())
-		return
-
-	var/destination
-	for(var/obj/effect/landmark/tram/possible_destination as anything in GLOB.tram_landmarks)
-		if(possible_destination.name == new_destination.value)
-			destination = possible_destination
-			break
+	var/obj/effect/landmark/tram/destination = getElementByVar(GLOB.tram_landmarks, "name", new_destination.value)
 
 	if (!destination)
 		return

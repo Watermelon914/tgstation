@@ -31,30 +31,25 @@
 	public_options = add_option_port("Encryption Options", component_options)
 
 /obj/item/circuit_component/radio/populate_ports()
-	freq = add_input_port("Frequency", PORT_TYPE_NUMBER, default = FREQ_SIGNALER)
-	code = add_input_port("Code", PORT_TYPE_NUMBER, default = DEFAULT_SIGNALER_CODE)
-	trigger_component()
+	freq = add_input_port("Frequency", PORT_TYPE_NUMBER, default = FREQ_SIGNALER, trigger = .proc/tune)
+	tune()
+	code = add_input_port("Code", PORT_TYPE_NUMBER, default = DEFAULT_SIGNALER_CODE, trigger = null)
 	// These are cleaned up on the parent
-	trigger_input = add_input_port("Send", PORT_TYPE_SIGNAL)
+	trigger_input = add_input_port("Send", PORT_TYPE_SIGNAL, trigger = .proc/send)
 	trigger_output = add_output_port("Received", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/radio/Destroy()
 	SSradio.remove_object(src, current_freq)
 	return ..()
 
-/obj/item/circuit_component/radio/pre_input_received(datum/port/input/port)
-	freq.set_value(sanitize_frequency(freq.value, TRUE))
-
-/obj/item/circuit_component/radio/input_received(datum/port/input/port)
-	var/frequency = freq.value
-
+/obj/item/circuit_component/radio/proc/tune()
 	SSradio.remove_object(src, current_freq)
-	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
-	current_freq = frequency
+	current_freq = sanitize_frequency(freq.value, TRUE)
+	radio_connection = SSradio.add_object(src, current_freq, RADIO_SIGNALER)
 
-	if(COMPONENT_TRIGGERED_BY(trigger_input, port))
-		var/datum/signal/signal = new(list("code" = round(code.value) || 0, "key" = parent?.owner_id))
-		radio_connection.post_signal(src, signal)
+/obj/item/circuit_component/radio/proc/send()
+	var/datum/signal/signal = new(list("code" = round(code.value) || 0, "key" = parent?.owner_id))
+	radio_connection.post_signal(src, signal)
 
 /obj/item/circuit_component/radio/receive_signal(datum/signal/signal)
 	. = FALSE

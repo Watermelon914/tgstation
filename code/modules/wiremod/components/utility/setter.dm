@@ -31,7 +31,7 @@
 	return ..()
 
 /obj/item/circuit_component/setter/populate_ports()
-	input_port = add_input_port("Input", PORT_TYPE_ANY)
+	input_port = add_input_port("Input", PORT_TYPE_ANY, trigger = null)
 	trigger = add_input_port("Store", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/setter/pre_input_received(datum/port/input/port)
@@ -43,26 +43,9 @@
 		current_type = variable.datatype
 		input_port.set_datatype(current_type)
 
-/obj/item/circuit_component/setter/should_receive_input(datum/port/input/port)
-	if(!COMPONENT_TRIGGERED_BY(trigger, port))
-		return FALSE
-	return ..()
-
-
 /obj/item/circuit_component/setter/input_received(datum/port/input/port)
 	var/datum/circuit_variable/variable = get_variable()
-	if(!variable)
-		return
-
-	variable.set_value(input_port.value)
+	variable?.set_value(input_port.value)
 
 /obj/item/circuit_component/setter/proc/get_variable()
-	var/variable_string = variable_name.value
-	if(!variable_string)
-		return
-
-	var/datum/circuit_variable/variable = parent.circuit_variables[variable_string]
-	if(!variable)
-		return
-
-	return variable
+	return parent.circuit_variables?[variable_name.value]

@@ -48,8 +48,8 @@
 
 /obj/item/circuit_component/bluespace_launchpad/populate_ports()
 	launchpad_id = add_input_port("Launchpad ID", PORT_TYPE_NUMBER, trigger = null, default = 1)
-	x_pos = add_input_port("X offset", PORT_TYPE_NUMBER)
-	y_pos = add_input_port("Y offset", PORT_TYPE_NUMBER)
+	x_pos = add_input_port("X offset", PORT_TYPE_NUMBER, trigger = null)
+	y_pos = add_input_port("Y offset", PORT_TYPE_NUMBER, trigger = null)
 	send_trigger = add_input_port("Send", PORT_TYPE_SIGNAL)
 	retrieve_trigger = add_input_port("Retrieve", PORT_TYPE_SIGNAL)
 
@@ -68,14 +68,9 @@
 	return ..()
 
 /obj/item/circuit_component/bluespace_launchpad/input_received(datum/port/input/port)
-
 	if(!attached_console || length(attached_console.launchpads) == 0)
 		why_fail.set_output("No launchpads connected!")
 		on_fail.set_output(COMPONENT_SIGNAL)
-		return
-
-
-	if(!launchpad_id.value)
 		return
 
 	var/obj/machinery/launchpad/the_pad = KEYBYINDEX(attached_console.launchpads, launchpad_id.value)
@@ -85,14 +80,8 @@
 		return
 
 	the_pad.set_offset(x_pos.value, y_pos.value)
-
-	if(COMPONENT_TRIGGERED_BY(port, x_pos))
-		x_pos.set_value(the_pad.x_offset)
-		return
-
-	if(COMPONENT_TRIGGERED_BY(port, y_pos))
-		y_pos.set_value(the_pad.y_offset)
-		return
+	x_pos.set_value(the_pad.x_offset)
+	y_pos.set_value(the_pad.y_offset)
 
 	var/checks = attached_console.teleport_checks(the_pad)
 	if(!isnull(checks))
@@ -100,13 +89,8 @@
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
-	if(COMPONENT_TRIGGERED_BY(send_trigger, port))
-		the_pad.doteleport(null, TRUE, alternate_log_name = parent.get_creator())
-		sent.set_output(COMPONENT_SIGNAL)
-
-	if(COMPONENT_TRIGGERED_BY(retrieve_trigger, port))
-		the_pad.doteleport(null, FALSE, alternate_log_name = parent.get_creator())
-		retrieved.set_output(COMPONENT_SIGNAL)
+	the_pad.doteleport(null, COMPONENT_TRIGGERED_BY(send_trigger, port), alternate_log_name = parent.get_creator())
+	sent.set_output(COMPONENT_SIGNAL)
 
 /obj/machinery/computer/launchpad/attack_paw(mob/user, list/modifiers)
 	to_chat(user, span_warning("You are too primitive to use this computer!"))

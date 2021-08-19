@@ -910,33 +910,25 @@
 	var/datum/port/output/gas_amount
 
 	var/obj/machinery/airalarm/connected_alarm
-	var/list/options_map
+	var/static/list/options_map
 
 /obj/item/circuit_component/air_alarm/populate_ports()
 	min_2 = add_input_port("Min 2", PORT_TYPE_NUMBER)
 	min_1 = add_input_port("Min 1", PORT_TYPE_NUMBER)
 	max_1 = add_input_port("Max 1", PORT_TYPE_NUMBER)
 	max_2 = add_input_port("Max 2", PORT_TYPE_NUMBER)
-	request_data = add_input_port("Request Atmosphere Data", PORT_TYPE_SIGNAL)
+	request_data = add_input_port("Request Atmosphere Data", PORT_TYPE_SIGNAL, trigger = .proc/request_data)
 
 	pressure = add_output_port("Pressure", PORT_TYPE_NUMBER)
 	temperature = add_output_port("Temperature", PORT_TYPE_NUMBER)
 	gas_amount = add_output_port("Chosen Gas Amount", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/air_alarm/populate_options()
-	var/static/list/component_options
-
-	if(!component_options)
-		component_options = list(
-			"Pressure" = "pressure",
-			"Temperature" = "temperature"
-		)
-
+	if(!options_map)
+		options_map = list()
 		for(var/gas_id in GLOB.meta_gas_info)
-			component_options[GLOB.meta_gas_info[gas_id][META_GAS_NAME]] = gas_id2path(gas_id)
-
-	air_alarm_options = add_option_port("Air Alarm Options", component_options)
-	options_map = component_options
+			options_map[GLOB.meta_gas_info[gas_id][META_GAS_NAME]] = gas_id2path(gas_id)
+	air_alarm_options = add_option_port("Air Alarm Options", options_map)
 
 /obj/item/circuit_component/air_alarm/register_usb_parent(atom/movable/parent)
 	. = ..()
@@ -947,22 +939,18 @@
 	connected_alarm = null
 	return ..()
 
+/obj/item/circuit_component/air_alarm/should_receive_input(datum/port/input/port)
+	return ..() && connected_alarm && !connected_alarm.locked
+
+/obj/item/circuit_component/air_alarm/proc/request_data()
+	var/turf/alarm_turf = get_turf(connected_alarm)
+	var/datum/gas_mixture/environment = alarm_turf.return_air()
+	pressure.set_output(round(environment.return_pressure()))
+	temperature.set_output(round(environment.temperature))
+	gas_amount.set_output(round(environment.gases[options_map[air_alarm_options.value]][MOLES]))
+
 /obj/item/circuit_component/air_alarm/input_received(datum/port/input/port)
-	if(!connected_alarm || connected_alarm.locked)
-		return
-
-	var/current_option = air_alarm_options.value
-
-	if(COMPONENT_TRIGGERED_BY(request_data, port))
-		var/turf/alarm_turf = get_turf(connected_alarm)
-		var/datum/gas_mixture/environment = alarm_turf.return_air()
-		pressure.set_output(round(environment.return_pressure()))
-		temperature.set_output(round(environment.temperature))
-		if(ispath(options_map[current_option]))
-			gas_amount.set_output(round(environment.gases[options_map[current_option]][MOLES]))
-		return
-
-	var/datum/tlv/settings = connected_alarm.TLV[options_map[current_option]]
+	var/datum/tlv/settings = connected_alarm.TLV[options_map[air_alarm_options.value]]
 	settings.min2 = min_2
 	settings.min1 = min_1
 	settings.max1 = max_1

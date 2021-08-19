@@ -25,10 +25,6 @@
 	output = add_output_port("Result", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/delay/input_received(datum/port/input/port)
-
-	if(!COMPONENT_TRIGGERED_BY(trigger, port))
-		return
-
 	var/delay = delay_amount.value
 	if(delay > COMP_DELAY_MIN_VALUE)
 		// Convert delay into deciseconds

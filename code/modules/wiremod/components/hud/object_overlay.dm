@@ -32,8 +32,8 @@
 /obj/item/circuit_component/object_overlay/populate_ports()
 	target = add_input_port("Target", PORT_TYPE_ATOM)
 
-	signal_on = add_input_port("Create Overlay", PORT_TYPE_SIGNAL)
-	signal_off = add_input_port("Remove Overlay", PORT_TYPE_SIGNAL)
+	signal_on = add_input_port("Create Overlay", PORT_TYPE_SIGNAL, .proc/create_overlay)
+	signal_off = add_input_port("Remove Overlay", PORT_TYPE_SIGNAL, .proc/remove_overlay)
 
 	image_pixel_x = add_input_port("X-Axis Shift", PORT_TYPE_NUMBER)
 	image_pixel_y = add_input_port("Y-Axis Shift", PORT_TYPE_NUMBER)
@@ -68,22 +68,14 @@
 	bci = null
 	UnregisterSignal(shell, COMSIG_ORGAN_REMOVED)
 
-/obj/item/circuit_component/object_overlay/input_received(datum/port/input/port)
-	if(!bci)
-		return
+/obj/item/circuit_component/object_overlay/proc/create_overlay()
+	if(bci?.owner.client && target.value)
+		show_to_owner(target.value, bci?.owner)
 
-	var/mob/living/owner = bci.owner
-	var/atom/target_atom = target.value
-
-	if(!owner || !istype(owner) || !owner.client || !target_atom)
-		return
-
-	if(COMPONENT_TRIGGERED_BY(signal_on, port))
-		show_to_owner(target_atom, owner)
-
-	if(COMPONENT_TRIGGERED_BY(signal_off, port) && (target_atom in active_overlays))
-		QDEL_NULL(active_overlays[target_atom])
-		active_overlays.Remove(target_atom)
+/obj/item/circuit_component/object_overlay/proc/remove_overlay()
+	if(target.value in active_overlays)
+		QDEL_NULL(active_overlays[target.value])
+		active_overlays.Remove(target.value)
 
 /obj/item/circuit_component/object_overlay/proc/show_to_owner(atom/target_atom, mob/living/owner)
 	if(LAZYLEN(active_overlays) >= OBJECT_OVERLAY_LIMIT)

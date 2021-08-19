@@ -57,8 +57,9 @@
 	return
 
 /// Extension of add_input_port. Simplifies the code to make an option port to reduce boilerplate
-/obj/item/circuit_component/proc/add_option_port(name, list/list_to_use)
-	return add_input_port(name, PORT_TYPE_OPTION, port_type = /datum/port/input/option, extra_args = list("possible_options" = list_to_use))
+/obj/item/circuit_component/proc/add_option_port(name, list/list_to_use, order = 1, trigger = .proc/input_received, extra_args = list())
+	extra_args["possible_options"] = list_to_use
+	return add_input_port(name, PORT_TYPE_OPTION, port_type = /datum/port/input/option, extra_args = extra_args)
 
 /obj/item/circuit_component/Initialize()
 	. = ..()
@@ -189,19 +190,8 @@
 	pre_input_received(port)
 	if(!should_receive_input(port))
 		return FALSE
-
-	var/result
-	if(port)
-		var/proc_to_call = port.trigger
-		if(!proc_to_call)
-			return FALSE
-		result = call(src, proc_to_call)(port)
-	else
-		result = input_received()
-
-	if(result)
+	if(port ? (port.trigger ? call(src, port.trigger)(port) : TRUE) : input_received())
 		return FALSE
-
 	if(circuit_flags & CIRCUIT_FLAG_OUTPUT_SIGNAL)
 		trigger_output.set_output(COMPONENT_SIGNAL)
 	return TRUE

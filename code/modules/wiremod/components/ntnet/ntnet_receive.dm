@@ -34,18 +34,14 @@
 		PORT_TYPE_LIST,
 		PORT_TYPE_ATOM,
 	)
-	data_type_options = add_option_port("Data Type", component_options)
-	secondary_data_type_options = add_option_port("Secondary Data Type", component_options)
+	data_type_options = add_option_port("Data Type", component_options, trigger = .proc/set_type)
+	secondary_data_type_options = add_option_port("Secondary Data Type", component_options, trigger = .proc/set_secondary_type)
 
-/obj/item/circuit_component/ntnet_receive/input_received(datum/port/input/port)
+/obj/item/circuit_component/ntnet_receive/proc/set_type()
+	data_package.set_datatype(data_type_options.value)
 
-	if(COMPONENT_TRIGGERED_BY(data_type_options, port))
-		data_package.set_datatype(data_type_options.value)
-
-	if(COMPONENT_TRIGGERED_BY(secondary_data_type_options, port))
-		secondary_package.set_datatype(secondary_data_type_options.value)
-
-	return TRUE
+/obj/item/circuit_component/ntnet_receive/proc/set_secondary_type()
+	secondary_package.set_datatype(secondary_data_type_options.value)
 
 /obj/item/circuit_component/ntnet_receive/proc/ntnet_receive(datum/source, datum/netdata/data)
 	SIGNAL_HANDLER

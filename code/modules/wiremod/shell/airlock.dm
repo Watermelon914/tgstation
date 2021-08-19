@@ -66,10 +66,10 @@
 
 /obj/item/circuit_component/airlock/populate_ports()
 	// Input Signals
-	bolt = add_input_port("Bolt", PORT_TYPE_SIGNAL)
-	unbolt = add_input_port("Unbolt", PORT_TYPE_SIGNAL)
-	open = add_input_port("Open", PORT_TYPE_SIGNAL)
-	close = add_input_port("Close", PORT_TYPE_SIGNAL)
+	bolt = add_input_port("Bolt", PORT_TYPE_SIGNAL, trigger = .proc/bolt)
+	unbolt = add_input_port("Unbolt", PORT_TYPE_SIGNAL, trigger = .proc/unbolt)
+	open = add_input_port("Open", PORT_TYPE_SIGNAL, trigger = .proc/open)
+	close = add_input_port("Close", PORT_TYPE_SIGNAL, trigger = .proc/close)
 	// States
 	is_open = add_output_port("Is Open", PORT_TYPE_NUMBER)
 	is_bolted = add_output_port("Is Bolted", PORT_TYPE_NUMBER)
@@ -114,16 +114,11 @@
 	is_open.set_output(FALSE)
 	closed.set_output(COMPONENT_SIGNAL)
 
-/obj/item/circuit_component/airlock/input_received(datum/port/input/port)
-
-	if(!attached_airlock)
-		return
-
-	if(COMPONENT_TRIGGERED_BY(bolt, port))
-		attached_airlock.bolt()
-	if(COMPONENT_TRIGGERED_BY(unbolt, port))
-		attached_airlock.unbolt()
-	if(COMPONENT_TRIGGERED_BY(open, port) && attached_airlock.density)
-		INVOKE_ASYNC(attached_airlock, /obj/machinery/door/airlock.proc/open)
-	if(COMPONENT_TRIGGERED_BY(close, port) && !attached_airlock.density)
-		INVOKE_ASYNC(attached_airlock, /obj/machinery/door/airlock.proc/close)
+/obj/item/circuit_component/airlock/proc/bolt()
+	attached_airlock?.bolt()
+/obj/item/circuit_component/airlock/proc/unbolt()
+	attached_airlock?.unbolt()
+/obj/item/circuit_component/airlock/proc/open()
+	INVOKE_ASYNC(attached_airlock, /obj/machinery/door/airlock.proc/open)
+/obj/item/circuit_component/airlock/proc/close()
+	INVOKE_ASYNC(attached_airlock, /obj/machinery/door/airlock.proc/close)
