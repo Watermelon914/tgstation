@@ -2,13 +2,13 @@ GLOBAL_LIST_EMPTY(frill_objects)
 
 
 /proc/get_frill_object(icon_path, junction, alpha = 255, pixel_x = 0, pixel_y = 0, plane = FRILL_PLANE)
-	. = GLOB.frill_objects["[icon_path]-[junction]-[alpha]-[pixel_x]-[pixel_y]-[plane]"]
+	. = GLOB.frill_objects["[REF(icon_path)]-[junction]-[alpha]-[pixel_x]-[pixel_y]-[plane]"]
 	if(.)
 		return
 	var/mutable_appearance/mut_appearance = mutable_appearance(icon_path, "frill-[junction]", ABOVE_MOB_LAYER, plane, alpha)
 	mut_appearance.pixel_x = pixel_x
 	mut_appearance.pixel_y = pixel_y
-	return GLOB.frill_objects["[icon_path]-[junction]-[alpha]-[pixel_x]-[pixel_y]-[plane]"] = mut_appearance
+	return GLOB.frill_objects["[REF(icon_path)]-[junction]-[alpha]-[pixel_x]-[pixel_y]-[plane]"] = mut_appearance
 
 /**
   * Attached to smoothing atoms. Adds a globally-cached object to their vis_contents and updates based on junction changes.
@@ -20,13 +20,16 @@ GLOBAL_LIST_EMPTY(frill_objects)
 	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH
 	id_arg_index = 2
 	var/icon_path
-
+	var/icon/short_frill_icon
 
 /datum/element/frill/Attach(datum/target, icon_path)
 	if(!isturf(target) && !ismovable(target)) // Turfs and movables have vis_contents. Atoms don't. Pain.
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
 	src.icon_path = icon_path
+	if(!src.short_frill_icon)
+		src.short_frill_icon = icon(src.icon_path)
+		src.short_frill_icon.DrawBox(null, 1, 1, 32, 8)
 
 	var/atom/atom_target = target
 
@@ -44,12 +47,20 @@ GLOBAL_LIST_EMPTY(frill_objects)
 /datum/element/frill/proc/on_junction_change(atom/source, new_junction)
 	SIGNAL_HANDLER
 	var/turf/turf_or_movable = source
-	if(!(source.smoothing_junction & NORTH))
-		turf_or_movable.cut_overlay(get_frill_object(icon_path, source.smoothing_junction, pixel_y = 32))
-	else
-		turf_or_movable.cut_overlay(get_frill_object(icon_path, source.smoothing_junction, plane = WALL_PLANE, pixel_y = 32))
+	var/turf/north_turf = get_step(source, NORTH)
 
-	if(!(new_junction & NORTH))
-		turf_or_movable.add_overlay(get_frill_object(icon_path, new_junction, pixel_y = 32))
+	if(source.smoothing_junction & NORTH)
+		turf_or_movable.cut_overlay(get_frill_object(icon_path, source.smoothing_junction, plane = WALL_PLANE, pixel_y = 32))
+	else if(isturf(source) && north_turf?.density)
+		turf_or_movable.cut_overlay(get_frill_object(icon_path, NORTH|source.smoothing_junction, plane = WALL_PLANE, pixel_y = 32))
+		turf_or_movable.cut_overlay(get_frill_object(short_frill_icon, NONE, plane = WALL_PLANE, pixel_y = 40))
 	else
+		turf_or_movable.cut_overlay(get_frill_object(icon_path, source.smoothing_junction, pixel_y = 32))
+
+	if(new_junction & NORTH)
 		turf_or_movable.add_overlay(get_frill_object(icon_path, new_junction, plane = WALL_PLANE, pixel_y = 32))
+	else if(isturf(source) && north_turf?.density)
+		turf_or_movable.add_overlay(get_frill_object(icon_path, NORTH|new_junction, plane = WALL_PLANE, pixel_y = 32))
+		turf_or_movable.add_overlay(get_frill_object(short_frill_icon, NONE, plane = WALL_PLANE, pixel_y = 40))
+	else
+		turf_or_movable.add_overlay(get_frill_object(icon_path, new_junction, pixel_y = 32))
