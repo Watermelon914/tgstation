@@ -701,6 +701,26 @@
 	suffix = "starfury"
 	name = "SBC Starfury"
 
+/datum/map_template/shuttle/battlecruiser/starfury/fighter_one
+	prefix = "starfury"
+	suffix = "fighter1"
+	name = "SBC Starfury Fighter (1)"
+
+/datum/map_template/shuttle/battlecruiser/starfury/fighter_two
+	prefix = "starfury"
+	suffix = "fighter2"
+	name = "SBC Starfury Fighter (2)"
+
+///datum/map_template/shuttle/battlecruiser/starfury/fighter_three
+//	prefix = "starfury"
+//	suffix = "fighter3"
+//	name = "SBC Starfury Fighter (3)"
+
+/datum/map_template/shuttle/battlecruiser/starfury/corvette
+	prefix = "starfury"
+	suffix = "corvette"
+	name = "SBC Starfury Corvette"
+
 /datum/map_template/shuttle/ruin/caravan_victim
 	suffix = "caravan_victim"
 	name = "Small Freighter"
