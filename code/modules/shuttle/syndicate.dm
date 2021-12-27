@@ -71,46 +71,43 @@
 
 // Stationary docking ports for the Starfury.
 /obj/docking_port/stationary/starfury
-	name = "SBC Starfury"
+	name = "\improper SBC Starfury Deep Space Dock"
 	id = "SBC_starfury"
 	hidden = TRUE
 	height = 67
 	width = 37
 	dwidth = 34
-	dheight = 6
 	dir = WEST
 
-/obj/docking_port/stationary/starfury/corvette
+/obj/docking_port/stationary/starfury_corvette
 	name = "SBC Starfury Corvette Bay"
 	id = "SBC_corvette_bay"
+	hidden = TRUE
 	width = 14
 	height = 7
 	dwidth = 7
 	dir = NORTH
 
-/obj/docking_port/stationary/starfury/fighter_one
+/obj/docking_port/stationary/starfury_fighter
+	name = "SBC Starfury Fighter Bay"
+	id = "SBC_fighter_bay"
+	hidden = TRUE
+	width = 5
+	height = 7
+	dwidth = 2
+	dir = NORTH
+
+/obj/docking_port/stationary/starfury_fighter/fighter_one
 	name = "SBC Starfury Port Fighter Bay"
 	id = "SBC_fighter1_bay"
-	width = 5
-	height = 7
-	dwidth = 2
-	dir = NORTH
 
-/obj/docking_port/stationary/starfury/fighter_two
+/obj/docking_port/stationary/starfury_fighter/fighter_two
 	name = "SBC Starfury Center Fighter Bay"
 	id = "SBC_fighter2_bay"
-	width = 5
-	height = 7
-	dwidth = 2
-	dir = NORTH
 
-/obj/docking_port/stationary/starfury/fighter_three
+/obj/docking_port/stationary/starfury_fighter/fighter_three
 	name = "SBC Starfury Starboard Fighter Bay"
 	id = "SBC_fighter3_bay"
-	width = 5
-	height = 7
-	dwidth = 2
-	dir = NORTH
 
 // Mobile docking ports for the Starfury's and her strike shuttles.
 
@@ -119,12 +116,11 @@
 	id = "SBC_starfury"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
+	dir = WEST
+	port_direction = EAST
 	height = 67
 	width = 37
 	dwidth = 34
-	dheight = 6
-	dir = WEST
-	port_direction = EAST
 
 /obj/docking_port/mobile/syndicate_starfury/Initialize(mapload)
 	. = ..()
@@ -135,6 +131,7 @@
 	id = "syndicate_fighter"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
+	find_deepest_baseturf = TRUE
 	dir = NORTH
 	port_direction = SOUTH
 	width = 5
@@ -158,12 +155,13 @@
 	id = "SBC_corvette"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
+	find_deepest_baseturf = TRUE
 	dir = NORTH
 	port_direction = SOUTH
-	preferred_direction = EAST
+	preferred_direction = WEST
 	width = 14
+	dwidth = 6
 	height = 7
-	dwidth = 7
 
 // Shuttle navigation consoles for the Starfury and her shuttles.
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/starfury
@@ -209,8 +207,8 @@
 	icon_keyboard = "syndie_key"
 	light_color = "#FA8282"
 	req_access = list(ACCESS_SYNDICATE)
-	possible_destinations = "SBC_starfury_custom;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 	shuttleId = "SBC_starfury"
+	possible_destinations = "SBC_starfury_custom;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 
 /obj/machinery/computer/shuttle/starfury/fighter
 	name = "syndicate fighter control console"
@@ -218,15 +216,15 @@
 
 /obj/machinery/computer/shuttle/starfury/fighter/fighter_one
 	shuttleId = "SBC_fighter1"
-	possible_destinations = "SBC_fighter1_custom;SBC_fighter1;SBC_fighter2;SBC_fighter3;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
+	possible_destinations = "SBC_fighter1_custom;SBC_fighter1_bay;SBC_fighter2_bay;SBC_fighter3_bay;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 
 /obj/machinery/computer/shuttle/starfury/fighter/fighter_two
 	shuttleId = "SBC_fighter2"
-	possible_destinations = "SBC_fighter2_custom;SBC_fighter1;SBC_fighter2;SBC_fighter3;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
+	possible_destinations = "SBC_fighter2_custom;SBC_fighter1_bay;SBC_fighter2_bay;SBC_fighter3_bay;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 
 /obj/machinery/computer/shuttle/starfury/fighter/fighter_three
 	shuttleId = "SBC_fighter3"
-	possible_destinations = "SBC_fighter3_custom;SBC_fighter1;SBC_fighter2;SBC_fighter3;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
+	possible_destinations = "SBC_fighter3_custom;SBC_fighter1_bay;SBC_fighter2_bay;SBC_fighter3_bay;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 
 /obj/machinery/computer/shuttle/starfury/corvette
 	name = "syndicate corvette control console"
@@ -237,32 +235,30 @@
 #undef SYNDICATE_CHALLENGE_TIMER
 
 /proc/test_summon_battlecruiser()
+	//var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
 	var/datum/map_template/shuttle/battlecruiser/starfury/ship = new()
 	var/x = rand(TRANSITIONEDGE,world.maxx - TRANSITIONEDGE - ship.width)
 	var/y = rand(TRANSITIONEDGE,world.maxy - TRANSITIONEDGE - ship.height)
 	var/z = SSmapping.empty_space.z_value
-	var/turf/battlecruiser_loading_turf = locate(x,y,z)
+	var/turf/battlecruiser_loading_turf = locate(x, y, z)
 	if(!battlecruiser_loading_turf)
 		CRASH("Battlecruiser found no turf to load in")
 
 	if(!ship.load(battlecruiser_loading_turf))
 		CRASH("Loading battlecruiser ship failed!")
 
-	SSshuttle.unload_preview()
 	var/datum/map_template/shuttle/battlecruiser/starfury/fighter_one/first_fighter = new()
-	var/obj/docking_port/stationary/starfury/fighter_one/fighter_one_spot = locate()
+	var/obj/docking_port/stationary/starfury_fighter/fighter_one/fighter_one_spot = locate()
 	if(fighter_one_spot)
 		SSshuttle.action_load(first_fighter, fighter_one_spot)
 
-	SSshuttle.unload_preview()
 	var/datum/map_template/shuttle/battlecruiser/starfury/fighter_two/second_fighter = new()
-	var/obj/docking_port/stationary/starfury/fighter_two/fighter_two_spot = locate()
+	var/obj/docking_port/stationary/starfury_fighter/fighter_two/fighter_two_spot = locate()
 	if(fighter_two_spot)
 		SSshuttle.action_load(second_fighter, fighter_two_spot)
 
-	SSshuttle.unload_preview()
 	var/datum/map_template/shuttle/battlecruiser/starfury/corvette/corvette = new()
-	var/obj/docking_port/stationary/starfury/corvette/corvette_spot = locate()
+	var/obj/docking_port/stationary/starfury_corvette/corvette_spot = locate()
 	if(corvette_spot)
 		SSshuttle.action_load(corvette, corvette_spot)
 

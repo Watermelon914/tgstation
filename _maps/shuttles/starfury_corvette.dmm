@@ -26,6 +26,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/shuttle/sbc_corvette)
+"e" = (
+/obj/machinery/porta_turret/syndicate/pod{
+	dir = 1;
+	max_integrity = 80;
+	
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/sbc_corvette)
 "f" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -86,7 +94,7 @@
 "m" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	max_integrity = 80;
-	obj_integrity = 80
+	
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/sbc_corvette)
@@ -296,8 +304,7 @@
 "H" = (
 /obj/machinery/porta_turret/syndicate/pod{
 	dir = 1;
-	max_integrity = 80;
-	obj_integrity = 80
+	max_integrity = 80
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/sbc_corvette)
@@ -529,7 +536,7 @@ b
 M
 "}
 (7,1,1) = {"
-H
+e
 M
 M
 K

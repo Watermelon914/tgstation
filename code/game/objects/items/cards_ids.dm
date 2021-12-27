@@ -934,6 +934,20 @@
 	registered_name = "Syndicate"
 	trim = /datum/id_trim/syndicom/captain
 
+
+/obj/item/card/id/advanced/black/syndicate_command/captain_id/syndie_spare
+	name = "syndicate captain's spare ID"
+	desc = "The spare ID of the Dark Lord himself."
+	registered_name = "Captain"
+	registered_age = null
+
+/obj/item/card/id/advanced/black/syndicate_command/captain_id/syndie_spare/update_label()
+	if(registered_name == "Captain")
+		name = "[initial(name)][(!assignment || assignment == "Captain") ? "" : " ([assignment])"]"
+		update_appearance(UPDATE_ICON)
+	else
+		..()
+
 /obj/item/card/id/advanced/debug
 	name = "\improper Debug ID"
 	desc = "A debug ID card. Has ALL the all access, you really shouldn't have this."

@@ -702,22 +702,22 @@
 	name = "SBC Starfury"
 
 /datum/map_template/shuttle/battlecruiser/starfury/fighter_one
-	prefix = "starfury"
+	port_id = "starfury"
 	suffix = "fighter1"
 	name = "SBC Starfury Fighter (1)"
 
 /datum/map_template/shuttle/battlecruiser/starfury/fighter_two
-	prefix = "starfury"
+	port_id = "starfury"
 	suffix = "fighter2"
 	name = "SBC Starfury Fighter (2)"
 
 ///datum/map_template/shuttle/battlecruiser/starfury/fighter_three
-//	prefix = "starfury"
+//	port_id = "starfury"
 //	suffix = "fighter3"
 //	name = "SBC Starfury Fighter (3)"
 
 /datum/map_template/shuttle/battlecruiser/starfury/corvette
-	prefix = "starfury"
+	port_id = "starfury"
 	suffix = "corvette"
 	name = "SBC Starfury Corvette"
 
