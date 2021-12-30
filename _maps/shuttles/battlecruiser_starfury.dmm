@@ -253,12 +253,11 @@
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "aI" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 4;
-	networks = list("SS13")
-	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/computer/camera_advanced/syndie{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -566,7 +565,7 @@
 "bo" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/computer/shuttle/starfury,
+/obj/machinery/computer/shuttle/starfury/battlecruiser,
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
 	},
@@ -577,6 +576,7 @@
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
 	},
+/obj/item/paper/guides/starfury_pilot,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc_starfury)
 "bq" = (
@@ -5580,7 +5580,7 @@
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "NG" = (
-/obj/structure/frame/computer{
+/obj/machinery/computer/camera_advanced/syndie{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
