@@ -1,6 +1,6 @@
 
 // Some landmarks that denote the locations of starfury shuttle docks.
-// The docks themselves are placed in runtime, because shuttle-on-shuttle is jank.
+// The docks themselves are placed in runtime, because shuttle-on-shuttle is hell.
 /obj/effect/landmark/starfury_shuttle_dock
 	name = "starfury shuttle dock"
 
@@ -13,9 +13,8 @@
 /obj/effect/landmark/starfury_shuttle_dock/fighter_three
 	name = "starfury fighter three shuttle dock"
 
-/obj/effect/landmark/starfury_shuttle_dock/fighter_corvette
+/obj/effect/landmark/starfury_shuttle_dock/corvette
 	name = "starfury corvette shuttle dock"
-
 
 // Stationary docking ports for the Starfury and her strike shuttles.
 /obj/docking_port/stationary/starfury
@@ -222,6 +221,10 @@
 	if(fighter_two_landmark)
 		var/obj/docking_port/stationary/starfury_fighter/fighter_two/fighter_two_dock = new(get_turf(fighter_two_landmark))
 		SSshuttle.action_load(second_fighter, fighter_two_dock)
+
+	var/obj/effect/landmark/starfury_shuttle_dock/fighter_three/fighter_three_landmark = locate() in GLOB.landmarks_list
+	if(fighter_three_landmark) // Still load in the third fighter bay, even though no fighter is docked there
+		new /obj/docking_port/stationary/starfury_fighter/fighter_three(get_turf(fighter_one_landmark))
 
 	var/datum/map_template/shuttle/starfury/corvette/corvette = locate() in shuttles
 	var/obj/effect/landmark/starfury_shuttle_dock/corvette/corvette_landmark = locate() in GLOB.landmarks_list
