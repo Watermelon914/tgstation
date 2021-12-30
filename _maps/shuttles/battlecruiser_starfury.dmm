@@ -1929,7 +1929,7 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/sbc_starfury)
 "eK" = (
-/obj/docking_port/stationary/starfury_fighter/fighter_three,
+/obj/effect/landmark/starfury_shuttle_dock/fighter_three,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "eL" = (
@@ -2390,7 +2390,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc_starfury)
 "gc" = (
-/obj/docking_port/stationary/starfury_fighter/fighter_one,
+/obj/effect/landmark/starfury_shuttle_dock/fighter_one,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "gd" = (
@@ -2403,7 +2403,7 @@
 /turf/open/floor/iron,
 /area/shuttle/sbc_starfury)
 "ge" = (
-/obj/docking_port/stationary/starfury_fighter/fighter_two,
+/obj/effect/landmark/starfury_shuttle_dock/fighter_two,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "gp" = (
@@ -4716,7 +4716,7 @@
 /turf/open/floor/iron,
 /area/shuttle/sbc_starfury)
 "ml" = (
-/obj/docking_port/stationary/starfury_corvette,
+/obj/effect/landmark/starfury_shuttle_dock/fighter_corvette,
 /turf/open/floor/plating,
 /area/shuttle/sbc_starfury)
 "mp" = (

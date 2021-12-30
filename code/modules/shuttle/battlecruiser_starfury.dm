@@ -1,3 +1,22 @@
+
+// Some landmarks that denote the locations of starfury shuttle docks.
+// The docks themselves are placed in runtime, because shuttle-on-shuttle is jank.
+/obj/effect/landmark/starfury_shuttle_dock
+	name = "starfury shuttle dock"
+
+/obj/effect/landmark/starfury_shuttle_dock/fighter_one
+	name = "starfury fighter one shuttle dock"
+
+/obj/effect/landmark/starfury_shuttle_dock/fighter_two
+	name = "starfury fighter two shuttle dock"
+
+/obj/effect/landmark/starfury_shuttle_dock/fighter_three
+	name = "starfury fighter three shuttle dock"
+
+/obj/effect/landmark/starfury_shuttle_dock/fighter_corvette
+	name = "starfury corvette shuttle dock"
+
+
 // Stationary docking ports for the Starfury and her strike shuttles.
 /obj/docking_port/stationary/starfury
 	name = "\improper SBC Starfury Deep Space Dock"
@@ -116,7 +135,8 @@
 /obj/item/paper/guides/starfury_pilot
 	name = "starfury piloting guide"
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "slip"
+	icon_state = "slipfull"
+	show_written_words = FALSE
 	info = "\
 		Congratulations, Syndicate agent, for you have been bestowed the prestigious job \
 		of piloting the great battlecruiser SBC Starfury into combat against our foes.<br><br>\
@@ -179,6 +199,7 @@
 	. = ..()
 
 	if(is_station_level(new_turf.z))
+		say("Shuttle locked into orbit with a station.")
 		locked = TRUE
 		if(!populated_bay)
 			load_shuttlecraft()
@@ -187,20 +208,26 @@
  * Fills the SBC Starfury's bay with two fighters and one corvette.
  */
 /obj/machinery/computer/shuttle/starfury/battlecruiser/proc/load_shuttlecraft()
-	var/datum/map_template/shuttle/battlecruiser/starfury/fighter_one/first_fighter = new()
-	var/obj/docking_port/stationary/starfury_fighter/fighter_one/fighter_one_spot = locate()
-	if(fighter_one_spot)
-		SSshuttle.action_load(first_fighter, fighter_one_spot)
 
-	var/datum/map_template/shuttle/battlecruiser/starfury/fighter_two/second_fighter = new()
-	var/obj/docking_port/stationary/starfury_fighter/fighter_two/fighter_two_spot = locate()
-	if(fighter_two_spot)
-		SSshuttle.action_load(second_fighter, fighter_two_spot)
+	var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
 
-	var/datum/map_template/shuttle/battlecruiser/starfury/corvette/corvette = new()
-	var/obj/docking_port/stationary/starfury_corvette/corvette_spot = locate()
-	if(corvette_spot)
-		SSshuttle.action_load(corvette, corvette_spot)
+	var/datum/map_template/shuttle/starfury/fighter_one/first_fighter = locate() in shuttles
+	var/obj/effect/landmark/starfury_shuttle_dock/fighter_one/fighter_one_landmark = locate() in GLOB.landmarks_list
+	if(fighter_one_landmark)
+		var/obj/docking_port/stationary/starfury_fighter/fighter_one/fighter_one_dock = new(get_turf(fighter_one_landmark))
+		SSshuttle.action_load(first_fighter, fighter_one_dock)
+
+	var/datum/map_template/shuttle/starfury/fighter_two/second_fighter = locate() in shuttles
+	var/obj/effect/landmark/starfury_shuttle_dock/fighter_two/fighter_two_landmark = locate() in GLOB.landmarks_list
+	if(fighter_two_landmark)
+		var/obj/docking_port/stationary/starfury_fighter/fighter_two/fighter_two_dock = new(get_turf(fighter_two_landmark))
+		SSshuttle.action_load(second_fighter, fighter_two_dock)
+
+	var/datum/map_template/shuttle/starfury/corvette/corvette = locate() in shuttles
+	var/obj/effect/landmark/starfury_shuttle_dock/corvette/corvette_landmark = locate() in GLOB.landmarks_list
+	if(corvette_landmark)
+		var/obj/docking_port/stationary/starfury_corvette/corvette_dock = new(get_turf(corvette_landmark))
+		SSshuttle.action_load(corvette, corvette_dock)
 
 /obj/machinery/computer/shuttle/starfury/fighter
 	name = "syndicate fighter control console"
@@ -235,13 +262,18 @@
 	shuffle_inplace(candidates)
 	*/
 
-	var/datum/map_template/shuttle/battlecruiser/starfury/ship = new()
+	var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
+
+	var/datum/map_template/shuttle/battlecruiser/starfury/ship = locate() in shuttles
 	var/x = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE - ship.width)
 	var/y = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE - ship.height)
-	var/z = SSmapping.empty_space.z_value
+	var/z = SSmapping.empty_space?.z_value
+	if(isnull(z))
+		CRASH("Battlecruiser found no empty space level to load in!")
+
 	var/turf/battlecruiser_loading_turf = locate(x, y, z)
 	if(!battlecruiser_loading_turf)
-		CRASH("Battlecruiser found no turf to load in")
+		CRASH("Battlecruiser found no turf to load in!")
 
 	if(!ship.load(battlecruiser_loading_turf))
 		CRASH("Loading battlecruiser ship failed!")

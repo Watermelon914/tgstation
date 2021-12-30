@@ -945,8 +945,9 @@
 	if(registered_name == "Captain")
 		name = "[initial(name)][(!assignment || assignment == "Captain") ? "" : " ([assignment])"]"
 		update_appearance(UPDATE_ICON)
-	else
-		..()
+		return
+
+	return ..()
 
 /obj/item/card/id/advanced/debug
 	name = "\improper Debug ID"
