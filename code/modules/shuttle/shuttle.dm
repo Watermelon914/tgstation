@@ -450,10 +450,6 @@
 
 //this is to check if this shuttle can physically dock at dock S
 /obj/docking_port/mobile/proc/canDock(obj/docking_port/stationary/S)
-	var/report = FALSE
-	if(istype(S, /obj/docking_port/stationary/starfury))
-		report = TRUE
-
 	if(!istype(S))
 		return SHUTTLE_NOT_A_DOCKING_PORT
 
@@ -461,23 +457,15 @@
 		return SHUTTLE_CAN_DOCK
 
 	if(dwidth > S.dwidth)
-		if(report)
-			message_admins("[S] is [SHUTTLE_DWIDTH_TOO_LARGE]")
 		return SHUTTLE_DWIDTH_TOO_LARGE
 
 	if(width-dwidth > S.width-S.dwidth)
-		if(report)
-			message_admins("[S] is [SHUTTLE_WIDTH_TOO_LARGE]")
 		return SHUTTLE_WIDTH_TOO_LARGE
 
 	if(dheight > S.dheight)
-		if(report)
-			message_admins("[S] is [SHUTTLE_DHEIGHT_TOO_LARGE]")
 		return SHUTTLE_DHEIGHT_TOO_LARGE
 
 	if(height-dheight > S.height-S.dheight)
-		if(report)
-			message_admins("[S] is [SHUTTLE_HEIGHT_TOO_LARGE] ([height-dheight] vs [S.height-S.dheight])")
 		return SHUTTLE_HEIGHT_TOO_LARGE
 
 	//check the dock isn't occupied
@@ -485,18 +473,12 @@
 	if(currently_docked)
 		// by someone other than us
 		if(currently_docked != src)
-			if(report)
-				message_admins("[S] is [SHUTTLE_SOMEONE_ELSE_DOCKED]")
 			return SHUTTLE_SOMEONE_ELSE_DOCKED
 		else
 		// This isn't an error, per se, but we can't let the shuttle code
 		// attempt to move us where we currently are, it will get weird.
-			if(report)
-				message_admins("[S] is [SHUTTLE_ALREADY_DOCKED]")
 			return SHUTTLE_ALREADY_DOCKED
 
-	if(report)
-		message_admins("[S] is [SHUTTLE_CAN_DOCK]")
 	return SHUTTLE_CAN_DOCK
 
 /obj/docking_port/mobile/proc/check_dock(obj/docking_port/stationary/S, silent=FALSE)
