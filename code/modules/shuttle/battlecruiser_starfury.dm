@@ -191,15 +191,18 @@
 	shuttleId = "SBC_starfury"
 	possible_destinations = "SBC_starfury_custom;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s"
 	/// Whether the battlecruiser bay has been filled with shuttlecraft yet.
-	var/populated_bay = FALSE
+	var/static/populated_bay = FALSE
 
 // Once the Starfury reaches the staiton z-level, it cannot be moved.
 /obj/machinery/computer/shuttle/starfury/battlecruiser/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
 	. = ..()
 
+	// We just flew into the station's z-level
 	if(is_station_level(new_turf.z))
+		// Lock it down...
 		say("Shuttle locked into orbit with a station.")
 		locked = TRUE
+		// And send in the ships to fill the bay
 		if(!populated_bay)
 			load_shuttlecraft()
 
@@ -208,24 +211,29 @@
  */
 /obj/machinery/computer/shuttle/starfury/battlecruiser/proc/load_shuttlecraft()
 
+	// Get all of our shuttle templates for ease of access
 	var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
 
+	// Load in the first fighter and its dock
 	var/datum/map_template/shuttle/starfury/fighter_one/first_fighter = locate() in shuttles
 	var/obj/effect/landmark/starfury_shuttle_dock/fighter_one/fighter_one_landmark = locate() in GLOB.landmarks_list
 	if(fighter_one_landmark)
 		var/obj/docking_port/stationary/starfury_fighter/fighter_one/fighter_one_dock = new(get_turf(fighter_one_landmark))
 		SSshuttle.action_load(first_fighter, fighter_one_dock)
 
+	// Then the second fighter and its dock
 	var/datum/map_template/shuttle/starfury/fighter_two/second_fighter = locate() in shuttles
 	var/obj/effect/landmark/starfury_shuttle_dock/fighter_two/fighter_two_landmark = locate() in GLOB.landmarks_list
 	if(fighter_two_landmark)
 		var/obj/docking_port/stationary/starfury_fighter/fighter_two/fighter_two_dock = new(get_turf(fighter_two_landmark))
 		SSshuttle.action_load(second_fighter, fighter_two_dock)
 
+	// Load in the third fighter's dock, even though there's not a third fighter per se
 	var/obj/effect/landmark/starfury_shuttle_dock/fighter_three/fighter_three_landmark = locate() in GLOB.landmarks_list
-	if(fighter_three_landmark) // Still load in the third fighter bay, even though no fighter is docked there
+	if(fighter_three_landmark)
 		new /obj/docking_port/stationary/starfury_fighter/fighter_three(get_turf(fighter_one_landmark))
 
+	// And finally, load in the corvette and its dock
 	var/datum/map_template/shuttle/starfury/corvette/corvette = locate() in shuttles
 	var/obj/effect/landmark/starfury_shuttle_dock/corvette/corvette_landmark = locate() in GLOB.landmarks_list
 	if(corvette_landmark)
@@ -279,16 +287,24 @@
 	if(!ship.load(battlecruiser_loading_turf))
 		CRASH("Loading battlecruiser ship failed!")
 
-
 	for(var/turf/open/spawned_turf as anything in ship.get_affected_turfs(battlecruiser_loading_turf)) //not as anything to filter out closed turfs
 		for(var/obj/effect/mob_spawn/ghost_role/human/syndicate/battlecruiser/spawner in spawned_turf)
 			if(candidates.len > 0)
 				var/mob/our_candidate = candidates[1]
 				spawner.create(our_candidate)
 				candidates -= our_candidate
-				notify_ghosts("The battlecruiser has an object of interest: [our_candidate]!", source=our_candidate, action=NOTIFY_ORBIT, header="Something's Interesting!")
+				notify_ghosts(
+					"The battlecruiser has an object of interest: [our_candidate]!",
+					source = our_candidate,
+					action = NOTIFY_ORBIT,
+					header = "Something's Interesting!"
+					)
 			else
-				notify_ghosts("The battlecruiser has an object of interest: [spawner]!", source=spawner, action=NOTIFY_ORBIT, header="Something's Interesting!")
-
+				notify_ghosts(
+					"The battlecruiser has an object of interest: [spawner]!",
+					source = spawner,
+					action = NOTIFY_ORBIT,
+					header="Something's Interesting!"
+					)
 
 	priority_announce("Unidentified armed ship detected near the station.")
