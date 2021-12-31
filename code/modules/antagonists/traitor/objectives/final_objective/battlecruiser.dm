@@ -25,30 +25,3 @@
 				"style" = STYLE_SYNDICATE,
 				"spawn" = /obj/item/card/emag/battlecruiser,
 			))
-
-/proc/summon_battlecruiser()
-	var/list/candidates = poll_ghost_candidates("Do you wish to be considered for battlecruiser crew?", ROLE_TRAITOR)
-	shuffle_inplace(candidates)
-
-	var/datum/map_template/shuttle/battlecruiser/starfury/ship = new /datum/map_template/shuttle/battlecruiser/starfury
-	var/x = rand(TRANSITIONEDGE,world.maxx - TRANSITIONEDGE - ship.width)
-	var/y = rand(TRANSITIONEDGE,world.maxy - TRANSITIONEDGE - ship.height)
-	var/z = SSmapping.empty_space.z_value
-	var/turf/battlecruiser_loading_turf = locate(x,y,z)
-	if(!battlecruiser_loading_turf)
-		CRASH("Battlecruiser found no turf to load in")
-
-	if(!ship.load(battlecruiser_loading_turf))
-		CRASH("Loading battlecruiser ship failed!")
-
-	for(var/turf/open/spawned_turf as anything in ship.get_affected_turfs(battlecruiser_loading_turf)) //not as anything to filter out closed turfs
-		for(var/obj/effect/mob_spawn/ghost_role/human/syndicate/battlecruiser/spawner in spawned_turf)
-			if(candidates.len > 0)
-				var/mob/our_candidate = candidates[1]
-				spawner.create(our_candidate)
-				candidates -= our_candidate
-				notify_ghosts("The battlecruiser has an object of interest: [our_candidate]!", source=our_candidate, action=NOTIFY_ORBIT, header="Something's Interesting!")
-			else
-				notify_ghosts("The battlecruiser has an object of interest: [spawner]!", source=spawner, action=NOTIFY_ORBIT, header="Something's Interesting!")
-
-	priority_announce("Unidentified armed ship detected near the station.")
