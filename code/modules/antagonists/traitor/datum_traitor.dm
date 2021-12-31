@@ -28,6 +28,8 @@
 	/// The uplink handler that this traitor belongs to.
 	var/datum/uplink_handler/uplink_handler
 
+	var/uplink_sale_count = 3
+
 /datum/antagonist/traitor/New(give_objectives = TRUE)
 	. = ..()
 	src.give_objectives = give_objectives
@@ -49,10 +51,17 @@
 
 		uplink_handler.has_objectives = TRUE
 		uplink_handler.owner = owner
+		uplink_handler.assigned_role = owner.assigned_role.title
 		uplink_handler.generate_objectives()
 
 		if(uplink_handler.progression_points < SStraitor.current_global_progression)
 			uplink_handler.progression_points = SStraitor.current_global_progression * SStraitor.newjoin_progression_coeff
+		var/list/uplink_items = list()
+		for(var/datum/uplink_item/item as anything in SStraitor.uplink_items)
+			if(item.item && (!length(item.restricted_roles) || (uplink_handler.assigned_role in item.restricted_roles)) \
+				&&  !item.cant_discount && (item.purchasable_from & uplink_handler.uplink_flag))
+				uplink_items += item
+		uplink_handler.extra_purchasable += create_uplink_sales(uplink_sale_count, /datum/uplink_category/discounts, -1, uplink_items)
 
 		RegisterSignal(uplink, COMSIG_PARENT_QDELETING, .proc/on_uplink_lost)
 
@@ -94,7 +103,15 @@
 
 /datum/objective/traitor_progression
 	name = "traitor progression"
-	explanation_text = "Become a living legend by reaching the 'Legendary' reputation status"
+	explanation_text = "Become a living legend by getting a total of %REPUTATION% reputation points"
+
+	var/possible_range = list(40 MINUTES, 90 MINUTES)
+	var/required_total_progression_points
+
+/datum/objective/traitor_progression/New(text)
+	. = ..()
+	required_total_progression_points = round(rand(possible_range[1], possible_range[2]) / 60)
+	explanation_text = replacetext(explanation_text, "%REPUTATION%", required_total_progression_points)
 
 /datum/objective/traitor_progression/check_completion()
 	if(!owner)
@@ -104,21 +121,21 @@
 		return FALSE
 	if(!traitor.uplink_handler)
 		return FALSE
-	if(traitor.uplink_handler.progression_points < 140 MINUTES)
+	if(traitor.uplink_handler.progression_points < required_total_progression_points)
 		return FALSE
 	return TRUE
 
 /datum/objective/traitor_objectives
 	name = "traitor objective"
-	explanation_text = "Complete objectives colletively worth more than \[REPUTATION] reputation points"
+	explanation_text = "Complete objectives colletively worth more than %REPUTATION% reputation points"
 
+	var/possible_range = list(20 MINUTES, 30 MINUTES)
 	var/required_progression_in_objectives
 
 /datum/objective/traitor_objectives/New(text)
 	. = ..()
-	var/datum/traitor_objective/final/final_type = /datum/traitor_objective/final
-	explanation_text = replacetext(explanation_text, "\[REPUTATION]", initial(final_type.progression_points_in_objectives) / 60)
-	required_progression_in_objectives = initial(final_type.progression_points_in_objectives)
+	required_progression_in_objectives = round(rand(possible_range[1], possible_range[2]) / 60)
+	explanation_text = replacetext(explanation_text, "%REPUTATION%", required_progression_in_objectives)
 
 /datum/objective/traitor_objectives/check_completion()
 	if(!owner)
@@ -130,6 +147,8 @@
 		return FALSE
 	var/total_points = 0
 	for(var/datum/traitor_objective/objective as anything in traitor.uplink_handler.completed_objectives)
+		if(objective.objective_state != OBJECTIVE_STATE_COMPLETED)
+			continue
 		total_points += objective.progression_reward
 	if(total_points < required_progression_in_objectives)
 		return FALSE
@@ -224,6 +243,12 @@
 		result += uplink_text
 
 	result += objectives_text
+
+	if(uplink_handler)
+		var/completed_objectives_text = "Completed Uplink Objectives: "
+		for(var/datum/traitor_objective/objective as anything in uplink_handler.completed_objectives)
+			result += "<br><B>[objective.name]</B> - ([objective.telecrystal_reward] TC, [objective.progression_reward/600] Reputation)"
+		result += completed_objectives_text
 
 	var/special_role_text = lowertext(name)
 

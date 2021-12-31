@@ -18,6 +18,8 @@
 	var/datum/uplink_purchase_log/purchase_log
 	/// Associative array of uplink item = stock left
 	var/list/item_stock = list()
+	/// Extra stuff that can be purchased by an uplink, regardless of flag.
+	var/list/extra_purchasable = list()
 	/// Whether this uplink handler has objectives.
 	var/has_objectives = TRUE
 	/// The maximum number of objectives that can be taken
@@ -50,13 +52,14 @@
 	if(debug_mode)
 		return TRUE
 
-	if(!(to_purchase.purchasable_from & uplink_flag))
-		return FALSE
+	if(!(to_purchase in extra_purchasable))
+		if(!(to_purchase.purchasable_from & uplink_flag))
+			return FALSE
 
-	if(length(to_purchase.restricted_roles) && !(assigned_role in to_purchase.restricted_roles))
-		return FALSE
+		if(length(to_purchase.restricted_roles) && !(assigned_role in to_purchase.restricted_roles))
+			return FALSE
 
-	var/stock = item_stock[to_purchase.type] || INFINITY
+	var/stock = item_stock[to_purchase] || INFINITY
 	if(telecrystals < to_purchase.cost || stock <= 0 || (has_progression && progression_points < to_purchase.progression_minimum))
 		return FALSE
 
@@ -67,13 +70,13 @@
 		return
 
 	if(to_purchase.limited_stock != -1 && !(to_purchase.type in item_stock))
-		item_stock[to_purchase.type] = to_purchase.limited_stock
+		item_stock[to_purchase] = to_purchase.limited_stock
 
 	telecrystals -= to_purchase.cost
 	to_purchase.purchase(user, src)
 
 	if(to_purchase.type in item_stock)
-		item_stock[to_purchase.type] -= 1
+		item_stock[to_purchase] -= 1
 
 	SSblackbox.record_feedback("nested tally", "traitor_uplink_items_bought", 1, list("[initial(to_purchase.name)]", "[to_purchase.cost]"))
 	on_update()
@@ -111,7 +114,6 @@
 		return
 	if(!handle_duplicate(objective))
 		qdel(objective)
-		potential_duplicate_objectives[objective.type] -= objective
 		return
 	objective.original_progression = objective.progression_reward
 	objective.update_progression_reward()
@@ -123,15 +125,19 @@
 		return FALSE
 
 	var/datum/traitor_objective/current_type = potential_duplicate.type
+	var/list/added_types = list()
 	while(current_type != /datum/traitor_objective)
 		if(!potential_duplicate_objectives[current_type])
 			potential_duplicate_objectives[current_type] = list(potential_duplicate)
 		else
 			for(var/datum/traitor_objective/duplicate_checker as anything in potential_duplicate_objectives[current_type])
 				if(duplicate_checker.is_duplicate(potential_duplicate))
+					for(var/typepath in added_types)
+						potential_duplicate_objectives[typepath] -= potential_duplicate
 					return FALSE
 			potential_duplicate_objectives[current_type] += potential_duplicate
 
+		added_types += current_type
 		current_type = type2parent(current_type)
 	return TRUE
 
@@ -141,6 +147,13 @@
 		if(objective.objective_state == OBJECTIVE_STATE_COMPLETED)
 			amount_completed += 1
 	return amount_completed
+
+/datum/uplink_handler/proc/get_completion_progression(datum/traitor_objective/type)
+	var/total_progression = 0
+	for(var/datum/traitor_objective/objective as anything in potential_duplicate_objectives[type])
+		if(objective.objective_state == OBJECTIVE_STATE_COMPLETED)
+			total_progression += objective.progression_reward
+	return total_progression
 
 /// Used to complete objectives, failed or successful.
 /datum/uplink_handler/proc/complete_objective(datum/traitor_objective/to_remove)
@@ -165,12 +178,15 @@
 /datum/uplink_handler/proc/abort_objective(datum/traitor_objective/to_abort)
 	if(istype(to_abort, /datum/traitor_objective/final))
 		return
-	to_abort.fail_objective(penalty_cost = TRUE)
+	if(to_abort.objective_state != OBJECTIVE_STATE_ACTIVE)
+		return
+	to_abort.fail_objective(penalty_cost = to_abort.telecrystal_penalty)
 
 /datum/uplink_handler/proc/take_objective(mob/user, datum/traitor_objective/to_take)
 	if(!(to_take in potential_objectives))
 		return
 
+	user.playsound_local(get_turf(user), 'sound/traitor/objective_taken.ogg', vol = 100, vary = FALSE, channel = CHANNEL_TRAITOR)
 	to_take.on_objective_taken(user)
 	to_take.objective_state = OBJECTIVE_STATE_ACTIVE
 	potential_objectives -= to_take

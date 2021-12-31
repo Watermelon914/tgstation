@@ -35,9 +35,9 @@
 	name = "the (TECH BOARD) circuitboard in secure tech storage"
 	var/circuitboard_name
 	excludefromjob = list(
-		"Captain",
-		"Chief Engineer",
-		"Research Director",
+		JOB_CAPTAIN,
+		JOB_CHIEF_ENGINEER,
+		JOB_RESEARCH_DIRECTOR,
 	)
 
 /datum/objective_item/steal/low_risk/techboard/aiupload
@@ -54,44 +54,44 @@
 
 /datum/objective_item/steal/low_risk/aicard
 	targetitem = /obj/item/aicard
-	name = "an aicard"
+	name = "an intelliCard"
 	excludefromjob = list(
-		"Captain",
-		"Chief Engineer",
-		"Research Director",
-		"Chief Medical Officer",
-		"Head of Security",
-		"Station Engineer",
-		"Scientist",
-		"Atmospheric Technician",
+		JOB_CAPTAIN,
+		JOB_CHIEF_ENGINEER,
+		JOB_RESEARCH_DIRECTOR,
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_HEAD_OF_SECURITY,
+		JOB_STATION_ENGINEER,
+		JOB_SCIENTIST,
+		JOB_ATMOSPHERIC_TECHNICIAN,
 	)
 
 // Unique-ish low risk objectives
 /datum/objective_item/steal/low_risk/bartender_shotgun
 	name = "the bartender's shotgun"
 	targetitem = /obj/item/gun/ballistic/shotgun/doublebarrel
-	excludefromjob = list("Bartender")
+	excludefromjob = list(JOB_BARTENDER)
 
 /datum/objective_item/steal/low_risk/fireaxe
-	name = "a fireaxe"
+	name = "a fire axe"
 	targetitem = /obj/item/fireaxe
-	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician")
+	excludefromjob = list(JOB_CHIEF_ENGINEER,JOB_STATION_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN)
 
 /datum/objective_item/steal/low_risk/nullrod
-	name = "the chaplain's nullrod"
+	name = "the chaplain's null rod"
 	targetitem = /obj/item/nullrod
-	excludefromjob = list("Chaplain")
+	excludefromjob = list(JOB_CHAPLAIN)
 
 /datum/objective_item/steal/low_risk/clown_shoes
 	name = "the clown's shoes"
 	targetitem = /obj/item/clothing/shoes/clown_shoes
-	excludefromjob = list("Clown", "Cargo Technician", "Quartermaster")
+	excludefromjob = list(JOB_CLOWN, JOB_CARGO_TECHNICIAN, JOB_QUARTERMASTER)
 
 /datum/objective_item/steal/low_risk/clown_shoes/TargetExists()
 	for(var/mob/player as anything in GLOB.player_list)
 		if(player.stat == DEAD)
 			continue
-		if(player.job != "Clown")
+		if(player.job != JOB_CLOWN)
 			continue
 		if(is_centcom_level(player.z))
 			continue
@@ -101,7 +101,7 @@
 /datum/objective_item/steal/low_risk/cargo_budget
 	name = "cargo's departmental budget"
 	targetitem = /obj/item/card/id/departmental_budget/car
-	excludefromjob = list("Quartermaster", "Cargo Technician")
+	excludefromjob = list(JOB_QUARTERMASTER, JOB_CARGO_TECHNICIAN)
 
 // High risk steal objectives
 /datum/objective_item/steal/caplaser
@@ -263,7 +263,7 @@
 	return 0
 
 /datum/objective_item/steal/blackbox
-	name = "The Blackbox"
+	name = "the Blackbox"
 	targetitem = /obj/item/blackbox
 	difficulty = 10
 	excludefromjob = list(JOB_CHIEF_ENGINEER, JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)

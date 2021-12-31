@@ -6,7 +6,7 @@
 
 ///smuggle! bring a traitor item from its arrival area to the cargo shuttle, where the objective completes on selling the item
 /datum/traitor_objective/smuggle
-	name = "Smuggle \[CONTRABAND] from \[AREA] off the station via cargo shuttle."
+	name = "Smuggle %CONTRABAND% from %AREA% off the station via cargo shuttle"
 	description = "Go to a designated area, pick up syndicate contraband, and get it off the station via the cargo shuttle. \
 	You will instantly fail this objective if anyone else picks up your contraband. If you fail, you are liable for the costs \
 	of the smuggling item."
@@ -14,8 +14,6 @@
 	progression_reward = list(5 MINUTES, 9 MINUTES)
 	telecrystal_reward = list(0, 1)
 
-	///the only person who should be allowed to pickup the contraband without failing the objective
-	var/mob/living/smuggler
 	///area type the objective owner must be in to recieve the contraband
 	var/area/smuggle_spawn_type
 	///the contraband that must be exported on the shuttle
@@ -49,11 +47,14 @@
 		if("summon_contraband")
 			if(contraband)
 				return
+			var/area/player_area = get_area(user)
+			if(!istype(player_area, smuggle_spawn_type))
+				user.balloon_alert(user, "you can't materialize this here!")
+				return
 			contraband = new contraband_type(user.drop_location())
 			user.put_in_hands(contraband)
 			user.balloon_alert(user, "[contraband] materializes in your hand")
 			RegisterSignal(contraband, COMSIG_ITEM_PICKUP, .proc/on_contraband_pickup)
-			//DEL_REAGENT signal is for removing ritual wine from the bottle
 			AddComponent(/datum/component/traitor_objective_register, contraband, \
 				succeed_signals = COMSIG_ITEM_SOLD, \
 				fail_signals = list(COMSIG_PARENT_QDELETING), \
@@ -69,8 +70,6 @@
 	if(generating_for.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_CARGO)
 		return FALSE
 
-	//our smuggler
-	smuggler = generating_for.current
 	//choose starting area to recieve contraband
 	var/list/possible_areas = GLOB.the_station_areas.Copy()
 	for(var/area/possible_area as anything in possible_areas)
@@ -88,23 +87,20 @@
 	//choose contraband type to spawn when reaching starting area
 	contraband_type = pick(possible_contrabands)
 	telecrystal_penalty = possible_contrabands[contraband_type]
-	replace_in_name("\[CONTRABAND]", initial(contraband_type.name))
-	replace_in_name("\[AREA]", initial(smuggle_spawn_type.name))
+	replace_in_name("%CONTRABAND%", initial(contraband_type.name))
+	replace_in_name("%AREA%", initial(smuggle_spawn_type.name))
 	return TRUE
 
 /datum/traitor_objective/smuggle/ungenerate_objective()
 	. = ..()
-	smuggler = null
-	smuggle_spawn_type = null
-	contraband_type = null
 	if(contraband)
 		UnregisterSignal(contraband, COMSIG_ITEM_PICKUP)
 		contraband = null
 
 /datum/traitor_objective/smuggle/proc/on_contraband_pickup(datum/source, mob/taker)
 	SIGNAL_HANDLER
-	if(taker != smuggler)
-		fail_objective(telecrystal_penalty)
+	if(taker != handler.owner?.current)
+		fail_objective(penalty_cost = telecrystal_penalty)
 
 //smuggling container
 /obj/item/reagent_containers/glass/bottle/ritual_wine

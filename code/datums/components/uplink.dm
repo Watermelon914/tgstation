@@ -158,22 +158,47 @@
 	data["maximum_potential_objectives"] = uplink_handler.maximum_potential_objectives
 	if(uplink_handler.has_objectives)
 		var/list/potential_objectives = list()
-		var/index = 1
-		for(var/datum/traitor_objective/objective as anything in uplink_handler.potential_objectives)
+		for(var/index in 1 to uplink_handler.potential_objectives.len)
+			var/datum/traitor_objective/objective = uplink_handler.potential_objectives[index]
 			var/list/objective_data = objective.uplink_ui_data(user)
 			objective_data["id"] = index
 			potential_objectives += list(objective_data)
-			index++
-		index = 1
 		var/list/active_objectives = list()
-		for(var/datum/traitor_objective/objective as anything in uplink_handler.active_objectives)
+		for(var/index in 1 to uplink_handler.active_objectives.len)
+			var/datum/traitor_objective/objective = uplink_handler.active_objectives[index]
 			var/list/objective_data = objective.uplink_ui_data(user)
 			objective_data["id"] = index
 			active_objectives += list(objective_data)
-			index++
 		data["potential_objectives"] = potential_objectives
 		data["active_objectives"] = active_objectives
 
+	var/list/stock_list = uplink_handler.item_stock.Copy()
+	var/list/extra_purchasable_stock = list()
+	var/list/extra_purchasable = list()
+	for(var/datum/uplink_item/item as anything in uplink_handler.extra_purchasable)
+		if(item in stock_list)
+			extra_purchasable_stock[REF(item)] = stock_list[item]
+			stock_list -= item
+		extra_purchasable += list(list(
+			"id" = item.type,
+			"name" = item.name,
+			"cost" = item.cost,
+			"desc" = item.desc,
+			"category" = item.category? initial(item.category.name) : null,
+			"purchasable_from" = item.purchasable_from,
+			"restricted" = item.restricted,
+			"limited_stock" = item.limited_stock,
+			"restricted_roles" = item.restricted_roles,
+			"progression_minimum" = item.progression_minimum,
+			"ref" = REF(item)
+		))
+
+	var/list/remaining_stock = list()
+	for(var/datum/uplink_item/item as anything in stock_list)
+		remaining_stock[item.type] = stock_list[item]
+	data["extra_purchasable"] = extra_purchasable
+	data["extra_purchasable_stock"] = extra_purchasable_stock
+	data["current_stock"] = remaining_stock
 	return data
 
 /datum/component/uplink/ui_static_data(mob/user)
@@ -199,11 +224,16 @@
 		return
 	switch(action)
 		if("buy")
-			var/datum/uplink_item/item_path = text2path(params["path"])
-			if(!ispath(item_path, /datum/uplink_item))
-				return
-
-			var/datum/uplink_item/item = GLOB.uplink_items_by_type[item_path]
+			var/datum/uplink_item/item
+			if(params["ref"])
+				item = locate(params["ref"]) in uplink_handler.extra_purchasable
+				if(!item)
+					return
+			else
+				var/datum/uplink_item/item_path = text2path(params["path"])
+				if(!ispath(item_path, /datum/uplink_item))
+					return
+				item = SStraitor.uplink_items_by_type[item_path]
 			uplink_handler.purchase_item(ui.user, item)
 		if("lock")
 			active = FALSE
@@ -211,6 +241,9 @@
 			SStgui.close_uis(src)
 
 	if(!uplink_handler.has_objectives)
+		return TRUE
+
+	if(uplink_handler.owner.current != ui.user)
 		return TRUE
 
 	switch(action)
@@ -228,7 +261,7 @@
 	if(!objectives)
 		return
 
-	var/objective_index = text2num(params["index"])
+	var/objective_index = round(text2num(params["index"]))
 	if(objective_index < 1 || objective_index > length(objectives))
 		return TRUE
 	var/datum/traitor_objective/objective = objectives[objective_index]

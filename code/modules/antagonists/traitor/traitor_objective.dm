@@ -1,3 +1,6 @@
+/// A traitor objective. Traitor objectives should not be deleted after they have been created and established, only failed.
+/// If a traitor objective needs to be removed from the failed/completed objective list of their handler, then you are doing something wrong
+/// and you should reconsider. When an objective is failed/completed, that is final and the only way you can change that is by refactoring the code.
 /datum/traitor_objective
 	/// The name of the traitor objective
 	var/name = "traitor objective"
@@ -23,7 +26,7 @@
 	/// Determines how influential global progression will affect this objective. Set to 0 to disable.
 	var/global_progression_influence_intensity = 0.5
 	/// Determines how great the deviance has to be before progression starts to get reduced.
-	var/global_progression_deviance_required = 0.25
+	var/global_progression_deviance_required = 0.5
 	/// Determines the minimum and maximum progression this objective can be worth as a result of being influenced by global progression
 	/// Should only be smaller than or equal to 1
 	var/global_progression_limit_coeff = 0.1
@@ -123,16 +126,20 @@
 	if(objective_state != OBJECTIVE_STATE_INACTIVE && objective_state != OBJECTIVE_STATE_ACTIVE)
 		return
 	SEND_SIGNAL(src, COMSIG_TRAITOR_OBJECTIVE_COMPLETED)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TRAITOR_OBJECTIVE_COMPLETED, src)
 	handle_cleanup()
 	objective_state = OBJECTIVE_STATE_COMPLETED
+	SStraitor.on_objective_completed(src)
 	handler.on_update() // Trigger an update to the UI
 
 /// Called by player input, do not call directly. Validates whether the objective is finished and pays out the handler if it is.
-/datum/traitor_objective/proc/finish_objective()
+/datum/traitor_objective/proc/finish_objective(mob/user)
 	switch(objective_state)
 		if(OBJECTIVE_STATE_FAILED, OBJECTIVE_STATE_INVALID)
+			user.playsound_local(get_turf(user), 'sound/traitor/objective_failed.ogg', vol = 100, vary = FALSE, channel = CHANNEL_TRAITOR)
 			return TRUE
 		if(OBJECTIVE_STATE_COMPLETED)
+			user.playsound_local(get_turf(user), 'sound/traitor/objective_success.ogg', vol = 100, vary = FALSE, channel = CHANNEL_TRAITOR)
 			completion_payout()
 			return TRUE
 	return FALSE

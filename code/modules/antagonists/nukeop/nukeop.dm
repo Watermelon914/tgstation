@@ -20,6 +20,11 @@
 	/// In the preview icon, a nuclear fission explosive device, only appearing if there's an icon state for it.
 	var/nuke_icon_state = "nuclearbomb_base"
 
+	/// The amount of discounts that the team get
+	var/discount_team_amount = 5
+	/// The amount of limited discounts that the team get
+	var/discount_limited_amount = 10
+
 /datum/antagonist/nukeop/proc/equip_op()
 	if(!ishuman(owner.current))
 		return
@@ -47,6 +52,20 @@
 		var/datum/component/uplink/uplink = owner.find_syndicate_uplink()
 		if (uplink)
 			uplink.add_telecrystals(extra_tc)
+
+	var/datum/component/uplink/uplink = owner.find_syndicate_uplink()
+	if(uplink)
+		var/datum/team/nuclear/nuke_team = get_team()
+		if(!nuke_team.team_discounts)
+			var/list/uplink_items = list()
+			for(var/datum/uplink_item/item as anything in SStraitor.uplink_items)
+				if(item.item && !item.cant_discount && (item.purchasable_from & uplink.uplink_handler.uplink_flag))
+					uplink_items += item
+			nuke_team.team_discounts = list()
+			nuke_team.team_discounts += create_uplink_sales(discount_team_amount, /datum/uplink_category/discount_team_gear, -1, uplink_items)
+			nuke_team.team_discounts += create_uplink_sales(discount_limited_amount, /datum/uplink_category/limited_discount_team_gear, 1, uplink_items)
+		uplink.uplink_handler.extra_purchasable += nuke_team.team_discounts
+
 	memorize_code()
 
 /datum/antagonist/nukeop/get_team()
@@ -172,18 +191,24 @@
 /datum/outfit/nuclear_operative
 	name = "Nuclear Operative (Preview only)"
 
-	suit = /obj/item/clothing/suit/space/hardsuit/syndi
-	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi
+	back = /obj/item/mod/control/pre_equipped/syndicate_empty
+
+/datum/outfit/nuclear_operative/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/mod/module/armor_booster/booster = locate() in H.back
+	booster.active = TRUE
+	H.update_inv_back()
 
 /datum/outfit/nuclear_operative_elite
 	name = "Nuclear Operative (Elite, Preview only)"
 
-	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
-	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
+	back = /obj/item/mod/control/pre_equipped/syndicate_empty/elite
 	l_hand = /obj/item/modular_computer/tablet/nukeops
 	r_hand = /obj/item/shield/energy
 
 /datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/mod/module/armor_booster/elite/booster = locate() in H.back
+	booster.active = TRUE
+	H.update_inv_back()
 	var/obj/item/shield/energy/shield = locate() in H.held_items
 	shield.icon_state = "[shield.base_icon_state]1"
 	H.update_inv_hands()

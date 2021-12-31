@@ -13,10 +13,10 @@
 	telecrystal_reward = 0
 
 	var/list/limited_to = list(
-		"Chief Medical Officer",
-		"Medical Doctor",
-		"Paramedic",
-		"Virologist",
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_MEDICAL_DOCTOR,
+		JOB_PARAMEDIC,
+		JOB_VIROLOGIST,
 	)
 
 	var/obj/item/disk/surgery/sleeper_protocol/disk
@@ -39,13 +39,6 @@
 			AddComponent(/datum/component/traitor_objective_register, disk, \
 				fail_signals = COMSIG_PARENT_QDELETING)
 
-/datum/traitor_objective/sleeper_protocol/proc/handle_mind_swap(datum/mind/source, mob/old_target)
-	SIGNAL_HANDLER
-	if(current_registered_mob)
-		UnregisterSignal(current_registered_mob, COMSIG_MOB_SURGERY_STEP_SUCCESS)
-	RegisterSignal(source.current, COMSIG_MOB_SURGERY_STEP_SUCCESS, .proc/on_surgery_success)
-	current_registered_mob = source.current
-
 /datum/traitor_objective/sleeper_protocol/proc/on_surgery_success(datum/source, datum/surgery_step/step, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
 	SIGNAL_HANDLER
 	if(istype(step, /datum/surgery_step/brainwash/sleeper_agent))
@@ -55,8 +48,8 @@
 	var/datum/job/job = generating_for.assigned_role
 	if(!(job.title in limited_to))
 		return FALSE
-	RegisterSignal(generating_for, COMSIG_MIND_TRANSFERRED, .proc/handle_mind_swap)
-	handle_mind_swap(generating_for)
+	AddComponent(/datum/component/traitor_objective_mind_tracker, generating_for, \
+		signals = list(COMSIG_MOB_SURGERY_STEP_SUCCESS = .proc/on_surgery_success))
 	return TRUE
 
 /datum/traitor_objective/sleeper_protocol/ungenerate_objective()
