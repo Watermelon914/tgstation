@@ -49,7 +49,7 @@
 	name = "Ship Turret Control";
 	pixel_x = -32;
 	pixel_y = 26;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
