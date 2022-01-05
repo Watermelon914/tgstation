@@ -8,6 +8,7 @@
 /obj/docking_port/stationary/starfury_corvette
 	name = "SBC Starfury Corvette Bay"
 	id = "SBC_corvette_bay"
+	roundstart_template = /datum/map_template/shuttle/starfury/corvette
 	hidden = TRUE
 	width = 14
 	height = 7
@@ -26,14 +27,17 @@
 /obj/docking_port/stationary/starfury_fighter/fighter_one
 	name = "SBC Starfury Port Fighter Bay"
 	id = "SBC_fighter1_bay"
+	roundstart_template = /datum/map_template/shuttle/starfury/fighter_one
 
 /obj/docking_port/stationary/starfury_fighter/fighter_two
 	name = "SBC Starfury Center Fighter Bay"
 	id = "SBC_fighter2_bay"
+	roundstart_template = /datum/map_template/shuttle/starfury/fighter_two
 
 /obj/docking_port/stationary/starfury_fighter/fighter_three
 	name = "SBC Starfury Starboard Fighter Bay"
 	id = "SBC_fighter3_bay"
+	roundstart_template = /datum/map_template/shuttle/starfury/fighter_three
 
 // Mobile docking ports for the Starfury's strike shuttles.
 /obj/docking_port/mobile/syndicate_fighter
