@@ -1,31 +1,10 @@
 
-// Some landmarks that denote the locations of starfury shuttle docks.
-// The docks themselves are placed in runtime, because shuttle-on-shuttle is hell.
-/obj/effect/landmark/starfury_shuttle_dock
-	name = "starfury shuttle dock"
+/// The Starfury map temlate itself.
+/datum/map_template/battlecruiser_starfury
+	name = "SBC Starfury"
+	mappath = "_maps/templates/battlecruiser_starfury.dmm"
 
-/obj/effect/landmark/starfury_shuttle_dock/fighter_one
-	name = "starfury fighter one shuttle dock"
-
-/obj/effect/landmark/starfury_shuttle_dock/fighter_two
-	name = "starfury fighter two shuttle dock"
-
-/obj/effect/landmark/starfury_shuttle_dock/fighter_three
-	name = "starfury fighter three shuttle dock"
-
-/obj/effect/landmark/starfury_shuttle_dock/corvette
-	name = "starfury corvette shuttle dock"
-
-// Stationary docking ports for the Starfury and her strike shuttles.
-/obj/docking_port/stationary/starfury
-	name = "\improper SBC Starfury Deep Space Dock"
-	id = "SBC_starfury"
-	hidden = TRUE
-	height = 67
-	width = 37
-	dwidth = 34
-	dir = WEST
-
+// Stationary docking ports for the Starfury's strike shuttles.
 /obj/docking_port/stationary/starfury_corvette
 	name = "SBC Starfury Corvette Bay"
 	id = "SBC_corvette_bay"
@@ -56,28 +35,12 @@
 	name = "SBC Starfury Starboard Fighter Bay"
 	id = "SBC_fighter3_bay"
 
-// Mobile docking ports for the Starfury and her strike shuttles.
-/obj/docking_port/mobile/syndicate_starfury
-	name = "\improper SBC Starfury"
-	id = "SBC_starfury"
-	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
-	hidden = TRUE
-	dir = WEST
-	port_direction = EAST
-	height = 67
-	width = 37
-	dwidth = 34
-
-/obj/docking_port/mobile/syndicate_starfury/Initialize(mapload)
-	. = ..()
-	SSpoints_of_interest.make_point_of_interest(src)
-
+// Mobile docking ports for the Starfury's strike shuttles.
 /obj/docking_port/mobile/syndicate_fighter
 	name = "syndicate fighter"
 	id = "syndicate_fighter"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
-	find_deepest_baseturf = TRUE
 	dir = NORTH
 	port_direction = SOUTH
 	width = 5
@@ -101,7 +64,6 @@
 	id = "SBC_corvette"
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	hidden = TRUE
-	find_deepest_baseturf = TRUE
 	dir = NORTH
 	port_direction = SOUTH
 	preferred_direction = WEST
