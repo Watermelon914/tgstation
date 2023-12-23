@@ -199,9 +199,8 @@ export const DesignBrowser = <T extends Design = Design>(
     }
   }
 
-  const designWrapper = (design: T) => {
+  const designWrapper = (design: T) =>
     buildRecipeElement(design, availableMaterials || {}, onPrintDesign || NOOP);
-  };
 
   return (
     <Stack fill>

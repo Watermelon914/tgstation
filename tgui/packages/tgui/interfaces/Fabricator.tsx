@@ -26,7 +26,6 @@ export const Fabricator = (props) => {
   for (const material of data.materials) {
     availableMaterials[material.name] = material.amount;
   }
-
   return (
     <Window title={fabName} width={670} height={600}>
       <Window.Content>
