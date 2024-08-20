@@ -177,3 +177,6 @@
 #ifdef MAP_TEST
 #warn Compiling in MAP_TEST mode. Certain game mechanics will be disabled.
 #endif
+
+/// Uncomment to unleash the wallening
+#define WALLENING

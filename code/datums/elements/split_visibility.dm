@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(diagonal_junctions, generate_splitvis_lookup())
 /proc/generate_joined_wall(icon_path, junction, color, draw_darkness = TRUE)
 	var/list/overlays = list()
 	if(draw_darkness)
-		overlays += mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_background", layer = FLOAT_LAYER - 1, appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+		overlays += mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_background", layer = FLOAT_LAYER - 1, appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
 
 	// This lets us do O(1) logic down later, and ensure logic works as we'd like
 	var/static/list/diagonal_to_junction = generate_splitvis_lookup()
@@ -93,11 +93,11 @@ GLOBAL_LIST_INIT(diagonal_junctions, generate_splitvis_lookup())
 	if(!(target_atom.smoothing_flags & (SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS)))
 		CRASH("We tried to splitvis [target.type] without bitmask smoothing. What?")
 
-	target_atom.add_overlay(mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target_atom, GAME_PLANE))
+	target_atom.add_overlay(mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target_atom, GAME_PLANE))
 	// We draw a copy to the wall plane so we can use it to mask byond darkness, that's all
-	target_atom.add_overlay(mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target_atom, WALL_PLANE))
+	target_atom.add_overlay(mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target_atom, WALL_PLANE))
 	// Ensures when you try to click on a turf, you actually click on the turf, and not the adjacent things holding it
-	target_atom.add_overlay(mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_clickcatcher", WALL_CLICKCATCH_LAYER, target_atom, GAME_PLANE))
+	target_atom.add_overlay(mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_clickcatcher", WALL_CLICKCATCH_LAYER, target_atom, GAME_PLANE))
 
 	src.icon_path = icon_path
 	src.color = color
@@ -200,11 +200,11 @@ GLOBAL_LIST_INIT(diagonal_junctions, generate_splitvis_lookup())
 
 
 /datum/element/split_visibility/Detach(atom/target)
-	target.cut_overlay(mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target, GAME_PLANE))
+	target.cut_overlay(mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target, GAME_PLANE))
 	// We draw a copy to the wall plane so we can use it to mask byond darkness, that's all
-	target.cut_overlay(mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target, WALL_PLANE))
+	target.cut_overlay(mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_background", UNDER_WALL_LAYER, target, WALL_PLANE))
 	// Ensures when you try to click on a turf, you actually click on the turf, and not the adjacent things holding it
-	target.cut_overlay(mutable_appearance('icons/turf/walls/wall_blackness.dmi', "wall_clickcatcher", WALL_CLICKCATCH_LAYER, target, GAME_PLANE))
+	target.cut_overlay(mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_clickcatcher", WALL_CLICKCATCH_LAYER, target, GAME_PLANE))
 	UnregisterSignal(target, COMSIG_ATOM_SET_SMOOTHED_ICON_STATE)
 	if(ismovable(target))
 		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)

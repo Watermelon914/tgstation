@@ -1,7 +1,7 @@
 /turf/closed/wall/mineral/cult
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
-	icon = 'icons/turf/walls/cult_wall.dmi'
+	icon = GET_WALL_PATH(cult_wall.dmi)
 	turf_flags = IS_SOLID
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_BOSS_WALLS
 	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_BOSS_WALLS
@@ -28,7 +28,7 @@
 	new /obj/effect/temp_visual/cult/turf(get_turf(src))
 
 /turf/closed/wall/ice
-	icon = 'icons/turf/walls/iced_metal_wall.dmi'
+	icon = GET_WALL_PATH(iced_metal_wall.dmi)
 	desc = "A wall covered in a thick sheet of ice."
 	turf_flags = IS_SOLID
 	rcd_memory = null
@@ -39,7 +39,7 @@
 /turf/closed/wall/rust
 	name = "rusted wall"
 	desc = "A rusted metal wall."
-	icon = 'icons/turf/walls/rusty_wall.dmi'
+	icon = GET_WALL_PATH(rusty_wall.dmi)
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 45
 	//SDMM supports colors, this is simply for easier mapping
@@ -60,7 +60,7 @@
 /turf/closed/wall/r_wall/rust
 	name = "rusted reinforced wall"
 	desc = "A huge chunk of rusted reinforced metal."
-	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi'
+	icon = GET_WALL_PATH(rusty_reinforced_wall.dmi)
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 15
 
@@ -70,7 +70,7 @@
 
 /turf/closed/wall/r_wall/heretic_rust
 	color = MAP_SWITCH(null, COLOR_GREEN_GRAY)
-	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi'
+	icon = GET_WALL_PATH(rusty_reinforced_wall.dmi)
 
 /turf/closed/wall/r_wall/heretic_rust/Initialize(mapload)
 	. = ..()
@@ -79,7 +79,7 @@
 /turf/closed/wall/mineral/bronze
 	name = "clockwork wall"
 	desc = "A huge chunk of bronze, decorated like gears and cogs."
-	icon = 'icons/turf/walls/clockwork_wall.dmi'
+	icon = GET_WALL_PATH(clockwork_wall.dmi)
 	turf_flags = IS_SOLID
 	smoothing_flags = SMOOTH_BITMASK
 	sheet_type = /obj/item/stack/sheet/bronze
