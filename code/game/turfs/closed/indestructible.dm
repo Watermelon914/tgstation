@@ -293,12 +293,20 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
 	. += mutable_appearance('icons/obj/structures/smooth/window_frames/frame_faces/window_frame_plastitanium.dmi', "window_frame_plastitanium-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
 #else
-
+/turf/closed/indestructible/opsglass/Initialize(mapload)
+	. = ..()
+	icon_state = null
+	underlays += mutable_appearance('icons/obj/structures.dmi', "grille", layer - 0.01)
+	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02)
 #endif
 
 /turf/closed/indestructible/fakedoor
 	name = "airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/centcom.dmi'
+#endif
 	icon_state = "fake_door"
 	use_splitvis = FALSE
 	smoothing_flags = NONE
@@ -471,15 +479,17 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	desc = "A flimsy framework of iron rods."
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/grille.dmi'
-#else
-	icon = 'icons/obj/smooth_structures/normal/grille.dmi'
-#endif
 	icon_state = "grille-0"
 	base_icon_state = "grille"
-	use_splitvis = FALSE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_GRILLE
 	canSmoothWith = SMOOTH_GROUP_GRILLE
+#else
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "grille"
+	base_icon_state = "grille"
+#endif
+	use_splitvis = FALSE
 
 /turf/closed/indestructible/grille/Initialize(mapload)
 	. = ..()

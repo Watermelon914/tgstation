@@ -74,7 +74,11 @@
 
 /obj/machinery/door/airlock
 	name = "Airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/maintenance.dmi'
+#endif
 	icon_state = "closed"
 	max_integrity = 300
 	var/normal_integrity = AIRLOCK_INTEGRITY_N
@@ -136,9 +140,17 @@
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
 	var/airlock_material = "fill"
+#ifdef WALLENING
 	var/overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	var/overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	/// Used for papers and photos pinned to the airlock
+#ifdef WALLENING
 	var/note_overlay_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	var/note_overlay_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	/// Do we use the old style of airlock rendering
 	/// This exists as legacy to allow "small" airlocks to render properly until they are resprited
 	/// This style is deprecated and support will be removed once all existing users are fixed
@@ -1919,7 +1931,11 @@
 /obj/machinery/door/airlock/security
 	name = "security airlock"
 	icon = 'icons/obj/doors/airlocks/tall/department/security.dmi'
+#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_sec
 	normal_integrity = 450
 	greyscale_config = null
@@ -1945,8 +1961,16 @@
 
 /obj/machinery/door/airlock/maintenance
 	name = "maintenance access"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/maintenance.dmi'
+#endif
+#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_mai
 	normal_integrity = 250
 	greyscale_config = null
@@ -1968,7 +1992,11 @@
 /obj/machinery/door/airlock/atmos
 	name = "atmospherics airlock"
 	icon = 'icons/obj/doors/airlocks/tall/department/atmos.dmi'
+#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_atmo
 	greyscale_config = null
 	greyscale_colors = null
@@ -2290,7 +2318,11 @@
 
 /obj/machinery/door/airlock/wood
 	name = "wooden airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/wood.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/wood.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_wood
 	greyscale_config = null
 	greyscale_colors = null
@@ -2445,8 +2477,16 @@
 // CentCom Airlocks
 
 /obj/machinery/door/airlock/centcom //Use grunge as a station side version, as these have special effects related to them via phobias and such.
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/centcom.dmi'
+#endif
+#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_centcom
 	normal_integrity = 1000
 	security_level = 6
@@ -2455,8 +2495,16 @@
 	greyscale_colors = null
 
 /obj/machinery/door/airlock/grunge
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/centcom.dmi'
+#endif
+#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_grunge
 
 
@@ -2712,8 +2760,16 @@
 			return 1.6 SECONDS
 
 /obj/machinery/door/airlock/cult/proc/conceal()
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/maintenance.dmi'
+#endif
+#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+#else
+	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+#endif
 	name = "Airlock"
 	desc = "It opens and closes."
 	stealthy = TRUE
