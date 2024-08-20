@@ -2839,7 +2839,7 @@
 /obj/machinery/door/airlock/material
 	name = "Airlock"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_AFFECT_STATISTICS
-	greyscale_config = /datum/greyscale_config/airlocks
+	greyscale_config = /datum/greyscale_config/material_airlock
 	greyscale_colors = "#a5a7ac#a5a7ac#a5a7ac#a5a7ac#a5a7ac"
 	assemblytype = /obj/structure/door_assembly/door_assembly_material
 

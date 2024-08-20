@@ -7,11 +7,7 @@
 
 /datum/greyscale_config/airlocks
 	name = "Solid Airlock"
-#ifdef WALLENING
 	icon_file = 'icons/obj/doors/airlocks/greyscale_template.dmi'
-#else
-
-#endif
 	json_config = 'code/datums/greyscale/json_configs/airlock_plain.json'
 
 /datum/greyscale_config/airlocks/window
@@ -21,6 +17,11 @@
 /datum/greyscale_config/airlocks/custom
 	name = "Airlock with Decorations"
 	json_config = 'code/datums/greyscale/json_configs/airlock_custom.json'
+
+/datum/greyscale_config/material_airlock
+	name = "Material Airlock"
+	icon_file = 'icons/obj/doors/airlocks/material/material.dmi'
+	json_config = 'code/datums/greyscale/json_configs/material_airlock.json'
 
 
 //
