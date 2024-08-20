@@ -240,6 +240,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE
 
+#ifdef WALLENING
 /turf/closed/indestructible/fakeglass/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/window_smoothing, /turf/closed/indestructible/fakeglass)
@@ -251,17 +252,16 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/fakeglass/update_overlays()
 	. = ..()
-#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
-#else
-	. += mutable_appearance('icons/obj/smooth_structures/normal/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
-#endif
-#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
-#else
-	. += mutable_appearance('icons/obj/smooth_structures/normal/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
-#endif
 	. += mutable_appearance('icons/obj/structures/smooth/window_frames/frame_faces/window_frame_normal.dmi', "window_frame_normal-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
+#else
+/turf/closed/indestructible/fakeglass/Initialize(mapload)
+	. = ..()
+	underlays += mutable_appearance('icons/obj/structures.dmi', "grille", layer - 0.01) //add a grille underlay
+	underlays += mutable_appearance('icons/turf/floors.dmi', "plating", layer - 0.02) //add the plating underlay, below the grille
+
+#endif WALLENING
 
 /turf/closed/indestructible/opsglass
 	name = "window"
@@ -277,6 +277,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
 
+#ifdef WALLENING
 /turf/closed/indestructible/opsglass/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/window_smoothing, /turf/closed/indestructible/opsglass)
@@ -288,17 +289,12 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/opsglass/update_overlays()
 	. = ..()
-#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
-#else
-	. += mutable_appearance('icons/obj/smooth_structures/normal/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
-#endif
-#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
-#else
-	. += mutable_appearance('icons/obj/smooth_structures/normal/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
-#endif
 	. += mutable_appearance('icons/obj/structures/smooth/window_frames/frame_faces/window_frame_plastitanium.dmi', "window_frame_plastitanium-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
+#else
+
+#endif
 
 /turf/closed/indestructible/fakedoor
 	name = "airlock"
