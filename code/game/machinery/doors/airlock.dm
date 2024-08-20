@@ -2155,7 +2155,11 @@
 
 /obj/machinery/door/airlock/gold
 	name = "gold airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/mineral/gold.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/station/gold.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_gold
 	greyscale_config = null
 	greyscale_colors = null
@@ -2184,7 +2188,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/mineral/silver.dmi'
 #else
-	icon = 'icons/obj/doors/airlocks/greyscale_template.dmi'
+	icon = 'icons/obj/doors/airlocks/station/silver.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_silver
 	greyscale_config = null
