@@ -91,7 +91,7 @@
 /turf/closed/wall/rock
 	name = "reinforced rock"
 	desc = "It has metal struts that need to be welded away before it can be mined."
-	icon = 'icons/turf/walls/reinforced_red_rock_wall.dmi'
+	icon = GET_WALL_PATH(reinforced_red_rock_wall.dmi)
 	turf_flags = NO_RUST
 	sheet_amount = 1
 	hardness = 50
@@ -117,7 +117,7 @@
 /turf/closed/wall/fake_hierophant
 	name = "vibrant wall"
 	desc = "A wall made out of a strange metal. The squares on it pulse in a predictable pattern."
-	icon = 'icons/turf/walls/hierophant_wall.dmi'
+	icon = GET_WALL_PATH(hierophant_wall.dmi)
 	smoothing_groups = SMOOTH_GROUP_HIERO_WALL + SMOOTH_GROUP_TALL_WALLS
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 

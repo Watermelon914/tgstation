@@ -1,7 +1,7 @@
 /turf/closed/wall/r_wall
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
-	icon = 'icons/turf/walls/reinforced_wall.dmi'
+	icon = GET_WALL_PATH(reinforced_wall.dmi)
 	opacity = TRUE
 	density = TRUE
 	turf_flags = IS_SOLID
