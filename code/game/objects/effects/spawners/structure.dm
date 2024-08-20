@@ -19,7 +19,11 @@ again.
 /obj/effect/spawner/structure/window
 	icon_state = "window_spawner"
 	name = "window spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/grille_and_window)
+#else
+	spawn_list = list(/obj/structure/window/fulltile, /obj/structure/grille)
+#endif
 	dir = SOUTH
 
 /obj/effect/spawner/structure/window/Initialize(mapload)
@@ -87,7 +91,11 @@ again.
 /obj/effect/spawner/structure/window/reinforced
 	name = "reinforced window spawner"
 	icon_state = "rwindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/reinforced/grille_and_window)
+#else
+	spawn_list = list(/obj/structure/window/reinforced/fulltile, /obj/structure/grille)
+#endif
 
 /obj/effect/spawner/structure/window/hollow/reinforced
 	name = "hollow reinforced window spawner"
@@ -145,14 +153,22 @@ again.
 
 /obj/effect/spawner/structure/window/reinforced/damaged
 	name = "damaged reinforced window spawner"
-	spawn_list = list(/obj/structure/window_frame/reinforced/damaged/grille_and_window)
+#ifdef WALLENING
+	spawn_list = list(/obj/structure/window_frame/reinforced/grille_and_window)
+#else
+	spawn_list = list(/obj/structure/window/reinforced/fulltile/damaged, /obj/structure/grille)
+#endif
 
 //tinted
 
 /obj/effect/spawner/structure/window/reinforced/tinted
 	name = "tinted reinforced window spawner"
 	icon_state = "twindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/iron, /obj/structure/window/reinforced/tinted/fulltile)
+#else
+	spawn_list = list(/obj/structure/window/reinforced/fulltile, /obj/structure/grille)
+#endif
 
 //bronze
 
