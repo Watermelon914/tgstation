@@ -612,7 +612,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table_singles.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/normal/table_singles.dmi'
+	icon = 'icons/obj/structures.dmi'
 #endif
 	icon_state = "fancy_table"
 	base_icon_state = "fancy_table"

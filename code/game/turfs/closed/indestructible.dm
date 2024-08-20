@@ -47,7 +47,7 @@
 #ifdef WALLENING
 	icon = 'icons/turf/walls/wallening/paperframe_wall.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/normal/normal/paperframes.dmi'
+	icon = 'icons/obj/smooth_structures/normal/paperframes.dmi'
 #endif
 	smoothing_groups = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_CLOSED_TURFS
