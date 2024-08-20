@@ -1,7 +1,7 @@
 /turf/closed/indestructible
 	name = "wall"
 	desc = "Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/metal_wall.dmi', 'icons/turf/walls/normal/metal_wall.dmi')
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/metal_wall.dmi', 'icons/turf/walls/normal/wall.dmi')
 	icon_state = "0-2"
 	explosive_resistance = 50
 	smoothing_flags = SMOOTH_BITMASK
@@ -115,7 +115,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/riveted
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/riveted_wall.dmi', 'icons/turf/walls/normal/riveted_wall.dmi')
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/riveted_wall.dmi', 'icons/turf/walls/normal/riveted.dmi')
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 

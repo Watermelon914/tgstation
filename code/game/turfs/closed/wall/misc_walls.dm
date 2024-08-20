@@ -28,7 +28,7 @@
 	new /obj/effect/temp_visual/cult/turf(get_turf(src))
 
 /turf/closed/wall/ice
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iced_metal_wall.dmi', 'icons/turf/walls/normal/iced_metal_wall.dmi')
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iced_metal_wall.dmi', 'icons/turf/walls/normal/icedmetal_wall.dmi')
 	desc = "A wall covered in a thick sheet of ice."
 	turf_flags = IS_SOLID
 	rcd_memory = null

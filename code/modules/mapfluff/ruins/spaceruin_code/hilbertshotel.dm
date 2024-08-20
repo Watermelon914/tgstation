@@ -319,12 +319,13 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 /turf/closed/indestructible/hoteldoor/Initialize(mapload)
 	. = ..()
 	register_context()
-	if(IS_WALLENING)
-		// Build the glow animation
-		var/mutable_appearance/glow_animation = mutable_appearance('icons/turf/walls/wallening/hotel_door_glow.dmi', "glow")
-		// Add emissive as a suboverlay, to make working with it easier
-		glow_animation.add_overlay(emissive_appearance('icons/turf/walls/wallening/hotel_door_glow.dmi', "glow", src))
-		AddComponent(/datum/component/split_overlay, glow_animation, list(SOUTH_JUNCTION))
+#ifdef WALLENING
+	// Build the glow animation
+	var/mutable_appearance/glow_animation = mutable_appearance('icons/turf/walls/wallening/hotel_door_glow.dmi', "glow")
+	// Add emissive as a suboverlay, to make working with it easier
+	glow_animation.add_overlay(emissive_appearance('icons/turf/walls/wallening/hotel_door_glow.dmi', "glow", src))
+	AddComponent(/datum/component/split_overlay, glow_animation, list(SOUTH_JUNCTION))
+#endif
 
 /turf/closed/indestructible/hoteldoor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

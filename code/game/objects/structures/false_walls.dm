@@ -448,9 +448,15 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/pizza
 	name = "pepperoni wallzza"
 	desc = "It's a delicious pepperoni wallzza!"
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/pizza_wall.dmi', 'icons/turf/walls/normal/pizza_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/pizza_wall.dmi'
 	icon_state = "pizza_wall"
 	base_icon_state = "pizza_wall"
+#else
+	fake_icon = 'icons/turf/walls/normal/material_wall.dmi'
+	icon_state = "material_wall"
+	base_icon_state = "material_wall"
+#endif
 	mineral = /obj/item/stack/sheet/pizza
 	walltype = /turf/closed/wall/mineral/pizza
 	smoothing_flags = SMOOTH_BITMASK

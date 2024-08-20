@@ -192,8 +192,9 @@
 		else
 			RemoveElement(/datum/element/split_visibility, icon)
 	d_state = new_state
-	if(IS_WALLENING)
-		icon = (d_state != INTACT ? decon_icons[d_state] : initial(icon))
+#ifdef WALLENING
+	icon = (d_state != INTACT ? decon_icons[d_state] : initial(icon))
+#endif
 	if(use_splitvis)
 		if(color)
 			AddElement(/datum/element/split_visibility, icon, color)
@@ -201,9 +202,8 @@
 			AddElement(/datum/element/split_visibility, icon)
 
 // We don't react to smoothing changing here because this else exists only to "revert" intact changes
+#ifndef WALLENING
 /turf/closed/wall/r_wall/update_icon_state()
-	if(IS_WALLENING)
-		return ..()
 	if(d_state != INTACT)
 		icon = 'icons/turf/walls/normal/reinforced_states.dmi'
 		icon_state = "[base_decon_state]-[d_state]"
@@ -211,6 +211,7 @@
 		icon = 'icons/turf/walls/normal/reinforced_wall.dmi'
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 	return ..()
+#endif
 
 /turf/closed/wall/r_wall/wall_singularity_pull(current_size)
 	if(current_size >= STAGE_FIVE)

@@ -245,7 +245,15 @@
 /turf/closed/wall/mineral/pizza
 	name = "pepperoni wallzza"
 	desc = "It's a delicious pepperoni wallzza!"
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/pizza_wall.dmi', 'icons/turf/walls/normal/pizza_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/pizza_wall.dmi'
+	icon_state = "pizza_wall"
+	base_icon_state = "pizza_wall"
+#else
+	icon = 'icons/turf/walls/normal/material_wall.dmi'
+	icon_state = "material_wall"
+	base_icon_state = "material_wall"
+#endif
 	sheet_type = /obj/item/stack/sheet/pizza
 	hardness = 70 // idk what you were expecting
 	explosive_resistance = 0
