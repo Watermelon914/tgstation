@@ -1930,10 +1930,11 @@
 
 /obj/machinery/door/airlock/security
 	name = "security airlock"
-	icon = 'icons/obj/doors/airlocks/tall/department/security.dmi'
 #ifdef WALLENING
+	icon = 'icons/obj/doors/airlocks/tall/department/security.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
+	icon = 'icons/obj/doors/airlocks/station/security.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_sec
@@ -2520,8 +2521,13 @@
 
 /obj/machinery/door/airlock/vault
 	name = "vault door"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_vault
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original

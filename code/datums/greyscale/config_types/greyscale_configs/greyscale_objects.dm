@@ -7,7 +7,11 @@
 
 /datum/greyscale_config/airlocks
 	name = "Solid Airlock"
+#ifdef WALLENING
 	icon_file = 'icons/obj/doors/airlocks/greyscale_template.dmi'
+#else
+
+#endif
 	json_config = 'code/datums/greyscale/json_configs/airlock_plain.json'
 
 /datum/greyscale_config/airlocks/window
