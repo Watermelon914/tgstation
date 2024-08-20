@@ -37,7 +37,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/stickyweb.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/stickyweb.dmi'
+	icon = 'icons/obj/smooth_structures/normal/stickyweb.dmi'
 #endif
 	base_icon_state = "stickyweb"
 	icon_state = "stickyweb-0"
@@ -156,7 +156,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/webwall.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/webwall.dmi'
+	icon = 'icons/obj/smooth_structures/normal/webwall.dmi'
 #endif
 	base_icon_state = "webwall"
 	icon_state = "webwall-0"
@@ -179,7 +179,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/webwall_reflector.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/webwall_reflector.dmi'
+	icon = 'icons/obj/smooth_structures/normal/webwall_reflector.dmi'
 #endif
 	base_icon_state = "webwall_reflector"
 	icon_state = "webwall_reflector-0"
@@ -197,7 +197,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/webwall_dark.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/webwall_dark.dmi'
+	icon = 'icons/obj/smooth_structures/normal/webwall_dark.dmi'
 #endif
 	base_icon_state = "webwall_dark"
 	icon_state = "webwall_dark-0"
@@ -215,7 +215,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/stickyweb_rotated.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/stickyweb_rotated.dmi'
+	icon = 'icons/obj/smooth_structures/normal/stickyweb_rotated.dmi'
 #endif
 	base_icon_state = "stickyweb_rotated"
 	icon_state = "stickyweb_rotated-0"
@@ -273,7 +273,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/stickyweb_spikes.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/stickyweb_spikes.dmi'
+	icon = 'icons/obj/smooth_structures/normal/stickyweb_spikes.dmi'
 #endif
 	base_icon_state = "stickyweb_spikes"
 	icon_state = "stickyweb_spikes-0"

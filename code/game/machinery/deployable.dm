@@ -121,7 +121,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/sandbags.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/sandbags.dmi'
+	icon = 'icons/obj/smooth_structures/normal/sandbags.dmi'
 #endif
 	icon_state = "sandbags-0"
 	base_icon_state = "sandbags"

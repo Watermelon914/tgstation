@@ -8,7 +8,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/catwalk.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/catwalk.dmi'
+	icon = 'icons/obj/smooth_structures/normal/catwalk.dmi'
 #endif
 	icon_state = "catwalk-0"
 	base_icon_state = "catwalk"

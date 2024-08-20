@@ -21,7 +21,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/table.dmi'
 #endif
 	icon_state = "table-0"
 	base_icon_state = "table"
@@ -388,7 +388,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table_greyscale.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/table_greyscale.dmi'
+	icon = 'icons/obj/smooth_structures/normal/table_greyscale.dmi'
 #endif
 	icon_state = "table_greyscale-0"
 	base_icon_state = "table_greyscale"
@@ -416,7 +416,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rollingtable.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/rollingtable.dmi'
+	icon = 'icons/obj/smooth_structures/normal/rollingtable.dmi'
 #endif
 	icon_state = "rollingtable"
 	// this one's 32x32 so it uses different clickable bounds
@@ -480,7 +480,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/glass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/glass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/glass_table.dmi'
 #endif
 	icon_state = "glass_table-0"
 	base_icon_state = "glass_table"
@@ -556,7 +556,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/plasmaglass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/plasmaglass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/plasmaglass_table.dmi'
 #endif
 	icon_state = "plasmaglass_table-0"
 	base_icon_state = "plasmaglass_table"
@@ -575,7 +575,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/wood_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/wood_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/wood_table.dmi'
 #endif
 	icon_state = "wood_table-0"
 	base_icon_state = "wood_table"
@@ -597,7 +597,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/poker_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/poker_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/poker_table.dmi'
 #endif
 	icon_state = "poker_table-0"
 	base_icon_state = "poker_table"
@@ -612,7 +612,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table_singles.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/table_singles.dmi'
+	icon = 'icons/obj/smooth_structures/normal/table_singles.dmi'
 #endif
 	icon_state = "fancy_table"
 	base_icon_state = "fancy_table"
@@ -624,7 +624,7 @@
 #ifdef WALLENING
 	var/smooth_icon = 'icons/obj/structures/smooth/fancy_table.dmi' // see Initialize()
 #else
-	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
+	var/smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table.dmi' // see Initialize()
 #endif
 
 /obj/structure/table/wood/fancy/Initialize(mapload)
@@ -642,7 +642,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_black.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_black.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/blue
@@ -652,7 +652,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_blue.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_blue.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_blue.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/cyan
@@ -662,7 +662,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_cyan.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_cyan.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/green
@@ -672,7 +672,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_green.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_green.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_green.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/orange
@@ -682,7 +682,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_orange.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_orange.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/purple
@@ -692,7 +692,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_purple.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_purple.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_purple.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/red
@@ -702,7 +702,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_red.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_red.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/royalblack
@@ -712,7 +712,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_royalblack.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_royalblack.dmi'
 #endif
 
 /obj/structure/table/wood/fancy/royalblue
@@ -722,7 +722,7 @@
 #ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_royalblue.dmi'
 #else
-	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
+	smooth_icon = 'icons/obj/smooth_structures/normal/fancy_table_royalblue.dmi'
 #endif
 
 /*
@@ -734,7 +734,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/reinforced_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/reinforced_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/reinforced_table.dmi'
 #endif
 	icon_state = "reinforced_table-0"
 	base_icon_state = "reinforced_table"
@@ -799,7 +799,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/brass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/brass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/brass_table.dmi'
 #endif
 	icon_state = "brass_table-0"
 	base_icon_state = "brass_table"
@@ -818,7 +818,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rglass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/rglass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/rglass_table.dmi'
 #endif
 	icon_state = "rglass_table-0"
 	base_icon_state = "rglass_table"
@@ -832,7 +832,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rplasmaglass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/rplasmaglass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/rplasmaglass_table.dmi'
 #endif
 	icon_state = "rplasmaglass_table-0"
 	base_icon_state = "rplasmaglass_table"
@@ -845,7 +845,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/titaniumglass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/titaniumglass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/titaniumglass_table.dmi'
 #endif
 	icon_state = "titaniumglass_table-0"
 	base_icon_state = "titaniumglass_table"
@@ -859,7 +859,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/plastitaniumglass_table.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/plastitaniumglass_table.dmi'
+	icon = 'icons/obj/smooth_structures/normal/plastitaniumglass_table.dmi'
 #endif
 	icon_state = "plastitaniumglass_table-0"
 	base_icon_state = "plastitaniumglass_table"

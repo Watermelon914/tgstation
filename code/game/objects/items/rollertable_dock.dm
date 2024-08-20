@@ -4,7 +4,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rollingtable.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/rollingtable.dmi'
+	icon = 'icons/obj/smooth_structures/normal/rollingtable.dmi'
 #endif
 	icon_state = "rollingtable"
 	var/obj/structure/table/rolling/loaded = null

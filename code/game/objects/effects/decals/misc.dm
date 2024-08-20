@@ -102,7 +102,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/lattice.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/lattice.dmi'
+	icon = 'icons/obj/smooth_structures/normal/lattice.dmi'
 #endif
 	icon_state = "lattice-255"
 	density = TRUE

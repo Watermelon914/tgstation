@@ -6,10 +6,14 @@
 	name = "grille"
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/grille.dmi'
-#else
-	icon = 'icons/obj/smooth_structures/grille.dmi'
-#endif
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_GRILLE
+	canSmoothWith = SMOOTH_GROUP_GRILLE
 	icon_state = "grille-0"
+#else
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "grille"
+#endif
 	base_icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
@@ -19,9 +23,6 @@
 	armor_type = /datum/armor/structure_grille
 	max_integrity = 50
 	integrity_failure = 0.4
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = SMOOTH_GROUP_GRILLE
-	canSmoothWith = SMOOTH_GROUP_GRILLE
 	var/rods_type = /obj/item/stack/rods
 	var/rods_amount = 2
 
@@ -50,31 +51,24 @@
 
 	var/old_base_state = base_icon_state
 	var/ratio = atom_integrity / max_integrity
-	if(ratio <= 0.7)
 #ifdef WALLENING
+	if(ratio <= 0.7)
 		icon = 'icons/obj/structures/smooth/grille_damaged.dmi'
-#else
-		icon = 'icons/obj/smooth_structures/grille_damaged.dmi'
-#endif
 		base_icon_state = "grille_damaged"
 	else
-#ifdef WALLENING
 		icon = 'icons/obj/structures/smooth/grille.dmi'
-#else
-		icon = 'icons/obj/smooth_structures/grille.dmi'
-#endif
 		base_icon_state = "grille"
+#else
+
+#endif
 
 	if(old_base_state != base_icon_state)
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 
 	var/old_smoothing_flags = smoothing_flags
-	if(broken)
 #ifdef WALLENING
+	if(broken)
 		icon = 'icons/obj/structures/smooth/tall_structure_variations.dmi'
-#else
-		icon = 'icons/obj/smooth_structures/tall_structure_variations.dmi'
-#endif
 		icon_state = "grille-broken"
 		base_icon_state = "grille-broken"
 		smoothing_flags = NONE
@@ -85,6 +79,10 @@
 		smoothing_groups = initial(smoothing_groups)
 		canSmoothWith = initial(canSmoothWith)
 		SETUP_SMOOTHING()
+#else
+	if(broken)
+		icon_state = "brokengrille"
+#endif
 	. = ..()
 
 	if(!(updates & UPDATE_SMOOTHING))
@@ -415,16 +413,16 @@
 /obj/structure/grille/broken // Pre-broken grilles for map placement
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/tall_structure_variations.dmi'
-#else
-	icon = 'icons/obj/smooth_structures/tall_structure_variations.dmi'
-#endif
-	icon_state = "grille-broken"
-	density = FALSE
-	broken = TRUE
-	rods_amount = 1
 	smoothing_flags = null
 	smoothing_groups = null
 	canSmoothWith = null
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
+	icon_state = "brokengrille"
+	density = FALSE
+	broken = TRUE
+	rods_amount = 1
 
 /obj/structure/grille/broken/Initialize(mapload)
 	. = ..()

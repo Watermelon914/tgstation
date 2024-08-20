@@ -250,7 +250,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/structure_variations.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/structure_variations.dmi'
+	icon = 'icons/obj/smooth_structures/normal/structure_variations.dmi'
 #endif
 	icon_state = "clockwork_window-single"
 	glass_type = /obj/item/stack/sheet/bronze
@@ -264,7 +264,7 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/bronze/spawner)
 #ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/clockwork_window.dmi'
 #else
-	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
+	icon = 'icons/obj/smooth_structures/normal/clockwork_window.dmi'
 #endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	icon_state = "clockwork_window-0"
