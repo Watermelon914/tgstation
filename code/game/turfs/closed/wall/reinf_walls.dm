@@ -16,14 +16,14 @@
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall. also indicates the temperature at wich the wall will melt (currently only able to melt with H/E pipes)
 	///Dismantled state, related to deconstruction.
 	var/d_state = INTACT
-	///List of icons for deconstruction steps, indexed by d_state
+	///List of icons for deconstruction steps, indexed by d_state. Used for wallening
 	var/static/list/decon_icons = list(
-		SUPPORT_LINES = 'icons/turf/walls/reinforced_wall_decon1.dmi',
-		COVER = 'icons/turf/walls/reinforced_wall_decon2.dmi',
-		CUT_COVER = 'icons/turf/walls/reinforced_wall_decon3.dmi',
-		ANCHOR_BOLTS = 'icons/turf/walls/reinforced_wall_decon4.dmi',
-		SUPPORT_RODS = 'icons/turf/walls/reinforced_wall_decon5.dmi',
-		SHEATH = 'icons/turf/walls/reinforced_wall_decon6.dmi',
+		SUPPORT_LINES = 'icons/turf/walls/wallening/reinforced_wall_decon1.dmi',
+		COVER = 'icons/turf/walls/wallening/reinforced_wall_decon2.dmi',
+		CUT_COVER = 'icons/turf/walls/wallening/reinforced_wall_decon3.dmi',
+		ANCHOR_BOLTS = 'icons/turf/walls/wallening/reinforced_wall_decon4.dmi',
+		SUPPORT_RODS = 'icons/turf/walls/wallening/reinforced_wall_decon5.dmi',
+		SHEATH = 'icons/turf/walls/wallening/reinforced_wall_decon6.dmi',
 		)
 
 /turf/closed/wall/r_wall/deconstruction_hints(mob/user)
