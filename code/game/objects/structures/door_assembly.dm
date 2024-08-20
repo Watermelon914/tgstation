@@ -59,6 +59,16 @@
 	set_bounds()
 	update_overlays()
 
+#ifndef WALLENING
+/obj/structure/door_assembly/update_overlays()
+	. = ..()
+	if(!glass)
+		. += get_airlock_overlay("fill_construction", icon, src, TRUE)
+	else
+		. += get_airlock_overlay("glass_construction", overlays_file, src, TRUE)
+	. += get_airlock_overlay("panel_c[state+1]", overlays_file, src, TRUE)
+#endif
+
 /obj/structure/door_assembly/multi_tile/Move()
 	. = ..()
 	set_bounds()
