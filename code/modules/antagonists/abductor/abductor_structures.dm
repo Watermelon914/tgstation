@@ -50,7 +50,11 @@
 /obj/structure/table/abductor
 	name = "alien table"
 	desc = "Advanced flat surface technology at work!"
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/alien_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/alien_table.dmi'
+#endif
 	icon_state = "alien_table-0"
 	base_icon_state = "alien_table"
 	buildstack = /obj/item/stack/sheet/mineral/abductor

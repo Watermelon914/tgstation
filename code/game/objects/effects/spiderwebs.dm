@@ -34,7 +34,11 @@
 /obj/structure/spider/stickyweb
 	plane = FLOOR_PLANE
 	layer = MID_TURF_LAYER
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/stickyweb.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/stickyweb.dmi'
+#endif
 	base_icon_state = "stickyweb"
 	icon_state = "stickyweb-0"
 	smoothing_flags = SMOOTH_BITMASK
@@ -149,7 +153,11 @@
 /obj/structure/spider/stickyweb/sealed
 	name = "sealed web"
 	desc = "A solid wall of web, dense enough to block air flow."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/webwall.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/webwall.dmi'
+#endif
 	base_icon_state = "webwall"
 	icon_state = "webwall-0"
 	smoothing_groups = SMOOTH_GROUP_SPIDER_WEB_WALL
@@ -168,7 +176,11 @@
 /obj/structure/spider/stickyweb/sealed/reflector
 	name = "reflective silk screen"
 	desc = "Hardened webbing treated with special chemicals which cause it to repel projectiles."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/webwall_reflector.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/webwall_reflector.dmi'
+#endif
 	base_icon_state = "webwall_reflector"
 	icon_state = "webwall_reflector-0"
 	smoothing_groups = SMOOTH_GROUP_SPIDER_WEB_WALL_MIRROR
@@ -182,7 +194,11 @@
 /obj/structure/spider/stickyweb/sealed/tough
 	name = "hardened web"
 	desc = "Webbing hardened through a chemical process into a durable barrier."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/webwall_dark.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/webwall_dark.dmi'
+#endif
 	base_icon_state = "webwall_dark"
 	icon_state = "webwall_dark-0"
 	smoothing_groups = SMOOTH_GROUP_SPIDER_WEB_WALL_TOUGH
@@ -196,7 +212,11 @@
 /obj/structure/spider/passage
 	name = "web passage"
 	desc = "An opaque curtain of web which seals in air but doesn't impede passage."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/stickyweb_rotated.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/stickyweb_rotated.dmi'
+#endif
 	base_icon_state = "stickyweb_rotated"
 	icon_state = "stickyweb_rotated-0"
 	smoothing_flags = SMOOTH_BITMASK
@@ -250,7 +270,11 @@
 	desc = "Silk hardened into small yet deadly spikes."
 	plane = FLOOR_PLANE
 	layer = MID_TURF_LAYER
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/stickyweb_spikes.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/stickyweb_spikes.dmi'
+#endif
 	base_icon_state = "stickyweb_spikes"
 	icon_state = "stickyweb_spikes-0"
 	smoothing_flags = SMOOTH_BITMASK

@@ -12,7 +12,11 @@
 /obj/structure/table_frame
 	name = "table frame"
 	desc = "Four metal legs with four framing rods for a table. You could easily pass through this."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table_singles.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/table_singles.dmi'
+#endif
 	icon_state = "table_frame"
 	density = FALSE
 	anchored = FALSE

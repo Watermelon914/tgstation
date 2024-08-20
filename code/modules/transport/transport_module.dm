@@ -5,7 +5,11 @@
 /obj/structure/transport/linear
 	name = "linear transport module"
 	desc = "A lightweight lift platform. It moves."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/catwalk.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/catwalk.dmi'
+#endif
 	icon_state = "catwalk-0"
 	base_icon_state = "catwalk"
 	density = FALSE

@@ -4,7 +4,11 @@
 /obj/structure/grille
 	desc = "A flimsy framework of iron rods."
 	name = "grille"
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/grille.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/grille.dmi'
+#endif
 	icon_state = "grille-0"
 	base_icon_state = "grille"
 	density = TRUE
@@ -47,10 +51,18 @@
 	var/old_base_state = base_icon_state
 	var/ratio = atom_integrity / max_integrity
 	if(ratio <= 0.7)
+#ifdef WALLENING
 		icon = 'icons/obj/structures/smooth/grille_damaged.dmi'
+#else
+		icon = 'icons/obj/smooth_structures/grille_damaged.dmi'
+#endif
 		base_icon_state = "grille_damaged"
 	else
+#ifdef WALLENING
 		icon = 'icons/obj/structures/smooth/grille.dmi'
+#else
+		icon = 'icons/obj/smooth_structures/grille.dmi'
+#endif
 		base_icon_state = "grille"
 
 	if(old_base_state != base_icon_state)
@@ -58,7 +70,11 @@
 
 	var/old_smoothing_flags = smoothing_flags
 	if(broken)
+#ifdef WALLENING
 		icon = 'icons/obj/structures/smooth/tall_structure_variations.dmi'
+#else
+		icon = 'icons/obj/smooth_structures/tall_structure_variations.dmi'
+#endif
 		icon_state = "grille-broken"
 		base_icon_state = "grille-broken"
 		smoothing_flags = NONE
@@ -397,7 +413,11 @@
 	return null
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/tall_structure_variations.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/tall_structure_variations.dmi'
+#endif
 	icon_state = "grille-broken"
 	density = FALSE
 	broken = TRUE

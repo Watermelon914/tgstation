@@ -228,7 +228,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/fakeglass
 	name = "window"
+#ifdef WALLENING
 	icon = MAP_SWITCH('icons/obj/structures/smooth/windows/reinforced_window.dmi', 'icons/obj/structures/smooth/structure_variations.dmi')
+#else
+	icon = MAP_SWITCH('icons/obj/structures/smooth/windows/reinforced_window.dmi', 'icons/obj/smooth_structures/structure_variations.dmi')
+#endif
 	icon_state = MAP_SWITCH("0-lower", "plastitanium_window-0")
 	layer = ABOVE_OBJ_LAYER
 	opacity = FALSE
@@ -247,13 +251,25 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/fakeglass/update_overlays()
 	. = ..()
+#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
+#else
+	. += mutable_appearance('icons/obj/smooth_structures/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
+#endif
+#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
+#else
+	. += mutable_appearance('icons/obj/smooth_structures/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
+#endif
 	. += mutable_appearance('icons/obj/structures/smooth/window_frames/frame_faces/window_frame_normal.dmi', "window_frame_normal-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
 
 /turf/closed/indestructible/opsglass
 	name = "window"
+#ifdef WALLENING
 	icon = MAP_SWITCH('icons/obj/structures/smooth/windows/plastitanium_window.dmi', 'icons/obj/structures/smooth/plastitanium_window.dmi')
+#else
+	icon = MAP_SWITCH('icons/obj/structures/smooth/windows/plastitanium_window.dmi', 'icons/obj/smooth_structures/plastitanium_window.dmi')
+#endif
 	icon_state = MAP_SWITCH("0-lower", "plastitanium_window-0")
 	layer = ABOVE_OBJ_LAYER
 	opacity = FALSE
@@ -272,8 +288,16 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/opsglass/update_overlays()
 	. = ..()
+#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
+#else
+	. += mutable_appearance('icons/obj/smooth_structures/window_grille_black.dmi', "window_grille_black-[smoothing_junction]", BELOW_OBJ_LAYER)
+#endif
+#ifdef WALLENING
 	. += mutable_appearance('icons/obj/structures/smooth/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
+#else
+	. += mutable_appearance('icons/obj/smooth_structures/window_grille.dmi', "window_grille-[smoothing_junction]", BELOW_OBJ_LAYER)
+#endif
 	. += mutable_appearance('icons/obj/structures/smooth/window_frames/frame_faces/window_frame_plastitanium.dmi', "window_frame_plastitanium-[smoothing_junction]", BELOW_OBJ_LAYER, appearance_flags = KEEP_APART)
 
 /turf/closed/indestructible/fakedoor
@@ -449,7 +473,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/grille
 	name = "grille"
 	desc = "A flimsy framework of iron rods."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/grille.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/grille.dmi'
+#endif
 	icon_state = "grille-0"
 	base_icon_state = "grille"
 	use_splitvis = FALSE

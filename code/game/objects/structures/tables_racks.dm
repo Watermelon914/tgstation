@@ -18,7 +18,11 @@
 	SET_BASE_VISUAL_PIXEL(0, 8)
 	name = "table"
 	desc = "A square piece of iron standing on four metal legs. It can not move."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/table.dmi'
+#endif
 	icon_state = "table-0"
 	base_icon_state = "table"
 	density = TRUE
@@ -381,7 +385,11 @@
 	return COMSIG_LIVING_SHOVE_HANDLED
 
 /obj/structure/table/greyscale
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table_greyscale.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/table_greyscale.dmi'
+#endif
 	icon_state = "table_greyscale-0"
 	base_icon_state = "table_greyscale"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
@@ -405,7 +413,11 @@
 	smoothing_flags = NONE
 	smoothing_groups = null
 	canSmoothWith = null
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rollingtable.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/rollingtable.dmi'
+#endif
 	icon_state = "rollingtable"
 	// this one's 32x32 so it uses different clickable bounds
 	bottom_placable_y = 12
@@ -465,7 +477,11 @@
 /obj/structure/table/glass
 	name = "glass table"
 	desc = "What did I say about leaning on the glass tables? Now you need surgery."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/glass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/glass_table.dmi'
+#endif
 	icon_state = "glass_table-0"
 	base_icon_state = "glass_table"
 	custom_materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT)
@@ -537,7 +553,11 @@
 /obj/structure/table/glass/plasmaglass
 	name = "plasma glass table"
 	desc = "Someone thought this was a good idea."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/plasmaglass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/plasmaglass_table.dmi'
+#endif
 	icon_state = "plasmaglass_table-0"
 	base_icon_state = "plasmaglass_table"
 	custom_materials = list(/datum/material/alloy/plasmaglass =SHEET_MATERIAL_AMOUNT)
@@ -552,7 +572,11 @@
 /obj/structure/table/wood
 	name = "wooden table"
 	desc = "Do not apply fire to this. Rumour says it burns easily."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/wood_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/wood_table.dmi'
+#endif
 	icon_state = "wood_table-0"
 	base_icon_state = "wood_table"
 	frame = /obj/structure/table_frame/wood
@@ -570,7 +594,11 @@
 /obj/structure/table/wood/poker //No specialties, Just a mapping object.
 	name = "gambling table"
 	desc = "A seedy table for seedy dealings in seedy places."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/poker_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/poker_table.dmi'
+#endif
 	icon_state = "poker_table-0"
 	base_icon_state = "poker_table"
 	buildstack = /obj/item/stack/tile/carpet
@@ -581,7 +609,11 @@
 /obj/structure/table/wood/fancy
 	name = "fancy table"
 	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/table_singles.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/table_singles.dmi'
+#endif
 	icon_state = "fancy_table"
 	base_icon_state = "fancy_table"
 	frame = /obj/structure/table_frame
@@ -589,7 +621,11 @@
 	buildstack = /obj/item/stack/tile/carpet
 	smoothing_groups = SMOOTH_GROUP_FANCY_WOOD_TABLES //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
 	canSmoothWith = SMOOTH_GROUP_FANCY_WOOD_TABLES
+#ifdef WALLENING
 	var/smooth_icon = 'icons/obj/structures/smooth/fancy_table.dmi' // see Initialize()
+#else
+	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
+#endif
 
 /obj/structure/table/wood/fancy/Initialize(mapload)
 	. = ..()
@@ -603,55 +639,91 @@
 	icon_state = "fancy_table_black"
 	base_icon_state = "fancy_table_black"
 	buildstack = /obj/item/stack/tile/carpet/black
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_black.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_black.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/blue
 	icon_state = "fancy_table_blue"
 	base_icon_state = "fancy_table_blue"
 	buildstack = /obj/item/stack/tile/carpet/blue
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_blue.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_blue.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/cyan
 	icon_state = "fancy_table_cyan"
 	base_icon_state = "fancy_table_cyan"
 	buildstack = /obj/item/stack/tile/carpet/cyan
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_cyan.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_cyan.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/green
 	icon_state = "fancy_table_green"
 	base_icon_state = "fancy_table_green"
 	buildstack = /obj/item/stack/tile/carpet/green
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_green.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_green.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/orange
 	icon_state = "fancy_table_orange"
 	base_icon_state = "fancy_table_orange"
 	buildstack = /obj/item/stack/tile/carpet/orange
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_orange.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_orange.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/purple
 	icon_state = "fancy_table_purple"
 	base_icon_state = "fancy_table_purple"
 	buildstack = /obj/item/stack/tile/carpet/purple
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_purple.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_purple.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/red
 	icon_state = "fancy_table_red"
 	base_icon_state = "fancy_table_red"
 	buildstack = /obj/item/stack/tile/carpet/red
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_red.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_red.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/royalblack
 	icon_state = "fancy_table_royalblack"
 	base_icon_state = "fancy_table_royalblack"
 	buildstack = /obj/item/stack/tile/carpet/royalblack
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_royalblack.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblack.dmi'
+#endif
 
 /obj/structure/table/wood/fancy/royalblue
 	icon_state = "fancy_table_royalblue"
 	base_icon_state = "fancy_table_royalblue"
 	buildstack = /obj/item/stack/tile/carpet/royalblue
+#ifdef WALLENING
 	smooth_icon = 'icons/obj/structures/smooth/fancy_table_royalblue.dmi'
+#else
+	smooth_icon = 'icons/obj/smooth_structures/fancy_table_royalblue.dmi'
+#endif
 
 /*
  * Reinforced tables
@@ -659,7 +731,11 @@
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A reinforced version of the four legged table."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/reinforced_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/reinforced_table.dmi'
+#endif
 	icon_state = "reinforced_table-0"
 	base_icon_state = "reinforced_table"
 	deconstruction_ready = FALSE
@@ -720,7 +796,11 @@
 /obj/structure/table/bronze
 	name = "bronze table"
 	desc = "A solid table made out of bronze."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/brass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/brass_table.dmi'
+#endif
 	icon_state = "brass_table-0"
 	base_icon_state = "brass_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -735,7 +815,11 @@
 /obj/structure/table/reinforced/rglass
 	name = "reinforced glass table"
 	desc = "A reinforced version of the glass table."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rglass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/rglass_table.dmi'
+#endif
 	icon_state = "rglass_table-0"
 	base_icon_state = "rglass_table"
 	custom_materials = list(/datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -745,7 +829,11 @@
 /obj/structure/table/reinforced/plasmarglass
 	name = "reinforced plasma glass table"
 	desc = "A reinforced version of the plasma glass table."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/rplasmaglass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/rplasmaglass_table.dmi'
+#endif
 	icon_state = "rplasmaglass_table-0"
 	base_icon_state = "rplasmaglass_table"
 	custom_materials = list(/datum/material/alloy/plasmaglass =SHEET_MATERIAL_AMOUNT, /datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -754,7 +842,11 @@
 /obj/structure/table/reinforced/titaniumglass
 	name = "titanium glass table"
 	desc = "A titanium reinforced glass table, with a fresh coat of NT white paint."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/titaniumglass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/titaniumglass_table.dmi'
+#endif
 	icon_state = "titaniumglass_table-0"
 	base_icon_state = "titaniumglass_table"
 	custom_materials = list(/datum/material/alloy/titaniumglass =SHEET_MATERIAL_AMOUNT)
@@ -764,7 +856,11 @@
 /obj/structure/table/reinforced/plastitaniumglass
 	name = "plastitanium glass table"
 	desc = "A table made of titanium reinforced silica-plasma composite. About as durable as it sounds."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/plastitaniumglass_table.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/plastitaniumglass_table.dmi'
+#endif
 	icon_state = "plastitaniumglass_table-0"
 	base_icon_state = "plastitaniumglass_table"
 	custom_materials = list(/datum/material/alloy/plastitaniumglass =SHEET_MATERIAL_AMOUNT)

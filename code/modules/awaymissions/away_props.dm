@@ -54,7 +54,11 @@
 
 /obj/structure/pitgrate
 	name = "pit grate"
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/lattice.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/lattice.dmi'
+#endif
 	icon_state = "lattice-255"
 	layer = ABOVE_OPEN_TURF_LAYER
 	plane = FLOOR_PLANE

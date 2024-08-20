@@ -99,6 +99,10 @@
 /obj/effect/decal/fakelattice
 	name = "lattice"
 	desc = "A lightweight support lattice."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/lattice.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/lattice.dmi'
+#endif
 	icon_state = "lattice-255"
 	density = TRUE

@@ -20,9 +20,17 @@
 	///whether we spawn a window structure with us on mapload
 	var/start_with_window = FALSE
 	///Icon used by grilles for this window frame
+#ifdef WALLENING
 	var/grille_icon = 'icons/obj/structures/smooth/window_grille.dmi'
+#else
+	var/grille_icon = 'icons/obj/smooth_structures/window_grille.dmi'
+#endif
 
+#ifdef WALLENING
 	var/grille_black_icon = 'icons/obj/structures/smooth/window_grille_black.dmi'
+#else
+	var/grille_black_icon = 'icons/obj/smooth_structures/window_grille_black.dmi'
+#endif
 	///Icon state used by grilles for this window frame.
 	var/grille_icon_state = "window_grille"
 
