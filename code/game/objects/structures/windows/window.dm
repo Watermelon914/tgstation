@@ -1,7 +1,11 @@
 /obj/structure/window
 	name = "window"
 	desc = "A directional window."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/normal_thindow.dmi'
+	canSmoothWith = SMOOTH_GROUP_THINDOWS
+	smoothing_groups = SMOOTH_GROUP_THINDOWS
+#endif
 	icon_state = "window"
 	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
@@ -19,8 +23,6 @@
 	set_dir_on_move = FALSE
 	flags_ricochet = RICOCHET_HARD
 	receive_ricochet_chance_mod = 0.5
-	canSmoothWith = SMOOTH_GROUP_THINDOWS
-	smoothing_groups = SMOOTH_GROUP_THINDOWS
 	var/state = WINDOW_OUT_OF_FRAME
 	var/reinf = FALSE
 	var/heat_resistance = 800
