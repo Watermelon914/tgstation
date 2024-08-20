@@ -72,7 +72,9 @@
 		obj_flags &= ~IGNORE_DENSITY
 		update_icon_state()
 		AddElement(/datum/element/can_barricade)
+#ifdef WALLENING
 		AddComponent(/datum/component/window_smoothing)
+#endif
 	else
 		smoothing_flags = SMOOTH_BITMASK|SMOOTH_BORDER_OBJECT|SMOOTH_OBJ
 		setDir(dir)
@@ -451,6 +453,7 @@
 	if(smoothing_flags & USES_SMOOTHING)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
+#ifdef WALLENING
 /obj/structure/window/update_icon_state()
 	. = ..()
 	if(fulltile)
@@ -468,6 +471,7 @@
 				icon_state = "body-r"
 			if(WEST)
 				icon_state = "body-l"
+#endif
 
 //merges adjacent windows, handle cracking for fulltiles
 /obj/structure/window/update_overlays(updates=ALL)
@@ -478,6 +482,7 @@
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & USES_SMOOTHING))
 		QUEUE_SMOOTH(src)
 
+#ifdef WALLENING
 	if(fulltile)
 		var/ratio = atom_integrity / max_integrity
 		ratio = CEILING(ratio*4, 1)
@@ -663,6 +668,13 @@
 		var/mutable_appearance/blocker = emissive_blocker(icon, blocked_state, offset_spokesman = src)
 		blocker.pixel_z = -pixel_z
 		. += blocker
+#else
+	var/ratio = atom_integrity / max_integrity
+	ratio = CEILING(ratio*4, 1) * 25
+	if(ratio > 75)
+		return
+	. += mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer+0.1))
+#endif
 
 /obj/structure/window/set_smoothed_icon_state(new_junction)
 	if(fulltile)
@@ -727,7 +739,9 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/unanchored/spawner)
 
 /obj/structure/window/half
 	can_atmos_pass = ATMOS_PASS_YES
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/half_thindow.dmi'
+#endif
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half)
 
@@ -739,7 +753,11 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/half/unanchored)
 /obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "A window that is reinforced with metal rods."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/reinforced_thindow.dmi'
+#else
+	icon_state = "rwindow"
+#endif
 	reinf = TRUE
 	heat_resistance = 1600
 	armor_type = /datum/armor/window_reinforced
@@ -871,7 +889,9 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/unanchored/sp
 
 /obj/structure/window/reinforced/half
 	can_atmos_pass = ATMOS_PASS_YES
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/reinforced_half_thindow.dmi'
+#endif
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/half)
 
@@ -892,7 +912,11 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/half/unanchor
 /obj/structure/window/plasma
 	name = "plasma window"
 	desc = "A window made out of a plasma-silicate alloy. It looks insanely tough to break and burn through."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/plasma_thindow.dmi'
+#else
+	plasmawindow
+#endif
 	reinf = FALSE
 	heat_resistance = 25000
 	armor_type = /datum/armor/window_plasma
@@ -921,7 +945,11 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/plasma/spawner)
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
 	desc = "A window made out of a plasma-silicate alloy and a rod matrix. It looks hopelessly tough to break and is most likely nigh fireproof."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/plasma_reinforced_thindow.dmi'
+#else
+	icon_state = "plasmarwindow"
+#endif
 	reinf = TRUE
 	heat_resistance = 50000
 	armor_type = /datum/armor/reinforced_plasma
@@ -950,7 +978,11 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/plasma/spawne
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/tinted_thindow.dmi'
+#else
+	icon_state = "twindow"
+#endif
 
 /obj/structure/window/reinforced/tinted/Initialize(mapload, direct)
 	. = ..()
@@ -961,6 +993,10 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/tinted/spawne
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/frosted_thindow.dmi'
+#else
+	icon_state = "fwindow"
+#endif
 
 MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/tinted/frosted/spawner)

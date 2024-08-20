@@ -38,8 +38,13 @@
 #define RWINDOW_BOLTS_HEATED 7
 #define RWINDOW_SECURE 8
 
+#ifdef WALLENING
 #define WINDOW_ON_FRAME_Y_OFFSET 0
 #define WINDOW_OFF_FRAME_Y_OFFSET -7
+#else
+#define WINDOW_ON_FRAME_Y_OFFSET 0
+#define WINDOW_OFF_FRAME_Y_OFFSET 0
+#endif
 
 //tram structure construction states
 #define TRAM_OUT_OF_FRAME 0

@@ -1,6 +1,12 @@
 /obj/structure/window/fulltile
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/normal_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	max_integrity = 50
 	fulltile = TRUE
@@ -15,8 +21,14 @@
 	anchored = FALSE
 
 /obj/structure/window/plasma/fulltile
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/plasma_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/plasma_window.dmi'
+	icon_state = "plasma_window-0"
+	base_icon_state = "plasma_window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	max_integrity = 300
 	fulltile = TRUE
@@ -30,8 +42,14 @@
 	anchored = FALSE
 
 /obj/structure/window/reinforced/plasma/fulltile
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/plasma_reinforced_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/rplasma_window.dmi'
+	icon_state = "rplasma_window-0"
+	base_icon_state = "rplasma_window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	state = RWINDOW_SECURE
 	max_integrity = 1000
@@ -47,8 +65,14 @@
 	state = WINDOW_OUT_OF_FRAME
 
 /obj/structure/window/reinforced/fulltile
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/reinforced_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/reinforced_window.dmi'
+	icon_state = "reinforced_window-0"
+	base_icon_state = "reinforced_window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	max_integrity = 150
 	fulltile = TRUE
@@ -73,8 +97,14 @@
 	atom_integrity = rand(max_integrity * integrity_min_factor, max_integrity * integrity_max_factor)
 
 /obj/structure/window/reinforced/tinted/fulltile
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/tinted_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/tinted_window.dmi'
+	icon_state = "tinted_window-0"
+	base_icon_state = "tinted_window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
@@ -84,7 +114,14 @@
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/ice
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/frosted_window.dmi'
+	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/rice_window.dmi'
+	icon_state = "rice_window-0"
+	base_icon_state = "rice_window"
+#endif
 	max_integrity = 150
 	glass_amount = 2
 
@@ -92,8 +129,14 @@
 /obj/structure/window/reinforced/shuttle//this is called reinforced because it is reinforced w/titanium
 	name = "shuttle window"
 	desc = "A reinforced, air-locked pod window."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/titanium_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/shuttle_window.dmi'
+	icon_state = "shuttle_window-0"
+	base_icon_state = "shuttle_window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	max_integrity = 150
 	wtype = "shuttle"
@@ -137,8 +180,14 @@
 /obj/structure/window/reinforced/plasma/plastitanium
 	name = "plastitanium window"
 	desc = "A durable looking window made of an alloy of of plasma and titanium."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/plastitanium_window.dmi'
 	icon_state = "0-lower"
+#else
+	icon = 'icons/obj/smooth_structures/normal/plastitanium_window.dmi'
+	icon_state = "plastitanium_window-0"
+	base_icon_state = "plastitanium_window"
+#endif
 	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	max_integrity = 1200
 	wtype = "shuttle"
@@ -168,7 +217,17 @@
 /obj/structure/window/paperframe
 	name = "paper frame"
 	desc = "A fragile separator made of thin wood and paper."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/windows/paper_window.dmi'
+	icon_state = "0-lower"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_PAPERFRAME
+	canSmoothWith = SMOOTH_GROUP_PAPERFRAME
+#else
+	icon = 'icons/obj/smooth_structures/normal/structure_variations.dmi'
+	icon_state = "paper-whole"
+	base_icon_state = "paper-whole"
+#endif
 	icon_state = null
 	opacity = TRUE
 	max_integrity = 15
@@ -217,10 +276,17 @@
 	set_opacity(atom_integrity >= max_integrity)
 
 /obj/structure/window/paperframe/update_icon(updates=ALL)
+#ifdef WALLENING
 	if(atom_integrity >= max_integrity)
 		icon = 'icons/obj/structures/smooth/windows/paper_window.dmi'
 	else
 		icon = 'icons/obj/structures/smooth/windows/paper_window_torn.dmi'
+#else
+	if(atom_integrity >= max_integrity)
+		icon_state = "paper-whole"
+	else
+		icon_state = "paper-torn"
+#endif
 	. = ..()
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & USES_SMOOTHING))
 		QUEUE_SMOOTH(src)
@@ -266,9 +332,9 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/bronze/spawner)
 #else
 	icon = 'icons/obj/smooth_structures/normal/clockwork_window.dmi'
 #endif
-	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	icon_state = "clockwork_window-0"
 	base_icon_state = "clockwork_window"
+	pixel_y = WINDOW_OFF_FRAME_Y_OFFSET
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE + SMOOTH_GROUP_WINDOW_FULLTILE
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE

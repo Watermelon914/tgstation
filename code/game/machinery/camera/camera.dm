@@ -90,12 +90,21 @@
 	var/area/station/ai_monitored/area_motion = null
 	var/alarm_delay = 30 // Don't forget, there's another 3 seconds in queueAlarm()
 
+#ifdef WALLENING
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/motion)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/emp_proof)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/motion)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray)
+#else
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/motion, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/emp_proof, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/motion, 0)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
+#endif
 
 /datum/armor/machinery_camera
 	melee = 50

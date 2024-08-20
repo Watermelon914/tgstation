@@ -57,8 +57,10 @@
 /obj/structure/alien/resin/flower_bud/make_splitvis()
 	return
 
+#ifdef WALLENING
 /obj/structure/alien/resin/flower_bud/get_icon()
 	return 'icons/obj/structures/smooth/alien/resin_membrane.dmi'
+#endif
 
 /obj/structure/alien/resin/flower_bud/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if((trait_flags & SPACEVINE_HEAT_RESISTANT) && damage_type == BURN)
