@@ -530,7 +530,11 @@ Difficulty: Hard
 // It doesn't, we need a unique sprite for this
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
 	name = "vortex wall"
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/hierophant_wall_temp.dmi', 'icons/turf/walls/normal/hierophant_wall_temp.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/hierophant_wall_temp.dmi'
+#else
+	icon = 'icons/turf/walls/normal/hierophant_wall_temp.dmi'
+#endif
 	icon_state = "hierophant_wall_temp-0"
 	base_icon_state = "hierophant_wall_temp"
 	smoothing_flags = SMOOTH_BITMASK

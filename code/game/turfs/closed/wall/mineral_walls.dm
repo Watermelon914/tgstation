@@ -9,7 +9,11 @@
 /turf/closed/wall/mineral/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/gold_wall.dmi', 'icons/turf/walls/normal/gold_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/gold_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/gold_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	hardness = 65 //gold is soft
 	explosive_resistance = 0 //gold is a soft metal you dingus.
@@ -21,7 +25,11 @@
 /turf/closed/wall/mineral/silver
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny!"
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/silver_wall.dmi', 'icons/turf/walls/normal/silver_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/silver_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/silver_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	hardness = 65 //silver is also soft according to moh's scale
 	smoothing_flags = SMOOTH_BITMASK
@@ -32,7 +40,11 @@
 /turf/closed/wall/mineral/diamond
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/diamond_wall.dmi', 'icons/turf/walls/normal/diamond_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/diamond_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/diamond_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
 	hardness = 5 //diamond is very hard
 	slicing_duration = 200   //diamond wall takes twice as much time to slice
@@ -49,7 +61,11 @@
 /turf/closed/wall/mineral/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bananium_wall.dmi', 'icons/turf/walls/normal/bananium_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/bananium_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/bananium_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
 	hardness = 70 //it's banana
 	smoothing_flags = SMOOTH_BITMASK
@@ -61,7 +77,11 @@
 /turf/closed/wall/mineral/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/sandstone_wall.dmi', 'icons/turf/walls/normal/sandstone_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/sandstone_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/sandstone_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
 	hardness = 50 //moh says this is apparently 6-7 on it's scale
 	explosive_resistance = 0
@@ -75,7 +95,11 @@
 	article = "a"
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/uranium_wall.dmi', 'icons/turf/walls/normal/uranium_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/uranium_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/uranium_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	hardness = 40 //uranium is a 6 on moh's scale
 	smoothing_flags = SMOOTH_BITMASK
@@ -130,7 +154,11 @@
 /turf/closed/wall/mineral/plasma
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definitely a bad idea."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plasma_wall.dmi', 'icons/turf/walls/normal/plasma_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/plasma_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/plasma_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	hardness = 70 // I'll tentatively compare it to Bismuth
 	thermal_conductivity = 0.04
@@ -143,7 +171,11 @@
 /turf/closed/wall/mineral/wood
 	name = "wooden wall"
 	desc = "A wall with wooden plating. Stiff."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/wood_wall.dmi', 'icons/turf/walls/normal/wood_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/wood_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/wood_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	hardness = 80
 	turf_flags = IS_SOLID
@@ -175,7 +207,11 @@
 /turf/closed/wall/mineral/bamboo
 	name = "bamboo wall"
 	desc = "A wall with a bamboo finish."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bamboo_wall.dmi', 'icons/turf/walls/normal/bamboo_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/bamboo_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/bamboo_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_BAMBOO_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_WALLS
@@ -186,7 +222,11 @@
 /turf/closed/wall/mineral/iron
 	name = "rough iron wall"
 	desc = "A wall with rough iron plating."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iron_wall.dmi', 'icons/turf/walls/normal/iron_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/iron_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/iron_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/rods
 	hardness = 60
 	sheet_amount = 5
@@ -199,7 +239,11 @@
 /turf/closed/wall/mineral/snow
 	name = "packed snow wall"
 	desc = "A wall made of densely packed snow blocks."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/snow_wall.dmi', 'icons/turf/walls/normal/snow_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/snow_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/snow_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 80
 	explosive_resistance = 0
@@ -219,7 +263,11 @@
 /turf/closed/wall/mineral/abductor
 	name = "alien wall"
 	desc = "A wall with alien alloy plating."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/abductor_wall.dmi', 'icons/turf/walls/normal/abductor_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/abductor_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/abductor_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/mineral/abductor
 	hardness = 10
 	slicing_duration = 200   //alien wall takes twice as much time to slice
@@ -233,7 +281,11 @@
 /turf/closed/wall/mineral/meat
 	name = "meat wall"
 	desc = "A wall of somone's compacted meat."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/meat_wall.dmi', 'icons/turf/walls/normal/meat_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/meat_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/meat_wall.dmi'
+#endif
 	sheet_type = /obj/item/stack/sheet/meat
 	hardness = 50
 	explosive_resistance = 0
@@ -267,7 +319,11 @@
 /turf/closed/wall/mineral/titanium //has to use this path due to how building walls works
 	name = "wall"
 	desc = "A light-weight titanium wall used in shuttles."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/shuttle_wall.dmi', 'icons/turf/walls/normal/shuttle_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/shuttle_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/shuttle_wall.dmi'
+#endif
 	explosive_resistance = 3
 	flags_1 = CAN_BE_DIRTY_1
 	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
@@ -303,13 +359,21 @@
 /turf/closed/wall/mineral/titanium/survival
 	name = "pod wall"
 	desc = "An easily-compressable wall used for temporary shelter."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/survival_pod_wall.dmi', 'icons/turf/walls/normal/survival_pod_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/survival_pod_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/survival_pod_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	canSmoothWith = SMOOTH_GROUP_TITANIUM_WALLS
 	rust_resistance = RUST_RESISTANCE_TITANIUM
 
 /turf/closed/wall/mineral/titanium/survival/nodiagonal
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/survival_pod_wall.dmi', 'icons/turf/walls/normal/survival_pod_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/survival_pod_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/survival_pod_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 	rust_resistance = RUST_RESISTANCE_TITANIUM
 
@@ -329,7 +393,11 @@
 /turf/closed/wall/mineral/plastitanium
 	name = "wall"
 	desc = "A durable wall made of an alloy of plasma and titanium."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastitanium_wall.dmi', 'icons/turf/walls/normal/plastitanium_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/plastitanium_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/plastitanium_wall.dmi'
+#endif
 	explosive_resistance = 4
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	hardness = 25 //upgrade on titanium

@@ -1,2 +1,2 @@
-output_name = "hierophant_wall_temp"
+output_name = "wall"
 template = "bitmask/diagonal_32x32.toml"

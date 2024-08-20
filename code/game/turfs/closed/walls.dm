@@ -1,8 +1,13 @@
 /turf/closed/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/metal_wall.dmi', 'icons/turf/walls/normal/wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/metal_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/wall.dmi'
+#endif
 	icon_state = "0-2"
+	base_icon_state = "wall"
 	explosive_resistance = 1
 	rust_resistance = RUST_RESISTANCE_BASIC
 

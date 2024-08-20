@@ -1,4 +1,4 @@
-output_name = "red_wall"
+output_name = "wall"
 template = "bitmask/diagonal_32x32.toml"
 
 [icon_size]

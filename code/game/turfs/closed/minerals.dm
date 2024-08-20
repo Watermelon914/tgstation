@@ -4,7 +4,11 @@
 
 /turf/closed/mineral //wall piece
 	name = "rock"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/rock_wall.dmi', 'icons/turf/walls/normal/rock_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/rock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/rock_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "rock"
 #endif
@@ -403,7 +407,11 @@
 
 /turf/closed/mineral/random/snow
 	name = "snowy mountainside"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/walls/normal/mountain_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "mountainrock"
 #endif
@@ -419,7 +427,11 @@
 /turf/closed/mineral/random/snow/Change_Ore(ore_type, random = 0)
 	. = ..()
 	if(mineralType)
-		icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi')
+#ifdef WALLENING
+		icon = 'icons/turf/walls/wallening/icerock_wall.dmi'
+#else
+		icon = 'icons/turf/walls/normal/icerock_wall.dmi'
+#endif
 		smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 		QUEUE_SMOOTH(src)
 
@@ -499,7 +511,11 @@
 // Subtypes for mappers placing ores manually.
 /turf/closed/mineral/random/labormineral/ice
 	name = "snowy mountainside"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/walls/normal/mountain_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "mountainrock"
 #endif
@@ -520,7 +536,11 @@
 /turf/closed/mineral/random/labormineral/ice/Change_Ore(ore_type, random = 0)
 	. = ..()
 	if(mineralType)
-		icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi')
+#ifdef WALLENING
+		icon = 'icons/turf/walls/wallening/icerock_wall.dmi'
+#else
+		icon = 'icons/turf/walls/normal/icerock_wall.dmi'
+#endif
 		smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 		QUEUE_SMOOTH(src)
 
@@ -535,7 +555,11 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/iron/ice
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "icerock_iron"
 #endif
@@ -566,7 +590,11 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/diamond/ice
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "icerock_iron"
 #endif
@@ -622,7 +650,11 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/plasma/ice
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "icerock_plasma"
 #endif
@@ -666,7 +698,11 @@
 
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/rock_wall2.dmi', 'icons/turf/mining.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/rock_wall2.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/mining.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "rock2"
 #endif
@@ -680,7 +716,11 @@
 
 /turf/closed/mineral/snowmountain
 	name = "snowy mountainside"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/walls/normal/mountain_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "mountainrock"
 #endif
@@ -704,7 +744,11 @@
 
 /turf/closed/mineral/snowmountain/cavern
 	name = "ice cavern rock"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "icerock"
 #endif
@@ -727,14 +771,22 @@
 
 /turf/closed/mineral/asteroid
 	name = "iron rock"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/walls/normal/red_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/red_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "redrock"
 #endif
 
 /turf/closed/mineral/random/stationside/asteroid
 	name = "iron rock"
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/walls/normal/red_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/red_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 
 /turf/closed/mineral/random/stationside/asteroid/porus
 	name = "porous iron rock"
@@ -858,7 +910,11 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/gibtonite/ice
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/icerock_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "icerock_Gibtonite_inactive"
 #endif
@@ -880,7 +936,11 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/walls/normal/red_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/red_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/mineral/strong/attackby(obj/item/I, mob/user, params)

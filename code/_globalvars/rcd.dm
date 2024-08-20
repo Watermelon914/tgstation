@@ -2,7 +2,11 @@ GLOBAL_VAR_INIT(holographic_wall, init_holographic_wall())
 GLOBAL_VAR_INIT(holographic_window, init_holographic_window())
 
 /proc/init_holographic_wall()
-	return generate_joined_wall(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/metal_wall.dmi', 'icons/turf/walls/normal/metal_wall.dmi'), NONE)
+#ifdef WALLENING
+	return generate_joined_wall('icons/turf/walls/wallening/metal_wall.dmi', NONE)
+#else
+	return generate_joined_wall('icons/turf/walls/normal/wall.dmi', NONE)
+#endif
 
 /proc/init_holographic_window()
 	var/mutable_appearance/window_frame = mutable_appearance('icons/obj/structures/smooth/window_frames/window_frame_normal.dmi', "window_frame_normal-0")

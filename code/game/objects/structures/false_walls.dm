@@ -90,7 +90,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 	name = "wall"
 	desc = "A huge chunk of metal used to separate rooms."
 	anchored = TRUE
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/false_walls.dmi', 'icons/turf/walls/normal/false_walls.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/false_walls.dmi'
+#else
+	icon = 'icons/turf/walls/normal/false_walls.dmi'
+#endif
 	icon_state = "wall"
 	base_icon_state = "wall"
 	layer = LOW_OBJ_LAYER
@@ -111,7 +115,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 	/// Our usual smoothing groups
 	var/list/usual_groups
 	/// The icon this falsewall is faking being. we'll switch out our icon with this when we're in fake mode
-	var/fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/metal_wall.dmi', 'icons/turf/walls/normal/wall.dmi')
+#ifdef WALLENING
+	var/fake_icon = 'icons/turf/walls/wallening/metal_wall.dmi'
+#else
+	var/fake_icon = 'icons/turf/walls/normal/wall.dmi'
+#endif
 	var/mineral = /obj/item/stack/sheet/iron
 	var/mineral_amount = 2
 	var/walltype = /turf/closed/wall
@@ -264,7 +272,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/reinforced_wall.dmi', 'icons/turf/walls/normal/reinforced_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/reinforced_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/reinforced_wall.dmi'
+#endif
 	icon_state = "reinforced_wall"
 	base_icon_state = "reinforced_wall"
 	walltype = /turf/closed/wall/r_wall
@@ -287,7 +299,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/uranium_wall.dmi', 'icons/turf/walls/normal/uranium_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/uranium_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/uranium_wall.dmi'
+#endif
 	icon_state = "uranium_wall"
 	base_icon_state = "uranium_wall"
 	mineral = /obj/item/stack/sheet/mineral/uranium
@@ -338,7 +354,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/gold_wall.dmi', 'icons/turf/walls/normal/gold_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/gold_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/gold_wall.dmi'
+#endif
 	icon_state = "gold_wall"
 	base_icon_state = "gold_wall"
 	mineral = /obj/item/stack/sheet/mineral/gold
@@ -350,7 +370,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/silver
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/silver_wall.dmi', 'icons/turf/walls/normal/silver_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/silver_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/silver_wall.dmi'
+#endif
 	icon_state = "silver_wall"
 	base_icon_state = "silver_wall"
 	mineral = /obj/item/stack/sheet/mineral/silver
@@ -362,7 +386,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/diamond
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/diamond_wall.dmi', 'icons/turf/walls/normal/diamond_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/diamond_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/diamond_wall.dmi'
+#endif
 	icon_state = "diamond_wall"
 	base_icon_state = "diamond_wall"
 	mineral = /obj/item/stack/sheet/mineral/diamond
@@ -375,7 +403,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/plasma
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definitely a bad idea."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plasma_wall.dmi', 'icons/turf/walls/normal/plasma_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/plasma_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/plasma_wall.dmi'
+#endif
 	icon_state = "plasma_wall"
 	base_icon_state = "plasma_wall"
 	mineral = /obj/item/stack/sheet/mineral/plasma
@@ -387,7 +419,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bananium_wall.dmi', 'icons/turf/walls/normal/bananium_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/bananium_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/bananium_wall.dmi'
+#endif
 	icon_state = "bananium_wall"
 	base_icon_state = "bananium_wall"
 	mineral = /obj/item/stack/sheet/mineral/bananium
@@ -400,7 +436,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/sandstone_wall.dmi', 'icons/turf/walls/normal/sandstone_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/sandstone_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/sandstone_wall.dmi'
+#endif
 	icon_state = "sandstone_wall"
 	base_icon_state = "sandstone_wall"
 	mineral = /obj/item/stack/sheet/mineral/sandstone
@@ -412,7 +452,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/wood
 	name = "wooden wall"
 	desc = "A wall with wooden plating. Stiff."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/wood_wall.dmi', 'icons/turf/walls/normal/wood_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/wood_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/wood_wall.dmi'
+#endif
 	icon_state = "wood_wall"
 	base_icon_state = "wood_wall"
 	mineral = /obj/item/stack/sheet/mineral/wood
@@ -424,7 +468,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/bamboo
 	name = "bamboo wall"
 	desc = "A wall with bamboo finish. Zen."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bamboo_wall.dmi', 'icons/turf/walls/normal/bamboo_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/bamboo_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/bamboo_wall.dmi'
+#endif
 	icon_state = "bamboo_wall"
 	base_icon_state = "bamboo_wall"
 	mineral = /obj/item/stack/sheet/mineral/bamboo
@@ -436,7 +484,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/meat
 	name = "meat wall"
 	desc = "A wall of somone's compacted meat."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/meat_wall.dmi', 'icons/turf/walls/normal/meat_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/meat_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/meat_wall.dmi'
+#endif
 	icon_state = "meat_wall"
 	base_icon_state = "meat_wall"
 	mineral = /obj/item/stack/sheet/meat
@@ -466,7 +518,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/iron
 	name = "rough iron wall"
 	desc = "A wall with rough metal plating."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iron_wall.dmi', 'icons/turf/walls/normal/iron_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/iron_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/iron_wall.dmi'
+#endif
 	icon_state = "iron_wall"
 	base_icon_state = "iron_wall"
 	mineral = /obj/item/stack/rods
@@ -480,7 +536,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/abductor
 	name = "alien wall"
 	desc = "A wall with alien alloy plating."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/abductor_wall.dmi', 'icons/turf/walls/normal/abductor_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/abductor_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/abductor_wall.dmi'
+#endif
 	icon_state = "abductor_wall"
 	base_icon_state = "abductor_wall"
 	mineral = /obj/item/stack/sheet/mineral/abductor
@@ -492,7 +552,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/titanium
 	name = "wall"
 	desc = "A light-weight titanium wall used in shuttles."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/shuttle_wall.dmi', 'icons/turf/walls/normal/shuttle_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/shuttle_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/shuttle_wall.dmi'
+#endif
 	icon_state = "shuttle_wall"
 	base_icon_state = "shuttle_wall"
 	mineral = /obj/item/stack/sheet/mineral/titanium
@@ -504,7 +568,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/plastitanium
 	name = "wall"
 	desc = "An evil wall of plasma and titanium."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastitanium_wall.dmi', 'icons/turf/walls/normal/plastitanium_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/plastitanium_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/plastitanium_wall.dmi'
+#endif
 	icon_state = "plastitanium_wall"
 	base_icon_state = "plastitanium_wall"
 	mineral = /obj/item/stack/sheet/mineral/plastitanium
@@ -516,7 +584,11 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 /obj/structure/falsewall/material
 	name = "wall"
 	desc = "A huge chunk of material used to separate rooms."
-	fake_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/material_wall.dmi', 'icons/turf/walls/normal/material_wall.dmi')
+#ifdef WALLENING
+	fake_icon = 'icons/turf/walls/wallening/material_wall.dmi'
+#else
+	fake_icon = 'icons/turf/walls/normal/material_wall.dmi'
+#endif
 	icon_state = "material_wall"
 	base_icon_state = "material_wall"
 	walltype = /turf/closed/wall/material

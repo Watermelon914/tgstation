@@ -1,7 +1,11 @@
 /turf/closed/indestructible
 	name = "wall"
 	desc = "Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/metal_wall.dmi', 'icons/turf/walls/normal/wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/metal_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/wall.dmi'
+#endif
 	icon_state = "0-2"
 	explosive_resistance = 50
 	smoothing_flags = SMOOTH_BITMASK
@@ -40,14 +44,22 @@
 /turf/closed/indestructible/weeb
 	name = "paper wall"
 	desc = "Reinforced paper walling. Someone really doesn't want you to leave."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/paperframe_wall.dmi', 'icons/obj/smooth_structures/normal/paperframes.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/paperframe_wall.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/normal/paperframes.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_CLOSED_TURFS
 
 /turf/closed/indestructible/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/sandstone_wall.dmi', 'icons/turf/walls/normal/sandstone_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/sandstone_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/sandstone_wall.dmi'
+#endif
 	baseturfs = /turf/closed/indestructible/sandstone
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
@@ -102,12 +114,20 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms. Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/reinforced_wall.dmi', 'icons/turf/walls/normal/reinforced_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/reinforced_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/reinforced_wall.dmi'
+#endif
 
 /turf/closed/indestructible/reinforced/titanium
 	name = "reinforced titanium imitation wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms. Naturally, to cut down on costs, this is just a really good paint job to resemble titanium. Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/shuttle_wall.dmi', 'icons/turf/walls/normal/shuttle_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/shuttle_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/shuttle_wall.dmi'
+#endif
 	base_icon_state = "shuttle_wall"
 
 /turf/closed/indestructible/reinforced/titanium/nodiagonal
@@ -115,22 +135,38 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/riveted
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/riveted_wall.dmi', 'icons/turf/walls/normal/riveted.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/riveted_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/riveted.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
 /turf/closed/indestructible/syndicate
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastitanium_wall.dmi', 'icons/turf/walls/normal/plastitanium_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/plastitanium_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/plastitanium_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_SYNDICATE_WALLS
 	canSmoothWith = SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_SYNDICATE_WALLS
 
 /turf/closed/indestructible/riveted/uranium
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/uranium_wall.dmi', 'icons/turf/walls/normal/uranium_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/uranium_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/uranium_wall.dmi'
+#endif
 
 /turf/closed/indestructible/riveted/plastinum
 	name = "plastinum wall"
 	desc = "A luxurious wall made out of a plasma-platinum alloy. Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastinum_wall.dmi', 'icons/turf/walls/normal/plastinum_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/plastinum_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/plastinum_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = SMOOTH_GROUP_PLASTINUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_PLASTINUM_WALLS
@@ -139,7 +175,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/riveted/plastinum/nodiagonal
 
 /turf/closed/indestructible/wood
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/wood_wall.dmi', 'icons/turf/walls/normal/wood_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/wood_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/wood_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_WOOD_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WOOD_WALLS
 
@@ -147,7 +187,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/alien
 	name = "alien wall"
 	desc = "A wall with alien alloy plating."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/abductor_wall.dmi', 'icons/turf/walls/normal/abductor_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/abductor_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/abductor_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	smoothing_groups = SMOOTH_GROUP_ABDUCTOR_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
@@ -159,14 +203,22 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/cult
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound. Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/cult_wall.dmi', 'icons/turf/walls/normal/cult_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/cult_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/cult_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_WALLS
 
 
 /turf/closed/indestructible/abductor
 	name = "alien wall"
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/abductor_wall.dmi', 'icons/turf/walls/normal/abductor_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/abductor_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/abductor_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_ABDUCTOR_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
 
@@ -256,14 +308,22 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/rock
 	name = "dense rock"
 	desc = "An extremely densely-packed rock, most mining tools or explosives would never get through this."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/rock_wall2.dmi', 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/rock_wall2.dmi'
+#else
+	icon = 'icons/turf/mining.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
 /turf/closed/indestructible/rock/snow
 	name = "mountainside"
 	desc = "An extremely densely-packed rock, sheeted over with centuries worth of ice and snow."
-	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/walls/normal/mountain_wall.dmi'), 'icons/turf/mining.dmi')
+#ifdef WALLENING
+	icon = MAP_SWITCH('icons/turf/walls/wallening/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#else
+	icon = MAP_SWITCH('icons/turf/walls/normal/mountain_wall.dmi', 'icons/turf/mining.dmi')
+#endif
 #ifdef MAP_EDITOR
 	icon_state = "mountainrock"
 #endif
@@ -271,7 +331,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	bullet_bounce_sound = null
 
 /turf/closed/indestructible/rock/snow/ice
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/icerock_wall.dmi', 'icons/turf/walls/normal/icerock_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/icerock_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/icerock_wall.dmi'
+#endif
 	name = "iced rock"
 	icon_state = null
 	desc = "Extremely densely-packed sheets of ice and rock, forged over the years of the harsh cold."
@@ -287,14 +351,22 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/paper
 	name = "thick paper wall"
 	desc = "A wall layered with impenetrable sheets of paper."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/paper_wall.dmi', 'icons/turf/walls/normal/paper_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/paper_wall.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/normal/paperframes.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_CLOSED_TURFS
 
 /turf/closed/indestructible/necropolis
 	name = "necropolis wall"
 	desc = "A seemingly impenetrable wall."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/necro_wall.dmi', 'icons/turf/walls/normal/necro_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/necro_wall.dmi'
+#else
+	icon = 'icons/turf/walls.dmi'
+#endif
 	explosive_resistance = 50
 	baseturfs = /turf/closed/indestructible/necropolis
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
@@ -308,7 +380,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/iron
 	name = "impervious iron wall"
 	desc = "A wall with tough iron plating."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iron_wall.dmi', 'icons/turf/walls/normal/iron_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/iron_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_IRON_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_IRON_WALLS
 	opacity = FALSE
@@ -316,7 +392,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/riveted/boss
 	name = "necropolis wall"
 	desc = "A thick, seemingly indestructible stone wall."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/boss_wall.dmi', 'icons/turf/walls/normal/boss_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/boss_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/boss_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_BOSS_WALLS
 	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_BOSS_WALLS
 	explosive_resistance = 50
@@ -338,7 +418,11 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/riveted/hierophant
 	name = "wall"
 	desc = "A wall made out of a strange metal. The squares on it pulse in a predictable pattern."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/hierophant_wall.dmi', 'icons/turf/walls/normal/hierophant_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/hierophant_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/hierophant_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_HIERO_WALL + SMOOTH_GROUP_TALL_WALLS
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 
@@ -380,6 +464,10 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/meat
 	name = "dense meat wall"
 	desc = "A huge chunk of dense, packed meat. Effectively impervious to conventional methods of destruction."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/meat_wall.dmi', 'icons/turf/walls/normal/meat_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/meat_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/meat_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS
 	canSmoothWith = SMOOTH_GROUP_WALLS

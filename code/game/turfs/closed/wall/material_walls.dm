@@ -1,7 +1,11 @@
 /turf/closed/wall/material
 	name = "wall"
 	desc = "A huge chunk of material used to separate rooms."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/material_wall.dmi', 'icons/turf/walls/normal/material_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/material_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/material_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MATERIAL_WALLS
 	canSmoothWith = SMOOTH_GROUP_MATERIAL_WALLS

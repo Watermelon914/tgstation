@@ -1,7 +1,11 @@
 /turf/closed/wall/mineral/cult
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/cult_wall.dmi', 'icons/turf/walls/normal/cult_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/cult_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/cult_wall.dmi'
+#endif
 	turf_flags = IS_SOLID
 	smoothing_groups = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_BOSS_WALLS
 	canSmoothWith = SMOOTH_GROUP_WALLS + SMOOTH_GROUP_BOSS_WALLS
@@ -28,7 +32,11 @@
 	new /obj/effect/temp_visual/cult/turf(get_turf(src))
 
 /turf/closed/wall/ice
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iced_metal_wall.dmi', 'icons/turf/walls/normal/icedmetal_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/iced_metal_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/icedmetal_wall.dmi'
+#endif
 	desc = "A wall covered in a thick sheet of ice."
 	turf_flags = IS_SOLID
 	rcd_memory = null
@@ -39,7 +47,11 @@
 /turf/closed/wall/rust
 	name = "rusted wall"
 	desc = "A rusted metal wall."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/rusty_wall.dmi', 'icons/turf/walls/normal/rusty_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/rusty_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/rusty_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 45
 	//SDMM supports colors, this is simply for easier mapping
@@ -60,7 +72,11 @@
 /turf/closed/wall/r_wall/rust
 	name = "rusted reinforced wall"
 	desc = "A huge chunk of rusted reinforced metal."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/rusty_reinforced_wall.dmi', 'icons/turf/walls/normal/rusty_reinforced_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/rusty_reinforced_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/rusty_reinforced_wall.dmi'
+#endif
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 15
 	base_decon_state = "rusty_r_wall"
@@ -71,7 +87,11 @@
 
 /turf/closed/wall/r_wall/heretic_rust
 	color = MAP_SWITCH(null, COLOR_GREEN_GRAY)
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/rusty_reinforced_wall.dmi', 'icons/turf/walls/normal/rusty_reinforced_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/rusty_reinforced_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/rusty_reinforced_wall.dmi'
+#endif
 
 /turf/closed/wall/r_wall/heretic_rust/Initialize(mapload)
 	. = ..()
@@ -80,7 +100,11 @@
 /turf/closed/wall/mineral/bronze
 	name = "clockwork wall"
 	desc = "A huge chunk of bronze, decorated like gears and cogs."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/clockwork_wall.dmi', 'icons/turf/walls/normal/clockwork_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/clockwork_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/clockwork_wall.dmi'
+#endif
 	turf_flags = IS_SOLID
 	smoothing_flags = SMOOTH_BITMASK
 	sheet_type = /obj/item/stack/sheet/bronze
@@ -92,7 +116,11 @@
 /turf/closed/wall/rock
 	name = "reinforced rock"
 	desc = "It has metal struts that need to be welded away before it can be mined."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/reinforced_red_rock_wall.dmi', 'icons/turf/walls/normal/reinforced_red_rock_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/reinforced_red_rock_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/reinforced_red_rock_wall.dmi'
+#endif
 	turf_flags = NO_RUST
 	sheet_amount = 1
 	hardness = 50
@@ -118,7 +146,11 @@
 /turf/closed/wall/fake_hierophant
 	name = "vibrant wall"
 	desc = "A wall made out of a strange metal. The squares on it pulse in a predictable pattern."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/hierophant_wall.dmi', 'icons/turf/walls/normal/hierophant_wall.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/hierophant_wall.dmi'
+#else
+	icon = 'icons/turf/walls/normal/hierophant_wall.dmi'
+#endif
 	smoothing_groups = SMOOTH_GROUP_HIERO_WALL + SMOOTH_GROUP_TALL_WALLS
 	canSmoothWith = SMOOTH_GROUP_HIERO_WALL
 
