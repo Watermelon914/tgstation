@@ -22,7 +22,7 @@ again.
 #ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/grille_and_window)
 #else
-	spawn_list = list(/obj/structure/window/fulltile, /obj/structure/grille)
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/fulltile)
 #endif
 	dir = SOUTH
 
@@ -156,7 +156,7 @@ again.
 #ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/reinforced/grille_and_window)
 #else
-	spawn_list = list(/obj/structure/window/reinforced/fulltile/damaged, /obj/structure/grille)
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/damaged)
 #endif
 
 //tinted
@@ -167,7 +167,7 @@ again.
 #ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/iron, /obj/structure/window/reinforced/tinted/fulltile)
 #else
-	spawn_list = list(/obj/structure/window/reinforced/fulltile, /obj/structure/grille)
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/tinted/fulltile)
 #endif
 
 //bronze
@@ -175,40 +175,66 @@ again.
 /obj/effect/spawner/structure/window/bronze
 	name = "bronze window spawner"
 	icon_state = "bronzewindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/bronze, /obj/structure/window/bronze/fulltile)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/bronze/fulltile)
+#endif
 
 //shuttle window
 
 /obj/effect/spawner/structure/window/reinforced/shuttle
 	name = "shuttle window spawner"
 	icon_state = "swindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/titanium/grille_and_window)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/shuttle)
+#endif
 
 /obj/effect/spawner/structure/window/reinforced/shuttle/indestructible
 	name = "indestructible shuttle window spawner"
 	icon_state = "swindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/titanium/grille, /obj/structure/window/reinforced/shuttle/indestructible)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/shuttle/indestructible)
+#endif
 
 //plastitanium window
 
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium
 	name = "plastitanium window spawner"
 	icon_state = "plastitaniumwindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/plastitanium/grille_and_window)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/plasma/plastitanium)
+#endif
+
 
 //paper window
 
 /obj/effect/spawner/structure/window/paper
 	name = "paper window spawner"
 	icon_state = "paperwindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/paperframe/grille_and_window)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/paperframe)
+#endif
+
 
 //ice window
 
 /obj/effect/spawner/structure/window/ice
 	name = "ice window spawner"
 	icon_state = "icewindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/iron, /obj/structure/window/reinforced/fulltile/ice)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/ice)
+#endif
 
 
 //survival pod window
@@ -216,7 +242,11 @@ again.
 /obj/effect/spawner/structure/window/survival_pod
 	name = "pod window spawner"
 	icon_state = "podwindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/iron, /obj/structure/window/reinforced/shuttle/survival_pod)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/shuttle/survival_pod)
+#endif
 
 /obj/effect/spawner/structure/window/hollow/survival_pod
 	name = "hollow pod window spawner"
@@ -278,7 +308,11 @@ again.
 /obj/effect/spawner/structure/window/plasma
 	name = "plasma window spawner"
 	icon_state = "pwindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/plastitanium, /obj/structure/window/plasma/fulltile)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/plasma/fulltile)
+#endif
 
 /obj/effect/spawner/structure/window/hollow/plasma
 	name = "hollow plasma window spawner"
@@ -339,7 +373,11 @@ again.
 /obj/effect/spawner/structure/window/reinforced/plasma
 	name = "reinforced plasma window spawner"
 	icon_state = "prwindow_spawner"
+#ifdef WALLENING
 	spawn_list = list(/obj/structure/window_frame/plastitanium, /obj/structure/window/reinforced/plasma/fulltile)
+#else
+	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/plasma/fulltile)
+#endif
 
 /obj/effect/spawner/structure/window/hollow/reinforced/plasma
 	name = "hollow reinforced plasma window spawner"

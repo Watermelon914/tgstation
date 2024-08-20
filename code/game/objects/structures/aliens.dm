@@ -68,7 +68,9 @@
 
 /obj/structure/alien/resin/Initialize(mapload)
 	. = ..()
+#ifdef WALLENING
 	icon = get_icon()
+#endif
 	air_update_turf(TRUE, TRUE)
 	make_splitvis()
 
