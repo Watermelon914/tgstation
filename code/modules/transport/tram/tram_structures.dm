@@ -252,7 +252,7 @@
 /obj/structure/tram/alt/titanium
 	name = "solid tram"
 	desc = "A lightweight titanium composite structure. There is further solid plating where the panels usually attach to the frame."
-	wall_icon = 'icons/turf/walls/shuttle_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/shuttle_wall.dmi', 'icons/turf/walls/normal/shuttle_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/titanium
 	tram_wall_type = /obj/structure/tram/alt/titanium
 	smoothing_groups = SMOOTH_GROUP_TITANIUM_WALLS
@@ -261,7 +261,7 @@
 /obj/structure/tram/alt/plastitanium
 	name = "reinforced tram"
 	desc = "An evil tram of plasma and titanium."
-	wall_icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastitanium_wall.dmi', 'icons/turf/walls/normal/plastitanium_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/plastitanium
 	tram_wall_type = /obj/structure/tram/alt/plastitanium
 	smoothing_groups = SMOOTH_GROUP_PLASTITANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_TALL_WALLS
@@ -270,7 +270,7 @@
 /obj/structure/tram/alt/gold
 	name = "gold tram"
 	desc = "A solid gold tram. Swag!"
-	wall_icon = 'icons/turf/walls/gold_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/gold_wall.dmi', 'icons/turf/walls/normal/gold_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/gold
 	tram_wall_type = /obj/structure/tram/alt/gold
 	explosion_block = 0 //gold is a soft metal you dingus.
@@ -281,7 +281,7 @@
 /obj/structure/tram/alt/silver
 	name = "silver tram"
 	desc = "A solid silver tram. Shiny!"
-	wall_icon = 'icons/turf/walls/silver_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/silver_wall.dmi', 'icons/turf/walls/normal/silver_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/silver
 	tram_wall_type = /obj/structure/tram/alt/silver
 	smoothing_groups = SMOOTH_GROUP_SILVER_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
@@ -291,7 +291,7 @@
 /obj/structure/tram/alt/diamond
 	name = "diamond tram"
 	desc = "A composite structure with diamond-plated panels. Looks awfully sharp..."
-	wall_icon = 'icons/turf/walls/diamond_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/diamond_wall.dmi', 'icons/turf/walls/normal/diamond_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/diamond
 	tram_wall_type = /obj/structure/tram/alt/diamond //diamond wall takes twice as much time to slice
 	max_integrity = 800
@@ -303,7 +303,7 @@
 /obj/structure/tram/alt/bananium
 	name = "bananium tram"
 	desc = "A composite structure with bananium plating. Honk!"
-	wall_icon = 'icons/turf/walls/bananium_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bananium_wall.dmi', 'icons/turf/walls/normal/bananium_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/bananium
 	tram_wall_type = /obj/structure/tram/alt/bananium
 	smoothing_groups = SMOOTH_GROUP_BANANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
@@ -313,7 +313,7 @@
 /obj/structure/tram/alt/sandstone
 	name = "sandstone tram"
 	desc = "A composite structure with sandstone plating. Rough."
-	wall_icon = 'icons/turf/walls/sandstone_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/sandstone_wall.dmi', 'icons/turf/walls/normal/sandstone_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/sandstone
 	tram_wall_type = /obj/structure/tram/alt/sandstone
 	explosion_block = 0
@@ -325,7 +325,7 @@
 	article = "a"
 	name = "uranium tram"
 	desc = "A composite structure with uranium plating. This is probably a bad idea."
-	wall_icon = 'icons/turf/walls/uranium_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/uranium_wall.dmi', 'icons/turf/walls/normal/uranium_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/uranium
 	tram_wall_type = /obj/structure/tram/alt/uranium
 	smoothing_groups = SMOOTH_GROUP_URANIUM_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
@@ -367,7 +367,7 @@
 /obj/structure/tram/alt/plasma
 	name = "plasma tram"
 	desc = "A composite structure with plasma plating. This is definitely a bad idea."
-	wall_icon = 'icons/turf/walls/plasma_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plasma_wall.dmi', 'icons/turf/walls/normal/plasma_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/plasma
 	tram_wall_type = /obj/structure/tram/alt/plasma
 	smoothing_groups = SMOOTH_GROUP_PLASMA_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
@@ -377,7 +377,7 @@
 /obj/structure/tram/alt/wood
 	name = "wooden tram"
 	desc = "A tram with wooden framing. Flammable. There's a reason we use metal now."
-	wall_icon = 'icons/turf/walls/wood_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/wood_wall.dmi', 'icons/turf/walls/normal/wood_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/wood
 	tram_wall_type = /obj/structure/tram/alt/wood
 	explosion_block = 0
@@ -398,7 +398,7 @@
 /obj/structure/tram/alt/bamboo
 	name = "bamboo tram"
 	desc = "A tram with a bamboo framing."
-	wall_icon = 'icons/turf/walls/bamboo_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bamboo_wall.dmi', 'icons/turf/walls/normal/bamboo_wall.dmi')
 	smoothing_groups = SMOOTH_GROUP_BAMBOO_WALLS + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_WALLS
 	mineral = /obj/item/stack/sheet/mineral/bamboo
@@ -407,7 +407,7 @@
 /obj/structure/tram/alt/iron
 	name = "rough iron tram"
 	desc = "A composite structure with rough iron plating."
-	wall_icon = 'icons/turf/walls/iron_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/iron_wall.dmi', 'icons/turf/walls/normal/iron_wall.dmi')
 	mineral = /obj/item/stack/rods
 	mineral_amount = 5
 	tram_wall_type = /obj/structure/tram/alt/iron
@@ -418,7 +418,7 @@
 /obj/structure/tram/alt/abductor
 	name = "alien tram"
 	desc = "A composite structure made of some kind of alien alloy."
-	wall_icon = 'icons/turf/walls/abductor_wall.dmi'
+	wall_icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/abductor_wall.dmi', 'icons/turf/walls/normal/abductor_wall.dmi')
 	mineral = /obj/item/stack/sheet/mineral/abductor
 	tram_wall_type = /obj/structure/tram/alt/abductor
 	explosion_block = 3

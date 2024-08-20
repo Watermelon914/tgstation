@@ -1,7 +1,7 @@
 /turf/closed/wall/r_wall
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
-	icon = GET_WALL_PATH(reinforced_wall.dmi)
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/reinforced_wall.dmi', 'icons/turf/walls/normal/reinforced_wall.dmi')
 	opacity = TRUE
 	density = TRUE
 	turf_flags = IS_SOLID
@@ -236,7 +236,7 @@
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"
 	desc = "The armored hull of an ominous looking ship."
-	icon = GET_WALL_PATH(plastitanium_wall.dmi)
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastitanium_wall.dmi', 'icons/turf/walls/normal/plastitanium_wall.dmi')
 	explosive_resistance = 20
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	hardness = 25 //plastitanium
@@ -251,7 +251,7 @@
 	return FALSE
 
 /turf/closed/wall/r_wall/syndicate/nodiagonal
-	icon = GET_WALL_PATH(plastitanium_wall.dmi)
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/plastitanium_wall.dmi', 'icons/turf/walls/normal/plastitanium_wall.dmi')
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/wall/r_wall/syndicate/overspace

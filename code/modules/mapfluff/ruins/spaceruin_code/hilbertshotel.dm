@@ -256,11 +256,16 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 //Turfs and Areas
 /turf/closed/indestructible/hotelwall
 	name = "hotel wall"
-	icon = 'icons/turf/walls/hotel_wall.dmi'
-	desc = "A wall designed to protect the security of the hotel's guests."
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/hotel_wall.dmi'
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_HOTEL_WALLS
 	canSmoothWith = SMOOTH_GROUP_HOTEL_WALLS
+#else
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "hotelwall"
+#endif
+	desc = "A wall designed to protect the security of the hotel's guests."
 	explosive_resistance = INFINITY
 
 /turf/open/indestructible/hotelwood
@@ -299,21 +304,27 @@ GLOBAL_VAR_INIT(hhMysteryRoomNumber, rand(1, 999999))
 
 /turf/closed/indestructible/hoteldoor
 	name = "Hotel Door"
-	icon = 'icons/turf/walls/hotel_door.dmi'
-	explosive_resistance = INFINITY
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/hotel_door.dmi'
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_HOTEL_WALLS
 	canSmoothWith = SMOOTH_GROUP_HOTEL_WALLS
+#else
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "hoteldoor"
+#endif
+	explosive_resistance = INFINITY
 	var/obj/item/hilbertshotel/parentSphere
 
 /turf/closed/indestructible/hoteldoor/Initialize(mapload)
 	. = ..()
 	register_context()
-	// Build the glow animation
-	var/mutable_appearance/glow_animation = mutable_appearance('icons/turf/walls/hotel_door_glow.dmi', "glow")
-	// Add emissive as a suboverlay, to make working with it easier
-	glow_animation.add_overlay(emissive_appearance('icons/turf/walls/hotel_door_glow.dmi', "glow", src))
-	AddComponent(/datum/component/split_overlay, glow_animation, list(SOUTH_JUNCTION))
+	if(IS_WALLENING)
+		// Build the glow animation
+		var/mutable_appearance/glow_animation = mutable_appearance('icons/turf/walls/wallening/hotel_door_glow.dmi', "glow")
+		// Add emissive as a suboverlay, to make working with it easier
+		glow_animation.add_overlay(emissive_appearance('icons/turf/walls/wallening/hotel_door_glow.dmi', "glow", src))
+		AddComponent(/datum/component/split_overlay, glow_animation, list(SOUTH_JUNCTION))
 
 /turf/closed/indestructible/hoteldoor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()

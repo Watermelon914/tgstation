@@ -13,7 +13,7 @@
 
 /turf/closed/wall/bathhouse
 	desc = "It's cool to the touch, pleasantly so."
-	icon = GET_WALL_PATH(bathroom_wall.dmi)
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bathroom_wall.dmi', 'icons/turf/walls/normal/bathroom_wall.dmi')
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /area/ruin/powered/mailroom
