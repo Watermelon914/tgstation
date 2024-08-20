@@ -186,6 +186,9 @@
 			greyscale_colors = (copytext(greyscale_colors, 1, 43))
 		else if(ispath(greyscale_config, /datum/greyscale_config/airlocks))
 			greyscale_colors = (copytext(greyscale_colors, 1, 36))
+#else
+	if(glass)
+		airlock_material = "glass"
 #endif
 	. = ..()
 
