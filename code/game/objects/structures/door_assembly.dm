@@ -6,7 +6,9 @@
 	anchored = FALSE
 	density = TRUE
 	max_integrity = 200
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/custom
+#endif
 	/// Airlock's current construction state
 	var/state = AIRLOCK_ASSEMBLY_NEEDS_WIRES
 	var/base_name = null

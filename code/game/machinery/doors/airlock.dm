@@ -90,8 +90,10 @@
 
 	interaction_flags_click = ALLOW_SILICON_REACH
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_OPEN
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/custom
 	greyscale_colors = "#a5a7ac#a5a7ac#969696#969696#5ea52c#6d6565#777777"
+#endif
 	blocks_emissive = EMISSIVE_BLOCK_NONE // Custom emissive blocker. We don't want the normal behavior.
 
 	///The type of door frame to drop during deconstruction
@@ -143,7 +145,7 @@
 #ifdef WALLENING
 	var/overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
-	var/overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	/// Used for papers and photos pinned to the airlock
 #ifdef WALLENING
@@ -178,11 +180,13 @@
 /obj/machinery/door/airlock/Initialize(mapload)
 	// Here we check the style of greyscale_config, then cut down the number of colors passed along to 6 colors for window airlocks, or 5 for solids.
 	// This way we only need to pass along the full 7 color set when making a new airlock pattern.
+#ifdef WALLENING
 	if(!ispath(greyscale_config, /datum/greyscale_config/airlocks/custom))
 		if(glass)
 			greyscale_colors = (copytext(greyscale_colors, 1, 43))
 		else if(ispath(greyscale_config, /datum/greyscale_config/airlocks))
 			greyscale_colors = (copytext(greyscale_colors, 1, 36))
+#endif
 	. = ..()
 
 	set_wires(get_wires())
@@ -1935,7 +1939,7 @@
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
 	icon = 'icons/obj/doors/airlocks/station/security.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_sec
 	normal_integrity = 450
@@ -1964,13 +1968,10 @@
 	name = "maintenance access"
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
-#else
-	icon = 'icons/obj/doors/airlocks/maintenance.dmi'
-#endif
-#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
-	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_mai
 	normal_integrity = 250
@@ -1981,7 +1982,9 @@
 	name = "external airlock access"
 	icon = 'icons/obj/doors/airlocks/station/maintenanceexternal.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_extmai
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/custom
+#endif
 	greyscale_colors = "#585858#585858#5f5f5f#6d6b6b#ae4e26#ae4e26#4a4a4a"
 
 /obj/machinery/door/airlock/mining
@@ -1992,11 +1995,12 @@
 
 /obj/machinery/door/airlock/atmos
 	name = "atmospherics airlock"
-	icon = 'icons/obj/doors/airlocks/tall/department/atmos.dmi'
 #ifdef WALLENING
+	icon = 'icons/obj/doors/airlocks/tall/department/atmos.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
-	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_atmo
 	greyscale_config = null
@@ -2032,7 +2036,9 @@
 	name = "glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#a5a7ac#a5a7ac#969696#969696#5ea52c#6d6565"
 
 
@@ -2055,14 +2061,18 @@
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 400
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#3e7bc1#3e7bc1#2a5b94#2a5b94#369de5#6d6565"
 
 /obj/machinery/door/airlock/engineering/glass
 	name = "engineering glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#d8a81b#d8a81b#c2940d#c2940d#7f292f#6d6565"
 
 /obj/machinery/door/airlock/engineering/glass/critical
@@ -2073,27 +2083,35 @@
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 400
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/medical/glass
 	name = "medical glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#ffffff#ffffff#ffffff#ffffff#66ccff#6d6565"
 
 /obj/machinery/door/airlock/hydroponics/glass //Uses same icon as medical/glass, maybe update it with its own unique icon one day?
 	name = "hydroponics glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#a5a7ac#a5a7ac#969696#969696#5ea52c#6d6565"
 
 /obj/machinery/door/airlock/research/glass
 	name = "research glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#ffffff#ffffff#ffffff#ffffff#974cdc#6d6565"
 
 /obj/machinery/door/airlock/research/glass/incinerator
@@ -2112,14 +2130,18 @@
 	name = "mining glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#c39344#c39344#b3863c#b3863c#78430d#6d6565"
 
 /obj/machinery/door/airlock/atmos/glass
 	name = "atmospheric glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/atmos/glass/critical
 	critical_machine = TRUE //stops greytide virus from opening & bolting doors in critical positions, such as the SM chamber.
@@ -2128,28 +2150,36 @@
 	name = "science glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#ffffff#ffffff#ffffff#ffffff#9966ff#6d6565"
 
 /obj/machinery/door/airlock/virology/glass
 	name = "virology glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#ffffff#ffffff#ffffff#ffffff#006600#6d6565"
 
 /obj/machinery/door/airlock/maintenance/glass
 	name = "maintainence glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/maintenance/external/glass
 	name = "maintainence external glass airlock"
 	opacity = FALSE
 	glass = TRUE
 	normal_integrity = 200
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#585858#585858#5f5f5f#6d6b6b#ae4e26#ae4e26"
 
 // Station Airlocks Mineral
@@ -2182,7 +2212,9 @@
 /obj/machinery/door/airlock/gold/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/silver
 	name = "silver airlock"
@@ -2198,7 +2230,9 @@
 /obj/machinery/door/airlock/silver/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/diamond
 	name = "diamond airlock"
@@ -2243,7 +2277,9 @@
 	normal_integrity = 950
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/uranium
 	name = "uranium airlock"
@@ -2272,7 +2308,9 @@
 /obj/machinery/door/airlock/uranium/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#003300#003300#004400#004400#003300#6d6565"
 
 /obj/machinery/door/airlock/uranium/safe
@@ -2280,7 +2318,9 @@
 
 /obj/machinery/door/airlock/uranium/glass/safe
 	actually_radioactive = FALSE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/plasma
 	name = "plasma airlock"
@@ -2301,7 +2341,9 @@
 /obj/machinery/door/airlock/plasma/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#890e89#890e89#660066#660066#660066#6d6565"
 
 /obj/machinery/door/airlock/bananium
@@ -2315,7 +2357,9 @@
 /obj/machinery/door/airlock/bananium/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#ffff00#ffff00#ffff00#ffff00#ffff00#ffff00"
 
 /obj/machinery/door/airlock/sandstone
@@ -2327,7 +2371,9 @@
 /obj/machinery/door/airlock/sandstone/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#876f57#876f57#877869#877869#978471#6d6565"
 
 /obj/machinery/door/airlock/wood
@@ -2335,7 +2381,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/wood.dmi'
 #else
-	icon = 'icons/obj/doors/airlocks/wood.dmi'
+	icon = 'icons/obj/doors/airlocks/station/wood.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_wood
 	greyscale_config = null
@@ -2344,7 +2390,9 @@
 /obj/machinery/door/airlock/wood/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/titanium
 	name = "shuttle airlock"
@@ -2359,7 +2407,9 @@
 	normal_integrity = 350
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/bronze
 	name = "bronze airlock"
@@ -2387,7 +2437,9 @@
 	name = "public glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/public/glass/incinerator
 	autoclose = FALSE
@@ -2484,7 +2536,9 @@
 	name = "external glass airlock"
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/external/glass/ruin
 
@@ -2494,7 +2548,6 @@
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
-
 #else
 	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	icon = 'icons/obj/doors/airlocks/hatch/centcom.dmi'
@@ -2563,7 +2616,11 @@
 
 /obj/machinery/door/airlock/hatch
 	name = "airtight hatch"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/hatch/centcom.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/hatch/centcom.dmi'
+#endif
 	//overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	//note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_hatch
@@ -2596,7 +2653,11 @@
 
 /obj/machinery/door/airlock/maintenance_hatch //Please dear fucking LORD make this a subtype of the above, they're the SAME GOD DAMN THING
 	name = "maintenance hatch"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/hatch/maintenance.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/hatch/maintenance.dmi'
+#endif
 	//overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	//note_overlay_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_mhatch
@@ -2631,8 +2692,13 @@
 
 /obj/machinery/door/airlock/highsecurity
 	name = "high tech security airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/secure/highsec.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/highsec/overlays.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/highsec/highsec.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/highsec/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_highsecurity
 	explosion_block = 2
 	normal_integrity = 500
@@ -2669,8 +2735,13 @@
 
 /obj/machinery/door/airlock/shuttle
 	name = "shuttle airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_shuttle
 	greyscale_config = null
 	greyscale_colors = null
@@ -2678,7 +2749,9 @@
 /obj/machinery/door/airlock/shuttle/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/abductor
 	name = "alien airlock"
@@ -2702,7 +2775,11 @@
 
 /obj/machinery/door/airlock/cult
 	name = "cult airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/cult/cult_runed.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/cult/runed/cult.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_cult
 	hackProof = TRUE
 	aiControlDisabled = AI_WIRE_DISABLED
@@ -2776,13 +2853,10 @@
 /obj/machinery/door/airlock/cult/proc/conceal()
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
-#else
-	icon = 'icons/obj/doors/airlocks/maintenance.dmi'
-#endif
-#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
-	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	name = "Airlock"
 	desc = "It opens and closes."
@@ -2806,13 +2880,19 @@
 /obj/machinery/door/airlock/cult/glass
 	glass = TRUE
 	opacity = FALSE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/cult/glass/friendly
 	friendly = TRUE
 
 /obj/machinery/door/airlock/cult/unruned
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/cult/cult.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/cult/unruned/cult.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_cult/unruned
 	openingoverlaytype = /obj/effect/temp_visual/cult/door/unruned
 
@@ -2822,7 +2902,9 @@
 /obj/machinery/door/airlock/cult/unruned/glass
 	glass = TRUE
 	opacity = FALSE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/cult/unruned/glass/friendly
 	friendly = TRUE
@@ -2839,10 +2921,15 @@
 /obj/machinery/door/airlock/material
 	name = "Airlock"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_GREYSCALE | MATERIAL_AFFECT_STATISTICS
-	greyscale_config = /datum/greyscale_config/material_airlock
+#ifdef WALLENING
+	greyscale_config = /datum/greyscale_config/airlocks
 	greyscale_colors = "#a5a7ac#a5a7ac#a5a7ac#a5a7ac#a5a7ac"
+#else
+	greyscale_config = /datum/greyscale_config/material_airlock
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_material
 
+#ifdef WALLENING
 /obj/machinery/door/airlock/material/Initialize(mapload)
 	greyscale_colors = extend_colors(greyscale_colors)
 	return ..()
@@ -2869,6 +2956,7 @@
 	for(var/i in 1 to (target - (length(split_greyscale) - 1)))
 		split_greyscale += split_greyscale[2] // backfill with the first color
 	return split_greyscale.Join("#")
+#endif
 
 /obj/machinery/door/airlock/material/close(forced, force_crush)
 	. = ..()
@@ -2886,7 +2974,9 @@
 /obj/machinery/door/airlock/material/glass
 	opacity = FALSE
 	glass = TRUE
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 	greyscale_colors = "#a5a7ac#a5a7ac#a5a7ac#a5a7ac#a5a7ac#a5a7ac"
 
 // Multi-tile (Large) Airlocks
@@ -2904,7 +2994,9 @@
 	greyscale_colors = null
 
 /obj/machinery/door/airlock/multi_tile/public/glass
+#ifdef WALLENING
 	greyscale_config = /datum/greyscale_config/airlocks/window
+#endif
 
 /obj/machinery/door/airlock/multi_tile/narsie_act()
 	return

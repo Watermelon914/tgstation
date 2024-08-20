@@ -48,6 +48,7 @@
 /obj/structure/grille/update_icon(updates=ALL)
 	if(QDELETED(src))
 		return
+	var/old_smoothing_flags = smoothing_flags
 
 #ifdef WALLENING
 	var/old_base_state = base_icon_state
@@ -62,7 +63,6 @@
 	if(old_base_state != base_icon_state)
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 
-	var/old_smoothing_flags = smoothing_flags
 	if(broken)
 		icon = 'icons/obj/structures/smooth/tall_structure_variations.dmi'
 		icon_state = "grille-broken"
