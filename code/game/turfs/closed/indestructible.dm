@@ -40,7 +40,7 @@
 /turf/closed/indestructible/weeb
 	name = "paper wall"
 	desc = "Reinforced paper walling. Someone really doesn't want you to leave."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/paperframe_wall.dmi', 'icons/turf/walls/normal/paperframe_wall.dmi')
+	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/paperframe_wall.dmi', 'icons/obj/smooth_structures/normal/paperframes.dmi')
 	smoothing_groups = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_TALL_WALLS + SMOOTH_GROUP_CLOSED_TURFS
 	canSmoothWith = SMOOTH_GROUP_PAPERFRAME + SMOOTH_GROUP_CLOSED_TURFS
 
