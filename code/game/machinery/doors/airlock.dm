@@ -2512,8 +2512,13 @@
 
 /obj/machinery/door/airlock/public
 	name = "public airlock"
+#ifdef WALLENING
+	icon = 'icons/obj/doors/airlocks/tall/public/glass.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/public/overlays.dmi'
+#else
 	icon = 'icons/obj/doors/airlocks/public/glass.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/public/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_public
 	greyscale_config = null
 	greyscale_colors = null
@@ -2542,7 +2547,11 @@
 
 /obj/machinery/door/airlock/external
 	name = "external airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/external/external.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/external/external.dmi'
+#endif
 	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_ext

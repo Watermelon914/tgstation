@@ -320,11 +320,19 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	underlays += mutable_appearance(initial(floor_to_copy.icon), initial(floor_to_copy.icon_state), initial(floor_to_copy.layer), offset_spokesman = src, plane = FLOOR_PLANE)
 
 /turf/closed/indestructible/fakedoor/maintenance
-	icon = 'icons/obj/doors/airlocks/tall/hatch/maintenance.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/doors/airlocks/tall/external/external.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/hatch/maintenance.dmi'
+#endif
 	icon_state = "closed" // Should probably be given it's own fake_door state too
 
 /turf/closed/indestructible/fakedoor/glass_airlock
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/external/external.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/external/external.dmi'
+#endif
 	icon_state = "closed" // Ditto
 	opacity = FALSE
 

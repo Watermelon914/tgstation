@@ -50,7 +50,11 @@
 /obj/structure/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of thick resin."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/alien/resin_wall_1.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/normal/alien/resin_wall.dmi'
+#endif
 	density = TRUE
 	opacity = TRUE
 	anchored = TRUE
@@ -80,10 +84,12 @@
 /obj/structure/alien/resin/proc/make_splitvis()
 	AddElement(/datum/element/split_visibility, icon, color)
 
+#ifdef WALLENING
 /obj/structure/alien/resin/proc/get_icon()
 	if(prob(50))
 		return 'icons/obj/structures/smooth/alien/resin_wall_1.dmi'
 	return 'icons/obj/structures/smooth/alien/resin_wall_2.dmi'
+#endif
 
 /obj/structure/alien/resin/wall
 	name = "resin wall"
@@ -105,7 +111,11 @@
 /obj/structure/alien/resin/membrane
 	name = "resin membrane"
 	desc = "Resin just thin enough to let light pass through."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/alien/resin_membrane.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/normal/alien/resin_membrane.dmi'
+#endif
 	icon_state = "resin_membrane-0"
 	base_icon_state = "resin_membrane"
 	opacity = FALSE
@@ -117,8 +127,10 @@
 /obj/structure/alien/resin/membrane/make_splitvis()
 	return
 
+#ifdef WALLENING
 /obj/structure/alien/resin/membrane/get_icon()
 	return 'icons/obj/structures/smooth/alien/resin_membrane.dmi'
+#endif
 
 /obj/structure/alien/resin/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -143,7 +155,11 @@
 	density = FALSE
 	layer = MID_TURF_LAYER
 	plane = FLOOR_PLANE
+#ifdef WALLENING
 	icon = 'icons/obj/structures/smooth/alien/weeds1.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/normal/alien/weeds1.dmi'
+#endif
 	icon_state = "weeds1-0"
 	base_icon_state = "weeds1"
 	max_integrity = 15
@@ -185,13 +201,25 @@
 	. = base_icon_state
 	switch(rand(1,3))
 		if(1)
+#ifdef WALLENING
 			icon = 'icons/obj/structures/smooth/alien/weeds1.dmi'
+#else
+			icon = 'icons/obj/smooth_structures/normal/alien/weeds1.dmi'
+#endif
 			base_icon_state = "weeds1"
 		if(2)
+#ifdef WALLENING
 			icon = 'icons/obj/structures/smooth/alien/weeds2.dmi'
+#else
+			icon = 'icons/obj/smooth_structures/normal/alien/weeds2.dmi'
+#endif
 			base_icon_state = "weeds2"
 		if(3)
+#ifdef WALLENING
 			icon = 'icons/obj/structures/smooth/alien/weeds3.dmi'
+#else
+			icon = 'icons/obj/smooth_structures/normal/alien/weeds3.dmi'
+#endif
 			base_icon_state = "weeds3"
 	set_smoothed_icon_state(smoothing_junction)
 
@@ -262,6 +290,11 @@
 	name = "glowing resin"
 	desc = "Blue bioluminescence shines from beneath the surface."
 	icon = 'icons/obj/structures/smooth/alien/weednode.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/smooth/alien/weednode.dmi'
+#else
+	icon = 'icons/obj/smooth_structures/normal/alien/weednode.dmi'
+#endif
 	icon_state = "weednode-0"
 	base_icon_state = "weednode"
 	light_color = LIGHT_COLOR_BLUE
