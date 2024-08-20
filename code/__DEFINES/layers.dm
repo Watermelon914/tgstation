@@ -373,4 +373,8 @@
 #define MAX_EXPECTED_Z_DEPTH 3
 
 /// Shifts "flat" sprites up on their tile, to give the illusion of depth
+#ifdef WALLENING
 #define DEPTH_OFFSET 12
+#else
+#define DEPTH_OFFSET 0
+#endif
