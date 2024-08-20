@@ -77,7 +77,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/maintenance.dmi'
 #else
-	icon = 'icons/obj/doors/airlocks/maintenance.dmi'
+	icon = 'icons/obj/doors/airlocks/station/maintenance.dmi'
 #endif
 	icon_state = "closed"
 	max_integrity = 300
@@ -149,7 +149,7 @@
 #ifdef WALLENING
 	var/note_overlay_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
-	var/note_overlay_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	/// Do we use the old style of airlock rendering
 	/// This exists as legacy to allow "small" airlocks to render properly until they are resprited
@@ -2181,7 +2181,11 @@
 
 /obj/machinery/door/airlock/silver
 	name = "silver airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/mineral/silver.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/greyscale_template.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_silver
 	greyscale_config = null
 	greyscale_colors = null
@@ -2193,8 +2197,13 @@
 
 /obj/machinery/door/airlock/diamond
 	name = "diamond airlock"
+#ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/mineral/diamond.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/tall/mineral/diamond_overlays.dmi'
+#else
+	icon = 'icons/obj/doors/airlocks/station/diamond.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
+#endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_diamond
 	normal_integrity = 1000
 	explosion_block = 2
@@ -2479,13 +2488,11 @@
 /obj/machinery/door/airlock/centcom //Use grunge as a station side version, as these have special effects related to them via phobias and such.
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
-#else
-	icon = 'icons/obj/doors/airlocks/centcom.dmi'
-#endif
-#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
+
 #else
-	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/hatch/centcom.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_centcom
 	normal_integrity = 1000
@@ -2497,13 +2504,10 @@
 /obj/machinery/door/airlock/grunge
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/centcom.dmi'
-#else
-	icon = 'icons/obj/doors/airlocks/centcom.dmi'
-#endif
-#ifdef WALLENING
 	overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
-	overlays_file = 'icons/obj/doors/airlocks/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/hatch/centcom.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/hatch/overlays.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_grunge
 
