@@ -7,3 +7,9 @@
 #define GET_WALL_PATH(wall) 'icons/turf/walls/normal/##wall'
 #define GET_WALL_PATH_CHOICE(wall1, wall2) ##wall2
 #endif
+
+#ifdef WALLENING
+#define IS_WALLENING TRUE
+#else
+#define IS_WALLENING FALSE
+#endif

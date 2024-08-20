@@ -25,6 +25,8 @@
 		SUPPORT_RODS = 'icons/turf/walls/wallening/reinforced_wall_decon5.dmi',
 		SHEATH = 'icons/turf/walls/wallening/reinforced_wall_decon6.dmi',
 		)
+	/// Base icon state. Used for non-wallening.
+	var/base_decon_state = "r_wall"
 
 /turf/closed/wall/r_wall/deconstruction_hints(mob/user)
 	switch(d_state)
@@ -184,16 +186,31 @@
 /turf/closed/wall/r_wall/proc/decon_change(new_state)
 	if (d_state == new_state)
 		return
-	if(color)
-		RemoveElement(/datum/element/split_visibility, icon, color)
-	else
-		RemoveElement(/datum/element/split_visibility, icon)
+	if(use_splitvis)
+		if(color)
+			RemoveElement(/datum/element/split_visibility, icon, color)
+		else
+			RemoveElement(/datum/element/split_visibility, icon)
 	d_state = new_state
-	icon = (d_state != INTACT ? decon_icons[d_state] : initial(icon))
-	if(color)
-		AddElement(/datum/element/split_visibility, icon, color)
+	if(IS_WALLENING)
+		icon = (d_state != INTACT ? decon_icons[d_state] : initial(icon))
+	if(use_splitvis)
+		if(color)
+			AddElement(/datum/element/split_visibility, icon, color)
+		else
+			AddElement(/datum/element/split_visibility, icon)
+
+// We don't react to smoothing changing here because this else exists only to "revert" intact changes
+/turf/closed/wall/r_wall/update_icon_state()
+	if(IS_WALLENING)
+		return ..()
+	if(d_state != INTACT)
+		icon = 'icons/turf/walls/normal/reinforced_states.dmi'
+		icon_state = "[base_decon_state]-[d_state]"
 	else
-		AddElement(/datum/element/split_visibility, icon)
+		icon = 'icons/turf/walls/normal/reinforced_wall.dmi'
+		icon_state = "[base_icon_state]-[smoothing_junction]"
+	return ..()
 
 /turf/closed/wall/r_wall/wall_singularity_pull(current_size)
 	if(current_size >= STAGE_FIVE)

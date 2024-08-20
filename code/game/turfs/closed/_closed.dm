@@ -8,11 +8,7 @@
 	init_air = FALSE
 	rad_insulation = RAD_MEDIUM_INSULATION
 	pass_flags_self = PASSCLOSEDTURF
-	#ifdef WALLENING
-	var/use_splitvis = TRUE
-	#else
-	var/use_splitvis = FALSE
-	#endif
+	var/use_splitvis = IS_WALLENING
 
 /turf/closed/Initialize(mapload)
 	. = ..()
