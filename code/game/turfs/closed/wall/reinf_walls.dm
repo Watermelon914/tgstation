@@ -236,7 +236,7 @@
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"
 	desc = "The armored hull of an ominous looking ship."
-	icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	icon = GET_WALL_PATH(plastitanium_wall.dmi)
 	explosive_resistance = 20
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
 	hardness = 25 //plastitanium
@@ -251,7 +251,7 @@
 	return FALSE
 
 /turf/closed/wall/r_wall/syndicate/nodiagonal
-	icon = 'icons/turf/walls/plastitanium_wall.dmi'
+	icon = GET_WALL_PATH(plastitanium_wall.dmi)
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/wall/r_wall/syndicate/overspace

@@ -70,7 +70,7 @@
 	color = "#B5651D"
 	turf_type = /turf/open/misc/asteroid/basalt/wasteland
 	baseturfs = /turf/open/misc/asteroid/basalt/wasteland
-	icon = 'icons/turf/walls/rock_wall.dmi'
+	icon = GET_WALL_PATH(rock_wall.dmi)
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/mineral/strong/wasteland/drop_ores()

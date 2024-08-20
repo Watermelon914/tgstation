@@ -880,7 +880,7 @@
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
-	icon = MAP_SWITCH('icons/turf/walls/rock_wall2.dmi', 'icons/turf/mining.dmi')
+	icon = MAP_SWITCH(GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/red_rock_wall.dmi', 'icons/turf/mining.dmi'), 'icons/turf/mining.dmi')
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/mineral/strong/attackby(obj/item/I, mob/user, params)

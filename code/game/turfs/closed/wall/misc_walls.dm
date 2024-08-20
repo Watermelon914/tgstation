@@ -63,6 +63,7 @@
 	icon = GET_WALL_PATH(rusty_reinforced_wall.dmi)
 	smoothing_flags = SMOOTH_BITMASK
 	hardness = 15
+	base_decon_state = "rusty_r_wall"
 
 /turf/closed/wall/r_wall/rust/Initialize(mapload)
 	. = ..()
