@@ -13,7 +13,15 @@
 
 /turf/closed/wall/bathhouse
 	desc = "It's cool to the touch, pleasantly so."
-	icon = GET_WALL_PATH_CHOICE('icons/turf/walls/wallening/bathroom_wall.dmi', 'icons/turf/shuttleold.dmi')
+#ifdef WALLENING
+	icon = 'icons/turf/walls/wallening/bathroom_wall.dmi'
+#else
+	icon = 'icons/turf/shuttleold.dmi'
+	icon_state = "block"
+	base_icon_state = "block"
+	smoothing_flags = NONE
+	canSmoothWith = null
+#endif
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /area/ruin/powered/mailroom
