@@ -49,24 +49,20 @@
 	if(QDELETED(src))
 		return
 
+#ifdef WALLENING
 	var/old_base_state = base_icon_state
 	var/ratio = atom_integrity / max_integrity
-#ifdef WALLENING
 	if(ratio <= 0.7)
 		icon = 'icons/obj/structures/smooth/grille_damaged.dmi'
 		base_icon_state = "grille_damaged"
 	else
 		icon = 'icons/obj/structures/smooth/grille.dmi'
 		base_icon_state = "grille"
-#else
-
-#endif
 
 	if(old_base_state != base_icon_state)
 		icon_state = "[base_icon_state]-[smoothing_junction]"
 
 	var/old_smoothing_flags = smoothing_flags
-#ifdef WALLENING
 	if(broken)
 		icon = 'icons/obj/structures/smooth/tall_structure_variations.dmi'
 		icon_state = "grille-broken"
@@ -79,9 +75,6 @@
 		smoothing_groups = initial(smoothing_groups)
 		canSmoothWith = initial(canSmoothWith)
 		SETUP_SMOOTHING()
-#else
-	if(broken)
-		icon_state = "brokengrille"
 #endif
 	. = ..()
 
@@ -92,6 +85,12 @@
 	// If our flags changed, update EVERYBODY
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
+
+#ifndef WALLENING
+/obj/structure/grille/update_icon_state()
+	icon_state = "[base_icon_state][((atom_integrity / max_integrity) <= 0.5) ? "50_[rand(0, 3)]" : null]"
+	return ..()
+#endif
 
 /obj/structure/grille/examine(mob/user)
 	. = ..()
