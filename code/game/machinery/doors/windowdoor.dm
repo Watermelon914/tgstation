@@ -73,7 +73,9 @@
 
 	AddElement(/datum/element/connect_loc, loc_connections)
 	AddElement(/datum/element/atmos_sensitive, mapload)
+#ifdef WALLENING
 	refresh_hitbox_rendering()
+#endif
 
 /obj/machinery/door/window/Destroy()
 	set_density(FALSE)
@@ -87,7 +89,9 @@
 		icon_state = "[base_state]_[animation]"
 	else
 		icon_state = "[base_state][density ? null : "_open"]"
+#ifdef WALLENING
 	refresh_hitbox_rendering()
+#endif
 
 	if(hasPower() && unres_sides)
 		set_light(l_range = 2, l_power = 1)
@@ -143,11 +147,15 @@
 
 /obj/machinery/door/window/setDir(newdir)
 	. = ..()
+#ifdef WALLENING
 	refresh_hitbox_rendering()
+#endif
 
 /obj/machinery/door/window/set_density(new_value)
 	. = ..()
+#ifdef WALLENING
 	refresh_hitbox_rendering()
+#endif
 
 /obj/machinery/door/window/proc/refresh_hitbox_rendering()
 	if(QDELETED(src))
@@ -334,7 +342,9 @@
 	var/unpassable_delay = animation_segment_delay(DOOR_CLOSING_UNPASSABLE)
 	sleep(unpassable_delay)
 	set_density(TRUE)
+#ifdef WALLENING
 	refresh_hitbox_rendering()
+#endif
 	air_update_turf(TRUE, TRUE)
 	update_freelook_sight()
 	var/close_delay = animation_segment_delay(DOOR_CLOSING_FINISHED) - unpassable_delay

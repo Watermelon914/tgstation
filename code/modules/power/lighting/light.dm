@@ -1,7 +1,11 @@
 // the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
-	icon = 'icons/obj/machines/lighting.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	icon_state = "tube"
 	desc = "A lighting fixture."
 	layer = WALL_OBJ_LAYER
@@ -724,7 +728,11 @@
 /obj/machinery/light/floor
 	name = "floor light"
 	desc = "A lightbulb you can walk on without breaking it, amazing."
-	icon = 'icons/obj/machines/lighting.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	base_state = "floor" // base description and icon_state
 	icon_state = "floor"
 	brightness = 4

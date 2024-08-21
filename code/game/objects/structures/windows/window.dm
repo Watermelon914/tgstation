@@ -119,8 +119,10 @@
 	if(fulltile)
 		return
 	// Needed because render targets seem to shift larger then 32x32 icons down constantly. No idea why
+#ifdef WALLENING
 	pixel_y = 0
 	pixel_z = 16
+#endif
 	if(smoothing_flags & SMOOTH_BORDER_OBJECT)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 		QUEUE_SMOOTH(src)

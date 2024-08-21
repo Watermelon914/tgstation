@@ -77,11 +77,13 @@ GLOBAL_LIST_INIT(falsewall_alpha_icons, generate_transparent_falsewalls())
 
 /obj/effect/falsewall_floating/update_overlays()
 	. = ..()
+#ifdef WALLENING
 	// If we smooth north then as we open there's gonna be a weird hole left by the lack of blackness from above. this should help? compensate for that.
 	if(smoothing_junction & NORTH_JUNCTION && opaque_darkness)
 		var/mutable_appearance/black_backdrop = mutable_appearance('icons/turf/walls/wallening/wall_blackness.dmi', "wall_background")
 		black_backdrop.pixel_z = 16
 		. += black_backdrop
+#endif
 
 	var/icon/working_fake_icon = opaque_darkness ? fake_icon : GLOB.falsewall_alpha_icons[fake_icon]
 	. += generate_joined_wall(working_fake_icon, smoothing_junction, draw_darkness = opaque_darkness)

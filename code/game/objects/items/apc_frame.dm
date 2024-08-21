@@ -2,7 +2,11 @@
 /obj/item/wallframe/apc
 	name = "\improper APC frame"
 	desc = "Used for repairing or building APCs."
-	icon = 'icons/obj/machines/APC.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/APC.dmi'
+#else
+	icon = 'icons/obj/machines/normal/APC.dmi'
+#endif
 	icon_state = "frame"
 	result_path = /obj/machinery/power/apc/auto_name
 

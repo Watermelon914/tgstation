@@ -351,7 +351,11 @@
 	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
 	eye_color_left ="fee5a3"
 	eye_color_right ="fee5a3"
-	icon = 'icons/obj/devices/lighting.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	icon_state = "flashlight_eyes"
 	flash_protect = FLASH_PROTECTION_WELDER
 	tint = INFINITY

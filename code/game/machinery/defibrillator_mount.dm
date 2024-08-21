@@ -4,7 +4,11 @@
 /obj/machinery/defibrillator_mount
 	name = "defibrillator mount"
 	desc = "Holds defibrillators. You can grab the paddles if one is mounted."
-	icon = 'icons/obj/machines/defib_mount.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/defib_mount.dmi'
+#else
+	icon = 'icons/obj/machines/normal/defib_mount.dmi'
+#endif
 	icon_state = "defibrillator_mount"
 	density = FALSE
 	use_power = NO_POWER_USE
@@ -205,7 +209,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount/loaded)
 /obj/item/wallframe/defib_mount
 	name = "unhooked defibrillator mount"
 	desc = "A frame for a defibrillator mount. Once placed, it can be removed with a wrench."
-	icon = 'icons/obj/machines/defib_mount.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/defib_mount.dmi'
+#else
+	icon = 'icons/obj/machines/normal/defib_mount.dmi'
+#endif
 	icon_state = "defibrillator_mount"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
 	w_class = WEIGHT_CLASS_BULKY

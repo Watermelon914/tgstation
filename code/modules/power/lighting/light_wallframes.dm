@@ -1,7 +1,11 @@
 /obj/item/wallframe/light_fixture
 	name = "light fixture frame"
 	desc = "Used for building lights."
-	icon = 'icons/obj/machines/lighting.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	icon_state = "tube-construct-item"
 	result_path = /obj/structure/light_construct
 	wall_external = TRUE

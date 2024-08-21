@@ -8,7 +8,11 @@
 	name = "floodlight frame"
 	desc = "A metal frame that requires wiring and a light tube to become a flood light."
 	max_integrity = 100
-	icon = 'icons/obj/machines/lighting.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	icon_state = "floodlight_c1"
 	density = TRUE
 
@@ -130,7 +134,11 @@
 	SET_BASE_VISUAL_PIXEL(0, DEPTH_OFFSET)
 	name = "floodlight"
 	desc = "A pole with powerful mounted lights on it. Due to its high power draw, it must be powered by a direct connection to a wire node."
-	icon = 'icons/obj/machines/lighting.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	icon_state = "floodlight"
 	density = TRUE
 	max_integrity = 100

@@ -17,8 +17,11 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area's electrical systems."
-
-	icon = 'icons/obj/machines/APC.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/APC.dmi'
+#else
+	icon = 'icons/obj/machines/normal/APC.dmi'
+#endif
 	icon_state = "frame"
 	use_power = NO_POWER_USE
 	req_access = null
