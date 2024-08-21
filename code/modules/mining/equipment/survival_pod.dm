@@ -175,11 +175,13 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/structure/window/reinforced/survival_pod/
 /obj/machinery/door/window/survival_pod
 #ifdef WALLENING
 	icon = 'icons/obj/doors/windoor.dmi'
-#else
-	icon = 'icons/obj/doors/normal/windoor.dmi'
-#endif
 	icon_state = "survival"
 	base_state = "survival"
+#else
+	icon = 'icons/obj/mining_zones/survival_pod.dmi'
+	icon_state = "windoor"
+	base_state = "windoor"
+#endif
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door/window/survival_pod/left, 0)
 

@@ -767,7 +767,11 @@
 /obj/machinery/door/poddoor/lift
 	name = "elevator door"
 	desc = "Keeps idiots like you from walking into an open elevator shaft."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/liftdoor.dmi'
+#else
+	icon = 'icons/obj/doors/normal/liftdoor.dmi'
+#endif
 	opacity = FALSE
 	glass = TRUE
 
