@@ -56,7 +56,6 @@
 /obj/structure/barricade/wooden
 	name = "wooden barricade"
 	desc = "This space is blocked off by a wooden barricade."
-	icon = 'icons/obj/structures/tall.dmi'
 #ifdef WALLENING
 	icon = 'icons/obj/structures/tall.dmi'
 #else

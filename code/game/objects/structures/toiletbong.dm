@@ -1,7 +1,11 @@
 /obj/structure/toiletbong
 	name = "toilet bong"
 	desc = "A repurposed toilet with re-arranged piping and an attached flamethrower. Why would anyone build this?"
-	icon = 'icons/obj/structures/watercloset.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/watercloset.dmi'
+#else
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
+#endif
 	icon_state = "toiletbong"
 	base_icon_state = "toiletbong"
 	density = FALSE
@@ -17,8 +21,11 @@
 	atom_storage.attack_hand_interact = FALSE
 	atom_storage.do_rustle = FALSE
 	atom_storage.animated = FALSE
-
-	weed_overlay = mutable_appearance('icons/obj/structures/watercloset.dmi', "[base_icon_state]_overlay")
+#ifdef WALLENING
+	weed_overlay = mutable_appearance('icons/obj/structures/wallening/watercloset.dmi', "[base_icon_state]_overlay")
+#else
+	weed_overlay = mutable_appearance('icons/obj/structures/normal/watercloset.dmi', "[base_icon_state]_overlay")
+#endif
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/toiletbong/update_overlays()

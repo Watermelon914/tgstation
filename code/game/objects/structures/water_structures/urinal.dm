@@ -1,7 +1,11 @@
 /obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal. Comes complete with experimental urinal cake."
-	icon = 'icons/obj/structures/watercloset.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/watercloset.dmi'
+#else
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
+#endif
 	icon_state = "urinal"
 	density = FALSE
 	anchored = TRUE
@@ -92,7 +96,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/urinal)
 /obj/item/wallframe/urinal
 	name = "urinal frame"
 	desc = "An unmounted urinal. Attach it to a wall to use."
-	icon = 'icons/obj/structures/watercloset.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/watercloset.dmi'
+#else
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
+#endif
 	icon_state = "urinal"
 	result_path = /obj/structure/urinal
 

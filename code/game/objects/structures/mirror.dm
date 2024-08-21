@@ -18,7 +18,11 @@
 /obj/structure/mirror
 	name = "mirror"
 	desc = "Mirror mirror on the wall, who's the most robust of them all?"
-	icon = 'icons/obj/structures/watercloset.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/watercloset.dmi'
+#else
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
+#endif
 	icon_state = "mirror"
 	movement_type = FLOATING
 	density = FALSE
@@ -42,7 +46,11 @@
 	if (isnull(reflection_filters))
 		reflection_filters = list()
 		for (var/car_dir in GLOB.cardinals)
-			reflection_filters["[car_dir]"] = alpha_mask_filter(icon = icon('icons/obj/structures/watercloset.dmi', "mirror_mask", dir = car_dir))
+#ifdef WALLENING
+			reflection_filters["[car_dir]"] = alpha_mask_filter(icon = icon('icons/obj/structures/wallening/watercloset.dmi', "mirror_mask", dir = car_dir))
+#else
+			reflection_filters["[car_dir]"] = alpha_mask_filter(icon = icon('icons/obj/structures/normal/watercloset.dmi', "mirror_mask", dir = car_dir))
+#endif
 	AddComponent(/datum/component/reflection, reflection_filter = reflection_filters["[dir]"], reflection_matrix = reflection_matrix, can_reflect = can_reflect, update_signals = update_signals)
 	AddComponent(/datum/component/examine_balloon)
 
@@ -315,7 +323,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken)
 /obj/item/wallframe/mirror
 	name = "mirror"
 	desc = "An unmounted mirror. Attach it to a wall to use."
-	icon = 'icons/obj/structures/watercloset.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/watercloset.dmi'
+#else
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
+#endif
 	icon_state = "mirror"
 	custom_materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,

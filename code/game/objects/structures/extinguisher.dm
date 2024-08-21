@@ -18,7 +18,11 @@
 
 	var/opened = FALSE
 
+#ifdef WALLENING
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
+#else
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
+#endif
 
 /obj/structure/extinguisher_cabinet/Initialize(mapload, ndir, building)
 	. = ..()
@@ -33,9 +37,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 	. = ..()
 
 	if(isnull(held_item))
+		context[SCREENTIP_CONTEXT_RMB] = opened ? "Close" : "Open"
 		if(stored_extinguisher)
-			context[SCREENTIP_CONTEXT_LMB] = "Take extinguisher"
+			context[SCREENTIP_CONTEXT_LMB] = "Take extinguisher" //Yes, this shows whether or not it's open! Extinguishers are taken immediately on LMB click when closed
 		return CONTEXTUAL_SCREENTIP_SET
+
 
 	if(stored_extinguisher)
 		return NONE
@@ -68,8 +74,8 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 /obj/structure/extinguisher_cabinet/Exited(atom/movable/gone, direction)
 	if(gone == stored_extinguisher)
 		stored_extinguisher = null
-		opened = TRUE
 		update_appearance(UPDATE_ICON)
+	return ..()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/used_item, mob/living/user, params)
 	if(used_item.tool_behaviour == TOOL_WRENCH && !stored_extinguisher)
@@ -93,6 +99,8 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 			return TRUE
 		else
 			return
+	else if(!user.combat_mode)
+		toggle_cabinet(user)
 	else
 		return ..()
 
@@ -106,6 +114,12 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 	if(stored_extinguisher)
 		user.put_in_hands(stored_extinguisher)
 		user.balloon_alert(user, "extinguisher removed")
+		if(!opened)
+			opened = TRUE
+			playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
+			update_appearance(UPDATE_ICON)
+	else
+		toggle_cabinet(user)
 
 /obj/structure/extinguisher_cabinet/attack_tk(mob/user)
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
@@ -113,8 +127,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 		stored_extinguisher.forceMove(loc)
 		to_chat(user, span_notice("You telekinetically remove [stored_extinguisher] from [src]."))
 		stored_extinguisher = null
+		opened = TRUE
+		playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
 		update_appearance(UPDATE_ICON)
 		return
+	toggle_cabinet(user)
 
 /obj/structure/extinguisher_cabinet/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
@@ -122,7 +139,8 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 /obj/structure/extinguisher_cabinet/atom_break(damage_flag)
 	. = ..()
 	if(!broken)
-		broken = 1
+		broken = TRUE
+		opened = TRUE
 		if(stored_extinguisher)
 			stored_extinguisher.forceMove(loc)
 			stored_extinguisher = null

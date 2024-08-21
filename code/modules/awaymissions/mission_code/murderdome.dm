@@ -38,7 +38,11 @@
 /obj/effect/murderdome/dead_barricade
 	name = "dead barrier"
 	desc = "It provided cover in fire fights. And now it's gone."
-	icon = 'icons/obj/structures/tall.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "barrier0"
 	alpha = 100
 

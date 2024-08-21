@@ -123,7 +123,11 @@
 /obj/item/air_sensor
 	name = "Air Sensor"
 	desc = "A device designed to detect gases and their concentration in an area."
-	icon = 'icons/obj/structures/wallmounts.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/wallmounts.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "gsensor0"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
 	/// The injector linked with this sensor

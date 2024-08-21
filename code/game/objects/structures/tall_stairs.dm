@@ -1,6 +1,10 @@
 /obj/structure/tall_stairs
 	name = "stairs"
-	icon = 'icons/obj/structures/tall.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "stairs_start"
 	anchored = TRUE
 	move_resist = INFINITY

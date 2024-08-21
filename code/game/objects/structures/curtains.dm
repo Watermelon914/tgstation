@@ -7,7 +7,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/structures/wallening/watercloset.dmi'
 #else
-	icon = 'icons/obj/machines/normal/watercloset.dmi'
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
 #endif
 	icon_state = "bathroom-open"
 	color = "#ACD1E9" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.

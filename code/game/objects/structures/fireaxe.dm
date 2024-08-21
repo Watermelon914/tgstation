@@ -218,7 +218,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/fireaxecabinet/empty)
 /obj/item/wallframe/fireaxecabinet
 	name = "fire axe cabinet"
 	desc = "Home to a window's greatest nightmare. Apply to wall to use."
-	icon = 'icons/obj/structures/cabinet.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/cabinet.dmi'
+#else
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
+#endif
 	icon_state = "fireaxe"
 	result_path = /obj/structure/fireaxecabinet/empty
 

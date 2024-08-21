@@ -15,7 +15,11 @@
 	desc = "<i>\"In case of emergency, please use the stairs.\"</i> Thus, always use the stairs."
 	density = FALSE
 
-	icon = 'icons/obj/structures/wallmounts.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/wallmounts.dmi'
+#else
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
+#endif
 	icon_state = "elevpanel0"
 	base_icon_state = "elevpanel"
 
