@@ -217,7 +217,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/flasher)
 /obj/item/wallframe/flasher
 	name = "mounted flash frame"
 	desc = "Used for building wall-mounted flashers."
-	icon = 'icons/obj/machines/flash.dmi'
+#ifdef WALLENING
+	button_icon = 'icons/obj/machines/wallening/flash.dmi'
+#else
+	button_icon = 'icons/obj/machines/normal/.dmi'
+#endif
 	icon_state = "mflash_frame"
 	result_path = /obj/machinery/flasher
 	var/id = null
