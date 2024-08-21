@@ -160,7 +160,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/keycard.dmi'
 #else
-	icon = 'icons/obj/machines/normal/keycard.dmi'
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
 #endif
 
 #ifdef WALLENING

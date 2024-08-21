@@ -612,7 +612,11 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /datum/action/innate/ai/honk
 	name = "Percussive Intercomm Interference"
 	desc = "Rock the station's intercom system with an obnoxious HONK!"
-	button_icon = 'icons/obj/machines/wallmounts.dmi'
+#ifdef WALLENING
+	button_icon = 'icons/obj/machines/wallening/wallmounts.dmi'
+#else
+	button_icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	button_icon_state = "intercom"
 	uses = 2
 
@@ -720,7 +724,11 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 /datum/action/innate/ai/break_air_alarms
 	name = "Override Air Alarm Safeties"
 	desc = "Enables extremely dangerous settings on all air alarms."
-	button_icon = 'icons/obj/machines/wallmounts.dmi'
+#ifdef WALLENING
+	button_icon = 'icons/obj/machines/wallening/wallmounts.dmi'
+#else
+	button_icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	button_icon_state = "alarmx"
 	uses = 1
 
