@@ -67,7 +67,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/mirror)
 
 /obj/structure/mirror/Initialize(mapload)
 	. = ..()
-	var/static/list/reflection_filter = alpha_mask_filter(icon = icon('icons/obj/structures/watercloset.dmi', "mirror_mask"))
+#ifdef WALLENING
+	var/static/list/reflection_filter = alpha_mask_filter(icon = icon('icons/obj/structures/wallening/watercloset.dmi', "mirror_mask"))
+#else
+	var/static/list/reflection_filter = alpha_mask_filter(icon = icon('icons/obj/structures/normal/watercloset.dmi', "mirror_mask"))
+#endif
 	var/static/matrix/reflection_matrix = matrix(0.75, 0, 0, 0, 0.75, 0)
 	var/datum/callback/can_reflect = CALLBACK(src, PROC_REF(can_reflect))
 	var/list/update_signals = list(COMSIG_ATOM_BREAK)

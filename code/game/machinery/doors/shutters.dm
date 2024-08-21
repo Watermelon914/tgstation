@@ -27,17 +27,23 @@
 
 /obj/machinery/door/poddoor/shutters/update_icon_state()
 	. = ..()
+#ifdef WALLENING
 	icon_state = "[get_working_state()]_top"
+#else
+	icon_state = "[get_working_state()]"
+#endif
 
 /obj/machinery/door/poddoor/shutters/update_overlays()
 	. = ..()
 	. += emissive_appearance(icon, "emissives", src, alpha = 100)
 
+#ifdef WALLENING
 /obj/machinery/door/poddoor/shutters/get_lower_overlays()
 	var/list/hand_back = list()
 	hand_back += mutable_appearance(icon, "[get_working_state()]_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 	hand_back += emissive_blocker(icon, "[get_working_state()]_bottom", src, ABOVE_MOB_LAYER)
 	return hand_back
+#endif
 
 /obj/machinery/door/poddoor/shutters/animation_length(animation)
 	switch(animation)

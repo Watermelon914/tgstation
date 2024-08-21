@@ -136,6 +136,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet, 29)
 /obj/structure/extinguisher_cabinet/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
 
+/obj/structure/extinguisher_cabinet/proc/toggle_cabinet(mob/user)
+	if(opened && broken)
+		user.balloon_alert(user, "it's broken!")
+	else
+		playsound(loc, 'sound/machines/click.ogg', 15, TRUE, -3)
+		opened = !opened
+		update_appearance(UPDATE_ICON)
+
 /obj/structure/extinguisher_cabinet/atom_break(damage_flag)
 	. = ..()
 	if(!broken)

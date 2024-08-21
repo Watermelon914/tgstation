@@ -240,8 +240,13 @@
 	if(animation)
 		icon_state = animation
 	else
+#ifdef WALLENING
 		icon_state = density ? "closed" : "open_top"
+#else
+		icon_state = density ? "closed" : "open"
+#endif
 
+#ifdef WALLENING
 /obj/machinery/door/poddoor/update_overlays()
 	. = ..()
 	var/list/mutable_appearance/lower = get_lower_overlays()
@@ -256,6 +261,7 @@
 	hand_back += mutable_appearance(icon, "open_bottom", ABOVE_MOB_LAYER, appearance_flags = KEEP_APART)
 	hand_back += emissive_blocker(icon, "open_bottom", src, ABOVE_MOB_LAYER)
 	return hand_back
+#endif
 
 /obj/machinery/door/poddoor/animation_length(animation)
 	switch(animation)

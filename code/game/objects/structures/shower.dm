@@ -368,7 +368,11 @@ SHOWER_DIRECTIONAL_HELPERS(/obj/machinery/shower)
 
 /obj/effect/mist
 	name = "mist"
-	icon = 'icons/obj/structures/watercloset.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/watercloset.dmi'
+#else
+	icon = 'icons/obj/structures/normal/watercloset.dmi'
+#endif
 	icon_state = "mist"
 	layer = FLY_LAYER
 	anchored = TRUE
