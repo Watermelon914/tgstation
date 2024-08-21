@@ -6,7 +6,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/flash.dmi'
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 #endif
 	icon_state = "mflash1"
 	base_icon_state = "mflash"
@@ -224,7 +224,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/flasher)
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/flash.dmi'
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 #endif
 	icon_state = "mflash_frame"
 	result_path = /obj/machinery/flasher

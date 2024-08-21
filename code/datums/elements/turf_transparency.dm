@@ -219,7 +219,11 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 	// it will make them look significantly nicer, and should let you tie into their logic more easily
 	// Just please don't break behavior yeah? thanks, I love you <3
 	if(isclosedturf(our_turf)) //Show girders below closed turfs
+#ifdef WALLENING
 		var/mutable_appearance/girder_underlay = mutable_appearance('icons/obj/structures/tall.dmi', "girder", layer = BELOW_CLOSED_TURF_LAYER)
+#else
+		var/mutable_appearance/girder_underlay = mutable_appearance('icons/obj/structures.dmi', "girder", layer = BELOW_CLOSED_TURF_LAYER)
+#endif
 		girder_underlay.appearance_flags = RESET_ALPHA | RESET_COLOR
 		our_turf.underlays += girder_underlay
 		var/mutable_appearance/plating_underlay = mutable_appearance('icons/turf/floors.dmi', "plating", layer = LOW_FLOOR_LAYER, offset_spokesman = our_turf, plane = FLOOR_PLANE)

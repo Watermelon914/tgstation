@@ -57,6 +57,11 @@
 	name = "wooden barricade"
 	desc = "This space is blocked off by a wooden barricade."
 	icon = 'icons/obj/structures/tall.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "woodenbarricade"
 	resistance_flags = FLAMMABLE
 	bar_material = WOOD
@@ -99,7 +104,11 @@
 /obj/structure/barricade/wooden/crude
 	name = "crude plank barricade"
 	desc = "This space is blocked off by a crude assortment of planks."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "woodenbarricade"
 	drop_amount = 1
 	max_integrity = 50
@@ -108,7 +117,11 @@
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "woodenbarricade_snow"
 	max_integrity = 75
 
@@ -141,7 +154,11 @@
 /obj/structure/barricade/security
 	name = "security barrier"
 	desc = "A deployable barrier. Provides good cover in fire fights."
+#ifdef WALLENING
 	icon = 'icons/obj/structures/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "barrier0"
 	density = FALSE
 	anchored = FALSE

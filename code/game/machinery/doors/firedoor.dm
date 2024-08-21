@@ -117,11 +117,11 @@
 #endif
 	return INITIALIZE_HINT_LATELOAD
 
+#ifdef WALLENING
 /obj/machinery/door/firedoor/setDir(new_dir)
 	. = ..()
 	update_layering()
 
-#ifdef WALLENING
 /obj/machinery/door/firedoor/proc/update_layering()
 	switch(dir)
 		if(NORTH)
@@ -133,7 +133,9 @@
 #endif
 
 /obj/machinery/door/firedoor/set_init_door_layer()
+#ifdef WALLENING
 	update_layering()
+#endif
 	if(density)
 		layer = closingLayer
 

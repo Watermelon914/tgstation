@@ -2,7 +2,7 @@
 /// These always hook to monitors, be mindful of them
 /obj/machinery/air_sensor
 	name = "gas sensor"
-	icon = 'icons/obj/structures/wallmounts.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 	icon_state = "gsensor1"
 	resistance_flags = FIRE_PROOF
 	power_channel = AREA_USAGE_ENVIRON

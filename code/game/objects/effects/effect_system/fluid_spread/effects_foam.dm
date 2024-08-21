@@ -291,7 +291,11 @@
 
 /// FOAM STRUCTURE. Formed by metal foams. Dense and opaque, but easy to break
 /obj/structure/foamedmetal
+#ifdef WALLENING
 	icon = 'icons/obj/structures/tall.dmi'
+#else
+	icon = 'icons/obj/structures.dmi'
+#endif
 	icon_state = "metalfoam"
 	density = TRUE
 	opacity = TRUE // changed in New()

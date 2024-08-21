@@ -26,7 +26,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/telescreens.dmi'
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 #endif
 	icon_state = "telescreen"
 	result_path = /obj/machinery/computer/security/telescreen

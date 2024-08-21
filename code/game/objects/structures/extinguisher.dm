@@ -5,7 +5,7 @@
 	icon = 'icons/obj/structures/wallening/cabinet.dmi'
 	icon_state = "rack"
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 	icon_state = "extinguisher_default"
 #endif
 	anchored = TRUE
@@ -132,10 +132,14 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 		stored_extinguisher.forceMove(loc)
 		stored_extinguisher = null
 
+#ifdef WALLENING
 /obj/structure/extinguisher_cabinet/update_overlays()
 	. = ..()
 	if(stored_extinguisher)
 		. += stored_extinguisher.cabinet_icon_state
+#else
+
+#endif
 
 /obj/item/wallframe/extinguisher_cabinet
 	name = "extinguisher rack frame"
@@ -144,7 +148,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 	icon = 'icons/obj/structures/wallening/cabinet.dmi'
 	icon_state = "rack"
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 	icon_state = "extinguisher_assembly"
 #endif
 	result_path = /obj/structure/extinguisher_cabinet

@@ -139,7 +139,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/igniter)
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/igniter.dmi'
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 #endif
 	icon_state = "migniter"
 	result_path = /obj/machinery/sparker
@@ -151,7 +151,7 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/igniter)
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/igniter.dmi'
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
 #endif
 	icon_state = "migniter"
 	base_icon_state = "migniter"
