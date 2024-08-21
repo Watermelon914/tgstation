@@ -21,7 +21,7 @@
 #ifdef WALLENING
 	var/overlay_icon = 'icons/obj/machines/wallening/lighting.dmi'
 #else
-	var/overlay_icon = 'icons/obj/machines/normal/lighting.dmi'
+	var/overlay_icon = 'icons/obj/lighting_overlay.dmi'
 #endif
 	///base description and icon_state
 	var/base_state = "tube"

@@ -121,6 +121,7 @@
 	. = ..()
 	update_layering()
 
+#ifdef WALLENING
 /obj/machinery/door/firedoor/proc/update_layering()
 	switch(dir)
 		if(NORTH)
@@ -129,6 +130,7 @@
 		else
 			layer = ABOVE_MOB_LAYER
 			closingLayer = ABOVE_MOB_LAYER
+#endif
 
 /obj/machinery/door/firedoor/set_init_door_layer()
 	update_layering()
