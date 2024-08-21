@@ -44,7 +44,11 @@ TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen)
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
 	desc = "Damn, they better have the /tg/ channel on these things."
-	icon = 'icons/obj/machines/telescreens.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/telescreens.dmi'
+#else
+	icon = 'icons/obj/machines/normal/telescreens.dmi'
+#endif
 	icon_state = "telescreen" // wallening todo - Should this be merged back into telescreens or keep using status display icons? Icon needs updating regardless.
 	network = list()
 	density = FALSE
@@ -54,7 +58,11 @@ TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen)
 
 /obj/item/wallframe/telescreen/entertainment
 	name = "entertainment telescreen frame"
-	icon = 'icons/obj/machines/telescreens.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/telescreens.dmi'
+#else
+	icon = 'icons/obj/machines/normal/telescreens.dmi'
+#endif
 	icon_state = "telescreen"
 	result_path = /obj/machinery/computer/security/telescreen/entertainment
 

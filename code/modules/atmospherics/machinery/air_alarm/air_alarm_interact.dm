@@ -182,6 +182,10 @@
 /obj/item/wallframe/airalarm
 	name = "air alarm frame"
 	desc = "Used for building Air Alarms."
-	icon = 'icons/obj/machines/air_alarm.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/air_alarm.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "alarm_bitem"
 	result_path = /obj/machinery/airalarm

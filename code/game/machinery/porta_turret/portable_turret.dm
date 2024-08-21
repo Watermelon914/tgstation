@@ -914,7 +914,11 @@ DEFINE_BITFIELD(turret_flags, list(
 /obj/machinery/turretid
 	name = "turret control panel"
 	desc = "Used to control a room's automated defenses."
-	icon = 'icons/obj/machines/turret_control.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/turret_control.dmi'
+#else
+	icon = 'icons/obj/machines/normal/turret_control.dmi'
+#endif
 	icon_state = "control"
 	base_icon_state = "control"
 	density = FALSE

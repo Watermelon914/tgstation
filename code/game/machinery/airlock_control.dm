@@ -32,7 +32,11 @@
 	return ..()
 
 /obj/machinery/airlock_sensor
-	icon = 'icons/obj/machines/airlock_machines.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/airlock_machines.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "airlock_sensor_off"
 	base_icon_state = "airlock_sensor"
 	name = "airlock sensor"

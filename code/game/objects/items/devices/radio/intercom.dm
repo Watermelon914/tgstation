@@ -1,7 +1,11 @@
 /obj/item/radio/intercom
 	name = "station intercom"
 	desc = "A trusty station intercom, ready to spring into action even when the headsets go silent."
-	icon = 'icons/obj/machines/intercom.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/intercom.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "intercom"
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_BULKY
@@ -193,7 +197,11 @@
 /obj/item/wallframe/intercom
 	name = "intercom frame"
 	desc = "A ready-to-go intercom. Just slap it on a wall and screw it in!"
-	icon = 'icons/obj/machines/intercom.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/intercom.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "intercom"
 	result_path = /obj/item/radio/intercom/unscrewed
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.75, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.25)
