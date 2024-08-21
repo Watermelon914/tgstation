@@ -141,10 +141,11 @@
 	/// What airlock assembly mineral plating was applied to
 	var/previous_airlock = /obj/structure/door_assembly
 	/// Material of inner filling; if its an airlock with glass, this should be set to "glass"
-	var/airlock_material = "fill"
 #ifdef WALLENING
+	var/airlock_material = "fill"
 	var/overlays_file = 'icons/obj/doors/airlocks/tall/overlays.dmi'
 #else
+	var/airlock_material = null
 	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
 #endif
 	/// Used for papers and photos pinned to the airlock
@@ -638,7 +639,6 @@
 
 	update_greyscale()
 #else
-
 /obj/machinery/door/airlock/update_overlays()
 	. = ..()
 
@@ -2832,13 +2832,13 @@
 #ifdef WALLENING
 	icon = 'icons/obj/doors/airlocks/tall/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
+	greyscale_config = null
+	greyscale_colors = null
 #else
 	icon = 'icons/obj/doors/airlocks/shuttle/shuttle.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/shuttle/overlays.dmi'
 #endif
 	assemblytype = /obj/structure/door_assembly/door_assembly_shuttle
-	greyscale_config = null
-	greyscale_colors = null
 
 /obj/machinery/door/airlock/shuttle/glass
 	opacity = FALSE
