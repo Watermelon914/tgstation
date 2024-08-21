@@ -633,7 +633,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai)
 	var/list/choices = list()
 	for(var/emotion_const in GLOB.ai_status_display_emotes)
 		var/icon_state = GLOB.ai_status_display_emotes[emotion_const]
-		choices[emotion_const] = image(icon = 'icons/obj/machines/status_display.dmi', icon_state = icon_state)
+#ifdef WALLENING
+		choices[emotion_const] = image(icon = 'icons/obj/machines/wallening/status_display.dmi', icon_state = icon_state)
+#else
+		choices[emotion_const] = image(icon = 'icons/obj/machines/normal/status_display.dmi', icon_state = icon_state)
+#endif
 
 	var/emotion_result = show_radial_menu(user, src, choices, tooltips = TRUE)
 	for(var/_emote in typesof(/datum/emote/ai/emotion_display))

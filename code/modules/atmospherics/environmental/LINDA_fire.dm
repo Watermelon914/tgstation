@@ -211,10 +211,12 @@
 /obj/effect/hotspot/proc/update_color()
 	cut_overlays()
 
+#ifdef WALLENING
 	if(!(smoothing_junction & NORTH))
 		var/mutable_appearance/frill = mutable_appearance('icons/effects/atmos/fire.dmi', "[fire_stage]_frill")
 		frill.pixel_z = 32
 		add_overlay(frill)
+#endif
 	var/heat_r = heat2colour_r(temperature)
 	var/heat_g = heat2colour_g(temperature)
 	var/heat_b = heat2colour_b(temperature)
@@ -247,10 +249,12 @@
 		add_overlay(sparkle_overlay)
 	if(temperature > 400000 && temperature < 1500000) //Lightning because very anime.
 		var/mutable_appearance/lightning_overlay = mutable_appearance('icons/effects/atmos/fire.dmi', "overcharged")
+#ifdef WALLENING
 		if(!(smoothing_junction & NORTH))
 			var/mutable_appearance/frill = mutable_appearance('icons/effects/atmos/fire.dmi', "overcharged_frill")
 			frill.pixel_z = 32
 			lightning_overlay.add_overlay(frill)
+#endif
 		lightning_overlay.blend_mode = BLEND_ADD
 		add_overlay(lightning_overlay)
 	if(temperature > 4500000) //This is where noblium happens. Some fusion-y effects.

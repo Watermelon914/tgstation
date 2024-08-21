@@ -5,7 +5,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/digital_clock.dmi'
 #else
-	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon = 'icons/obj/machines/normal/digital_clock.dmi'
 #endif
 	verb_say = "beeps"
 	verb_ask = "bloops"
