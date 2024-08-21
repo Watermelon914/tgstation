@@ -1,8 +1,13 @@
 /obj/structure/extinguisher_cabinet
 	name = "extinguisher rack"
 	desc = "A small wall mounted rack designed to hold a fire extinguisher."
-	icon = 'icons/obj/structures/cabinet.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/cabinet.dmi'
 	icon_state = "rack"
+#else
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon_state = "extinguisher_default"
+#endif
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 200
@@ -137,8 +142,9 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 	desc = "Used for building wall-mounted extinguisher cabinets."
 #ifdef WALLENING
 	icon = 'icons/obj/structures/wallening/cabinet.dmi'
-#else
-	icon = 'icons/obj/structures/normal/wallmounts.dmi'
-#endif
 	icon_state = "rack"
+#else
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+	icon_state = "extinguisher_assembly"
+#endif
 	result_path = /obj/structure/extinguisher_cabinet
