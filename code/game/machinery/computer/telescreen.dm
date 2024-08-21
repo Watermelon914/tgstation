@@ -1,9 +1,15 @@
 /obj/machinery/computer/security/telescreen
 	name = "\improper Telescreen"
 	desc = "Used for watching an empty arena."
+#ifdef WALLENING
 	icon = 'icons/obj/machines/telescreens.dmi'
 	icon_state = "telescreen"
 	base_icon_state = "telescreen"
+#else
+	icon = 'icons/obj/machines/normal/status_display.dmi'
+	icon_state = "display"
+	base_icon_state = "display"
+#endif
 	icon_screen = null
 	icon_keyboard = null
 	layer = SIGN_LAYER
@@ -46,10 +52,10 @@ TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen)
 	desc = "Damn, they better have the /tg/ channel on these things."
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/telescreens.dmi'
-#else
-	icon = 'icons/obj/machines/normal/telescreens.dmi'
-#endif
 	icon_state = "telescreen" // wallening todo - Should this be merged back into telescreens or keep using status display icons? Icon needs updating regardless.
+#else
+	icon = 'icons/obj/machines/normal/status_display.dmi'
+#endif
 	network = list()
 	density = FALSE
 	circuit = null
@@ -60,10 +66,11 @@ TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen)
 	name = "entertainment telescreen frame"
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/telescreens.dmi'
+	icon_state = "telescreen"
 #else
 	icon = 'icons/obj/machines/normal/status_display.dmi'
+	icon_state = "frame"
 #endif
-	icon_state = "telescreen"
 	result_path = /obj/machinery/computer/security/telescreen/entertainment
 
 TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/entertainment) // Wallening todo: Depending on the comment on icon_state, adjust offset. Keep wall_mount element in mind.
@@ -97,8 +104,12 @@ TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen/enter
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
+#ifdef WALLENING
 	. += "[base_icon_state]_program[rand(1,4)]"
 	. += emissive_appearance(icon, "[base_icon_state]_emissive", src, alpha = src.alpha)
+#else
+	. += pick("entertainment", "entertainment_blank")
+#endif
 
 /// Adds a camera network ID to the entertainment monitor, and turns off the monitor if network list is empty
 /obj/machinery/computer/security/telescreen/entertainment/proc/update_shows(is_show_active, tv_show_id, announcement)

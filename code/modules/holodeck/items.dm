@@ -75,8 +75,13 @@
 /obj/machinery/readybutton
 	name = "ready declaration device"
 	desc = "This device is used to declare ready. If all devices in an area are ready, the event will begin!"
-	icon = 'icons/obj/machines/keycard.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/keycard.dmi'
 	icon_state = "auth_on"
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+	icon_state = "auth_off"
+#endif
 	var/ready = 0
 	var/area/currentarea = null
 	var/eventstarted = FALSE

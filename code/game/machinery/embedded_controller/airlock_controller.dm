@@ -6,7 +6,11 @@
 #define AIRLOCK_STATE_OUTOPEN "outopen"
 
 /obj/machinery/airlock_controller
-	icon = 'icons/obj/machines/airlock_machines.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/airlock_machines.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "airlock_control_standby"
 	base_icon_state = "airlock_control"
 

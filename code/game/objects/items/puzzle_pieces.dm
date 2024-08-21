@@ -335,7 +335,11 @@
 
 /obj/machinery/puzzle
 	name = "abstract puzzle gizmo"
-	icon = 'icons/obj/machines/wallmounts.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/wallmounts.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	/// have we been pressed already?
 	var/used = FALSE
@@ -372,7 +376,11 @@
 /obj/machinery/puzzle/button
 	name = "control panel"
 	desc = "A panel that controls something nearby. I'm sure it being covered in hazard stripes is fine."
-	icon = 'icons/obj/machines/wallmounts.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/wallmounts.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "lockdown0"
 	base_icon_state = "lockdown"
 

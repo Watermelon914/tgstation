@@ -18,7 +18,11 @@
 	light_angle = 170
 	light_flags = LIGHT_IGNORE_OFFSET
 	///What overlay the light should use
-	var/overlay_icon = 'icons/obj/machines/lighting.dmi'
+#ifdef WALLENING
+	var/overlay_icon = 'icons/obj/machines/wallening/lighting.dmi'
+#else
+	var/overlay_icon = 'icons/obj/machines/normal/lighting.dmi'
+#endif
 	///base description and icon_state
 	var/base_state = "tube"
 	///Is the light on?
@@ -179,6 +183,7 @@
 			icon_state = "[base_state]-broken"
 	return ..()
 
+#ifdef WALLENING
 /obj/machinery/light/update_overlays()
 	. = ..()
 	if(!on || status != LIGHT_OK)
@@ -195,6 +200,9 @@
 		. += mutable_appearance(overlay_icon, "[base_state]_nightshift")
 		return
 	. += mutable_appearance(overlay_icon, base_state)
+#else
+
+#endif
 
 // Area sensitivity is traditionally tied directly to power use, as an optimization
 // But since we want it for fire reacting, we disregard that

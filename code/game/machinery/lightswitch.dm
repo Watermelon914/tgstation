@@ -1,7 +1,11 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
-	icon = 'icons/obj/machines/lightswitch.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lightswitch.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "light-nopower"
 	base_icon_state = "light"
 	desc = "Make dark."

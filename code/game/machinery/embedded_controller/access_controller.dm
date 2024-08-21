@@ -31,7 +31,11 @@
 	return TRUE
 
 /obj/machinery/door_buttons/access_button
-	icon = 'icons/obj/machines/airlock_machines.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/airlock_machines.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "access_button_standby"
 	base_icon_state = "access_button"
 	name = "access button"
@@ -111,7 +115,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/door_buttons/access_button)
 /obj/machinery/door_buttons/airlock_controller
 	name = "access console"
 	desc = "A small console that can cycle opening between two airlocks."
-	icon = 'icons/obj/machines/airlock_machines.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/airlock_machines.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "access_control_standby"
 	base_icon_state = "access_control"
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN|INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_OPEN_SILICON

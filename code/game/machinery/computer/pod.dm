@@ -139,7 +139,11 @@
 
 /obj/machinery/computer/pod/old/mass_driver_controller
 	name = "\improper Mass Driver Controller"
-	icon = 'icons/obj/machines/airlock_machines.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/airlock_machines.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "airlock_control_standby"
 	icon_screen = null
 	density = FALSE

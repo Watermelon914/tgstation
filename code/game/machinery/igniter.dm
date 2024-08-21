@@ -148,7 +148,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/igniter)
 /obj/machinery/sparker
 	name = "mounted igniter"
 	desc = "A wall-mounted ignition device."
-	icon = 'icons/obj/machines/igniter.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/igniter.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+#endif
 	icon_state = "migniter"
 	base_icon_state = "migniter"
 	resistance_flags = FIRE_PROOF

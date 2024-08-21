@@ -114,6 +114,12 @@
 	. += update_time()
 	return .
 
+#ifdef WALLENING
+#define DIGITAL_CLOCK_ICON 'icons/obj/machines/wallening/digital_clock.dmi'
+#else
+#define DIGITAL_CLOCK_ICON 'icons/obj/machines/normal/digital_clock.dmi'
+#endif
+
 /obj/machinery/digital_clock/proc/update_time()
 	var/station_minutes
 	if(obj_flags & EMAGGED)
@@ -140,25 +146,26 @@
 
 	var/return_overlays = list()
 
-	var/mutable_appearance/minute_one_overlay = mutable_appearance('icons/obj/machines/digital_clock.dmi', "+[station_minute_one]")
+	var/mutable_appearance/minute_one_overlay = mutable_appearance(DIGITAL_CLOCK_ICON, "+[station_minute_one]")
 	minute_one_overlay.pixel_w = 0
 	return_overlays += minute_one_overlay
 
-	var/mutable_appearance/minute_tenth_overlay = mutable_appearance('icons/obj/machines/digital_clock.dmi', "+[station_minute_tenth]")
+	var/mutable_appearance/minute_tenth_overlay = mutable_appearance(DIGITAL_CLOCK_ICON, "+[station_minute_tenth]")
 	minute_tenth_overlay.pixel_w = -4
 	return_overlays += minute_tenth_overlay
 
-	var/mutable_appearance/separator = mutable_appearance('icons/obj/machines/digital_clock.dmi', "+separator")
+	var/mutable_appearance/separator = mutable_appearance(DIGITAL_CLOCK_ICON, "+separator")
 	return_overlays += separator
 
-	var/mutable_appearance/hour_one_overlay = mutable_appearance('icons/obj/machines/digital_clock.dmi', "+[station_hours_one]")
+	var/mutable_appearance/hour_one_overlay = mutable_appearance(DIGITAL_CLOCK_ICON, "+[station_hours_one]")
 	hour_one_overlay.pixel_w = -10
 	return_overlays += hour_one_overlay
 
-	var/mutable_appearance/hour_tenth_overlay = mutable_appearance('icons/obj/machines/digital_clock.dmi', "+[station_hours_tenth]")
+	var/mutable_appearance/hour_tenth_overlay = mutable_appearance(DIGITAL_CLOCK_ICON, "+[station_hours_tenth]")
 	hour_tenth_overlay.pixel_w = -14
 	return_overlays += hour_tenth_overlay
 
 	return return_overlays
 
+#undef DIGITAL_CLOCK_ICON
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/digital_clock)

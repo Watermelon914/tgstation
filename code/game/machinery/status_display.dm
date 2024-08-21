@@ -19,7 +19,11 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 /obj/machinery/status_display
 	name = "status display"
 	desc = null
-	icon = 'icons/obj/machines/status_display.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/status_display.dmi'
+#else
+	icon = 'icons/obj/machines/normal/status_display.dmi'
+#endif
 	icon_state = "frame"
 	verb_say = "beeps"
 	verb_ask = "beeps"
@@ -187,10 +191,12 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 /obj/machinery/status_display/proc/update_message(current_key, line_y, message, x_offset, line_pair)
 	var/matrix/working_transform = matrix()
 	var/working_alpha = alpha
+#ifdef WALLENING
 	if(dir != SOUTH)
 		// Translate the text seperately, since they are vis_contents.
 		working_transform = floor_projections["[dir]"]
 		working_alpha = PROJECTION_TEXT_ALPHA
+#endif
 	var/obj/effect/overlay/status_display_text/current_overlay = get_status_text(current_key)
 	var/obj/effect/overlay/status_display_text/new_overlay = generate_status_text(line_y, message, x_offset, text_color, header_text_color, line_pair, working_alpha, working_transform)
 
@@ -216,13 +222,13 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 /obj/machinery/status_display/update_overlays(updates)
 	. = ..()
 
+#ifdef WALLENING
 	// Facing south, we render traditionally.
 	if(dir == SOUTH)
 		add_screen_visuals(.)
 		return
 
 	// Otherwise, we render a projection on the floor.
-
 	// Get screen overlays and return if it's off.
 	var/list/projected_overlays = list()
 	var/anything_displayed = add_screen_visuals(projected_overlays, projection_only = TRUE)
@@ -248,6 +254,9 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 	projection_emissive.pixel_y = emissive_offsets[2]
 	projection_emissive.blend_mode = BLEND_ADD
 	. += projection_emissive
+#else
+	add_screen_visuals(.)
+#endif
 
 /**
  * Generate a set of vis contents objects for the overlays.
@@ -389,7 +398,11 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
  * Nice overlay to make text smoothly scroll with no client updates after setup.
  */
 /obj/effect/overlay/status_display_text
-	icon = 'icons/obj/machines/status_display.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/status_display.dmi'
+#else
+	icon = 'icons/obj/machines/normal/status_display.dmi'
+#endif
 	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 	// physically shift down to render correctly
 	pixel_y = -32

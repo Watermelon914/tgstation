@@ -3,7 +3,11 @@
 /obj/machinery/flasher
 	name = "mounted flash"
 	desc = "A wall-mounted flashbulb device."
-	icon = 'icons/obj/machines/flash.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/flash.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+#endif
 	icon_state = "mflash1"
 	base_icon_state = "mflash"
 	max_integrity = 250
