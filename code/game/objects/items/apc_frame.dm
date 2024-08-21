@@ -5,7 +5,7 @@
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/APC.dmi'
 #else
-	icon = 'icons/obj/machines/normal/APC.dmi'
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
 #endif
 	icon_state = "frame"
 	result_path = /obj/machinery/power/apc/auto_name

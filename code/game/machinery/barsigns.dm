@@ -537,7 +537,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign/all_access, 32)
 /obj/item/wallframe/barsign
 	name = "bar sign frame"
 	desc = "Used to help draw the rabble into your bar. Some assembly required."
-	icon = 'icons/obj/machines/wallmounts.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/wallmounts.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "barsign"
 	result_path = /obj/machinery/barsign
 	custom_materials = list(

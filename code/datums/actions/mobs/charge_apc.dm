@@ -6,7 +6,7 @@
 #ifdef WALLENING
 	button_icon = 'icons/obj/machines/wallening/APC.dmi'
 #else
-	button_icon = 'icons/obj/machines/normal/APC.dmi'
+	button_icon = 'icons/obj/machines/normal/wallmounts.dmi'
 #endif
 	button_icon_state = "frame"
 	desc = "Give off charge to an APC."
