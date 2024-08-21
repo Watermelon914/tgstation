@@ -2,7 +2,11 @@
 /obj/machinery/door
 	name = "door"
 	desc = "It opens and closes."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/doorint.dmi'
+#else
+	icon = 'icons/obj/doors/normal/doorint.dmi'
+#endif
 	icon_state = "door_closed"
 	base_icon_state = "door"
 	opacity = TRUE
@@ -121,7 +125,9 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	AddElement(/datum/element/can_barricade)
+#ifdef WALLENING
 	make_dir_opaque()
+#endif
 
 /obj/machinery/door/proc/make_dir_opaque()
 	if(!dir_mask || !edge_dir_mask)
@@ -620,7 +626,11 @@
 	return 0
 
 /obj/machinery/door/morgue
+#ifdef WALLENING
 	icon = 'icons/obj/doors/doormorgue.dmi'
+#else
+	icon = 'icons/obj/doors/normal/doormorgue.dmi'
+#endif
 	icon_state = "closed"
 
 /obj/machinery/door/morgue/update_icon_state()

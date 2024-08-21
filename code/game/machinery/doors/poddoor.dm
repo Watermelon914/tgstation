@@ -1,7 +1,11 @@
 /obj/machinery/door/poddoor
 	name = "blast door"
 	desc = "A heavy duty blast door that opens mechanically."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/blastdoor.dmi'
+#else
+	icon = 'icons/obj/doors/normal/blastdoor.dmi'
+#endif
 	icon_state = "closed"
 	layer = BLASTDOOR_LAYER
 	closingLayer = CLOSED_BLASTDOOR_LAYER

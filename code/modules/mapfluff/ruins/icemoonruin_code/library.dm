@@ -1,7 +1,11 @@
 /obj/machinery/door/puzzle/keycard/library
 	name = "wooden door"
 	desc = "A dusty, scratched door with a thick lock attached."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/puzzledoor/wood.dmi'
+#else
+	icon = 'icons/obj/doors/normal/puzzledoor/wood.dmi'
+#endif
 	puzzle_id = "library"
 	open_message = "The door opens with a loud creak."
 

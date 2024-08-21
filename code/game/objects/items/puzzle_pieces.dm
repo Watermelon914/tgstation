@@ -39,7 +39,11 @@
 /obj/machinery/door/puzzle
 	name = "locked door"
 	desc = "This door only opens under certain conditions. It looks virtually indestructible."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/puzzledoor/default.dmi'
+#else
+	icon = 'icons/obj/doors/normal/puzzledoor/default.dmi'
+#endif
 	icon_state = "closed"
 	explosion_block = 3
 	heat_proof = TRUE

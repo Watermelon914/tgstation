@@ -8,8 +8,11 @@
 	opacity = TRUE
 	layer = CLOSED_DOOR_LAYER
 	material_flags = MATERIAL_EFFECTS
-
+#ifdef WALLENING
 	icon = 'icons/obj/doors/mineral_doors.dmi'
+#else
+	icon = 'icons/obj/doors/normal/mineral_doors.dmi'
+#endif
 	icon_state = "metal"
 	max_integrity = 200
 	armor_type = /datum/armor/structure_mineral_door

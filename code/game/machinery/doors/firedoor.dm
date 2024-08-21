@@ -6,8 +6,13 @@
 /obj/machinery/door/firedoor
 	name = "firelock"
 	desc = "Apply crowbar."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/doorfireglass.dmi'
 	icon_state = "door_open_map"
+#else
+	icon = 'icons/obj/doors/normal/doorfireglass.dmi'
+	icon_state = "door_open"
+#endif
 	dir_mask = "firelock_mask"
 	edge_dir_mask = "shutter"
 	inner_transparent_dirs = EAST|WEST
@@ -28,7 +33,11 @@
 	COOLDOWN_DECLARE(activation_cooldown)
 
 	///If we split up our sprite into top and bottom parts or not
+#ifdef WALLENING
 	var/use_split_sprites = TRUE
+#else
+	var/use_split_sprites = FALSE
+#endif
 	///X offset for the overlay lights, so that they line up with the thin border firelocks
 	var/light_xoffset = 0
 	///Y offset for the overlay lights, so that they line up with the thin border firelocks
@@ -88,12 +97,13 @@
 	if(!merger_typecache)
 		merger_typecache = typecacheof(/obj/machinery/door/firedoor)
 
-	if(prob(0.004) && icon == 'icons/obj/doors/doorfireglass.dmi')
+	if(prob(0.004) && (icon == 'icons/obj/doors/doorfireglass.dmi' || icon == 'icons/obj/doors/normal/doorfireglass.dmi'))
 		base_icon_state = "sus"
 		desc += " This one looks a bit sus..."
 
 	RegisterSignal(src, COMSIG_MACHINERY_POWER_RESTORED, PROC_REF(on_power_restore))
 	RegisterSignal(src, COMSIG_MACHINERY_POWER_LOST, PROC_REF(on_power_loss))
+#ifdef WALLENING
 	AddComponent(/datum/component/conditionally_transparent, \
 		transparent_signals = list(COSMIG_DOOR_OPENING), \
 		opaque_signals = list(COSMIG_DOOR_CLOSING), \
@@ -104,6 +114,7 @@
 		opacity_delay = 0 SECONDS, \
 		out_midpoint_alpha = 104, \
 	)
+#endif
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/door/firedoor/setDir(new_dir)
@@ -749,13 +760,22 @@
 	register_adjacent_turfs()
 
 /obj/machinery/door/firedoor/closed
+#ifdef WALLENING
 	icon_state = "door_closed_map"
+#else
+	icon_state = "door_closed"
+#endif
 	density = TRUE
 	alarm_type = FIRELOCK_ALARM_TYPE_GENERIC
 
 /obj/machinery/door/firedoor/border_only
+#ifdef WALLENING
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	icon_state = "door_open"
+#else
+	icon = 'icons/obj/doors/normal/edge_Doorfire.dmi'
+	icon_state = "door_open"
+#endif
 	// Disable directional opacity please (we are always transparent)
 	dir_mask = ""
 	edge_dir_mask = ""
@@ -828,7 +848,11 @@
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"
-	icon = 'icons/obj/doors/Doorfire.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/doors/doorfire.dmi'
+#else
+	icon = 'icons/obj/doors/normal/doorfire.dmi'
+#endif
 	glass = FALSE
 	explosion_block = 2
 	assemblytype = /obj/structure/firelock_frame/heavy
@@ -843,8 +867,13 @@
 /obj/structure/firelock_frame
 	name = "firelock frame"
 	desc = "A partially completed firelock."
-	icon = 'icons/obj/doors/Doorfire.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/doors/doorfire.dmi'
 	icon_state = "frame1_map"
+#else
+	icon = 'icons/obj/doors/normal/doorfire.dmi'
+	icon_state = "frame1"
+#endif
 	base_icon_state = "frame"
 	anchored = FALSE
 	density = TRUE

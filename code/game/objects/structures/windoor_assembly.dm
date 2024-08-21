@@ -1,7 +1,10 @@
 
 /obj/structure/windoor_assembly
+#ifdef WALLENING
 	icon = 'icons/obj/doors/windoor.dmi'
-
+#else
+	icon = 'icons/obj/doors/normal/windoor.dmi'
+#endif
 	name = "windoor Assembly"
 	icon_state = "l_windoor_assembly01"
 	desc = "A small glass and wire assembly for windoors."

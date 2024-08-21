@@ -2,8 +2,13 @@
 	gender = PLURAL
 	name = "shutters"
 	desc = "Heavy duty mechanical shutters with an atmospheric seal that keeps them airtight once closed."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/shutters.dmi'
 	icon_state = "closed_map"
+#else
+	icon = 'icons/obj/doors/normal/shutters.dmi'
+	icon_state = "closed"
+#endif
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
 	dir_mask = "shutter"
@@ -79,7 +84,11 @@
 /obj/machinery/door/poddoor/shutters/radiation
 	name = "radiation shutters"
 	desc = "Lead-lined shutters with a radiation hazard symbol. Whilst this won't stop you getting irradiated, especially by a supermatter crystal, it will stop radiation travelling as far."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/shutters_radiation.dmi'
+#else
+	icon = 'icons/obj/doors/normal/shutters_radiation.dmi'
+#endif
 	rad_insulation = RAD_EXTREME_INSULATION
 
 /obj/machinery/door/poddoor/shutters/radiation/animation_length(animation)
@@ -126,7 +135,11 @@
 /obj/machinery/door/poddoor/shutters/window
 	name = "windowed shutters"
 	desc = "A shutter with a thick see-through polycarbonate window."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/shutters_window.dmi'
+#else
+	icon = 'icons/obj/doors/normal/shutters_window.dmi'
+#endif
 	opacity = FALSE
 	glass = TRUE
 

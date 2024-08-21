@@ -1,7 +1,11 @@
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/windoor.dmi'
+#else
+	icon = 'icons/obj/doors/normal/windoor.dmi'
+#endif
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
 	closingLayer = ABOVE_WINDOW_LAYER
@@ -548,7 +552,11 @@ MAPPING_DIRECTIONAL_HELPERS_EMPTY(/obj/machinery/door/window/half/right)
 
 /obj/machinery/door/window/half
 	can_atmos_pass = ATMOS_PASS_YES
+#ifdef WALLENING
 	icon = 'icons/obj/doors/windoor_half.dmi'
+#else
+	icon = 'icons/obj/doors/normal/windoor.dmi'
+#endif
 	rcd_spritesheet_override = "half window"
 
 /obj/machinery/door/window/half/right

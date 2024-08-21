@@ -1,7 +1,11 @@
 /obj/machinery/door/password
 	name = "door"
 	desc = "This door only opens when provided a password."
+#ifdef WALLENING
 	icon = 'icons/obj/doors/blastdoor.dmi'
+#else
+	icon = 'icons/obj/doors/normal/blastdoor.dmi'
+#endif
 	icon_state = "closed"
 	explosion_block = 3
 	heat_proof = TRUE

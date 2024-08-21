@@ -2,7 +2,7 @@
 	name = "airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps. Definitely can't get past those. No way."
 	gender = PLURAL
-	icon = 'icons/obj/structures/tall.dmi'
+	icon = 'icons/obj/structures.dmi'
 	icon_state = "plasticflaps"
 	armor_type = /datum/armor/structure_plasticflaps
 	density = FALSE
@@ -24,11 +24,13 @@
 
 /obj/structure/plasticflaps/Initialize(mapload)
 	. = ..()
+#ifdef WALLENING
 	// Render targeting big icons shifts em down, lets counteract
 	pixel_z = 16
 	AddElement(/datum/element/render_over_keep_hitbox)
 	// We need to shift overlays drawn to use down to counteract the counteraction. I hate byond
 	AddComponent(/datum/component/vis_block, "standard", "standard", parent_z_shift = -16)
+#endif
 	air_update_turf(TRUE, TRUE)
 	if(mapload)
 		return INITIALIZE_HINT_LATELOAD
