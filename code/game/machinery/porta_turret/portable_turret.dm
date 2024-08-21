@@ -1111,7 +1111,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/turretid)
 /obj/item/wallframe/turret_control
 	name = "turret control frame"
 	desc = "Used for building turret control panels."
-	icon = 'icons/obj/machines/turret_control.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/turret_control.dmi'
+#else
+	icon = 'icons/obj/machines/normal/turret_control.dmi'
+#endif
 	icon_state = "control_frame"
 	result_path = /obj/machinery/turretid
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT)

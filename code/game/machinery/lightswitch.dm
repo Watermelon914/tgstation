@@ -117,7 +117,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/light_switch)
 /obj/item/wallframe/light_switch
 	name = "light switch"
 	desc = "An unmounted light switch. Attach it to a wall to use."
-	icon = 'icons/obj/machines/lightswitch.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/lightswitch.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	icon_state = "light-nopower"
 	result_path = /obj/machinery/light_switch
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)

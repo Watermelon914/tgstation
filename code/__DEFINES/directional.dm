@@ -92,6 +92,7 @@ _INVERTED_WALL_MOUNT_OFFSET(path, offset, 0, -offset, offset, -offset, 0)
 // Sinks need to be shifted down so they layer correctly when north due to their unique status
 #define SINK_DIRECTIONAL_HELPERS(path) _WALL_MOUNT_DIRECTIONAL_HELPERS(path, -10, 0, 18, -16, 16, 12)
 
+#ifdef WALLENING
 #define _WALL_MOUNT_DIRECTIONAL_HELPERS(path, north_offset, physical_north_offset, south_offset, east_offset, west_offset, horizontal_up_offset) \
 ##path/directional/north {\
 	dir = SOUTH; \
@@ -112,6 +113,10 @@ _INVERTED_WALL_MOUNT_OFFSET(path, offset, 0, -offset, offset, -offset, 0)
 	MAP_SWITCH(pixel_z, pixel_y) = horizontal_up_offset; \
 } \
 _INVERTED_WALL_MOUNT_OFFSET(path, north_offset, physical_north_offset, south_offset, east_offset, west_offset, horizontal_up_offset)
+#else
+#define _WALL_MOUNT_DIRECTIONAL_HELPERS(path, north_offset, physical_north_offset, south_offset, east_offset, west_offset, horizontal_up_offset) \
+MAPPING_DIRECTIONAL_HELPERS_EMPTY(path)
+#endif
 
 /// Directional helpers for cameras (cameras are really annoying)
 /// They have diagonal dirs and also offset south differently

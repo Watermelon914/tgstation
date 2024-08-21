@@ -3,9 +3,9 @@
 	desc = "An ultra-futuristic, sleek, advanced, next-gen normal digital clock that tells the time. Powered by bluespace. Despite supposedly being better in every way to classic clocks, it just doesn't feel the same. They just don't make them the way they used to..."
 	icon_state = "digital_clock_base"
 #ifdef WALLENING
-	button_icon = 'icons/obj/machines/wallening/digital_clock.dmi'
+	icon = 'icons/obj/machines/wallening/digital_clock.dmi'
 #else
-	button_icon = 'icons/obj/machines/normal/digital_clock.dmi'
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
 #endif
 	verb_say = "beeps"
 	verb_ask = "bloops"
@@ -19,9 +19,9 @@
 	desc = "Used to build digital clocks, just secure to the wall."
 	icon_state = "digital_clock_base"
 #ifdef WALLENING
-	button_icon = 'icons/obj/machines/wallening/digital_clock.dmi'
+	icon = 'icons/obj/machines/wallening/digital_clock.dmi'
 #else
-	button_icon = 'icons/obj/machines/normal/digital_clock.dmi'
+	icon = 'icons/obj/machines/normal/digital_clock.dmi'
 #endif
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 4)
 	result_path = /obj/machinery/digital_clock

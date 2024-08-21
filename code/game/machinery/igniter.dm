@@ -136,7 +136,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/igniter)
 /obj/item/wallframe/sparker
 	name = "Sparker WallFrame"
 	desc = "An unmounted sparker. Attach it to a wall to use."
-	icon = 'icons/obj/machines/igniter.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/igniter.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+#endif
 	icon_state = "migniter"
 	result_path = /obj/machinery/sparker
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)

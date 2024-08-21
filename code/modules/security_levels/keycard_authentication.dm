@@ -163,11 +163,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	icon = 'icons/obj/machines/normal/wallmounts.dmi'
 #endif
 
-#ifdef WALLENING
 _WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/machinery/keycard_auth/wall_mounted, 34, 0, 2, 12, -14, 16)
-#else
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/keycard_auth/wall_mounted, 0)
-#endif
 
 /obj/machinery/keycard_auth/wall_mounted/Initialize(mapload)
 	. = ..()

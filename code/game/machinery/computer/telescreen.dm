@@ -17,7 +17,11 @@
 /obj/item/wallframe/telescreen
 	name = "telescreen frame"
 	desc = "A wall-mountable telescreen frame. Apply to wall to use."
-	icon = 'icons/obj/machines/telescreens.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/telescreens.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts_obj.dmi'
+#endif
 	icon_state = "telescreen"
 	result_path = /obj/machinery/computer/security/telescreen
 

@@ -1,5 +1,9 @@
 /obj/item/wallframe
-	icon = 'icons/obj/machines/wallmounts.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/wallmounts.dmi'
+#else
+	icon = 'icons/obj/machines/normal/wallmounts.dmi'
+#endif
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 2)
 	obj_flags = CONDUCTS_ELECTRICITY
 	inhand_icon_state = "syringe_kit"
