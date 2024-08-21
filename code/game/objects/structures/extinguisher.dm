@@ -135,6 +135,10 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/extinguisher_cabinet)
 /obj/item/wallframe/extinguisher_cabinet
 	name = "extinguisher rack frame"
 	desc = "Used for building wall-mounted extinguisher cabinets."
-	icon = 'icons/obj/structures/cabinet.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/structures/wallening/cabinet.dmi'
+#else
+	icon = 'icons/obj/structures/normal/wallmounts.dmi'
+#endif
 	icon_state = "rack"
 	result_path = /obj/structure/extinguisher_cabinet

@@ -5,7 +5,11 @@
 /obj/item/wallframe/camera
 	name = "camera assembly"
 	desc = "The basic construction for Nanotrasen-Always-Watching-You cameras."
-	icon = 'icons/obj/machines/camera.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/camera.dmi'
+#else
+	icon = 'icons/obj/machines/normal/camera.dmi'
+#endif
 	icon_state = "cameracase"
 	custom_materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4,
@@ -17,7 +21,11 @@
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."
-	icon = 'icons/obj/machines/camera.dmi'
+#ifdef WALLENING
+	icon = 'icons/obj/machines/wallening/camera.dmi'
+#else
+	icon = 'icons/obj/machines/normal/camera.dmi'
+#endif
 	icon_state = "camera"
 	base_icon_state = "camera"
 	use_power = ACTIVE_POWER_USE
@@ -90,21 +98,12 @@
 	var/area/station/ai_monitored/area_motion = null
 	var/alarm_delay = 30 // Don't forget, there's another 3 seconds in queueAlarm()
 
-#ifdef WALLENING
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/motion)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/emp_proof)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/motion)
 CAMERA_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray)
-#else
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera, 0)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname, 0)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/autoname/motion, 0)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/emp_proof, 0)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/motion, 0)
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
-#endif
 
 /datum/armor/machinery_camera
 	melee = 50
