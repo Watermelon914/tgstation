@@ -61,7 +61,7 @@ TELESCREEN_DIRECTIONAL_HELPERS(/obj/machinery/computer/security/telescreen)
 #ifdef WALLENING
 	icon = 'icons/obj/machines/wallening/telescreens.dmi'
 #else
-	icon = 'icons/obj/machines/normal/telescreens.dmi'
+	icon = 'icons/obj/machines/normal/status_display.dmi'
 #endif
 	icon_state = "telescreen"
 	result_path = /obj/machinery/computer/security/telescreen/entertainment
