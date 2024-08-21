@@ -40,7 +40,11 @@ WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/map/left/metastation)
 WALL_MOUNT_DIRECTIONAL_HELPERS(/obj/structure/sign/map/right/metastation)
 
 /obj/structure/sign/directions
+#ifdef WALLENING
 	icon = 'icons/obj/structures/directional_signs.dmi'
+#else
+	icon = 'icons/obj/signs.dmi'
+#endif
 	/// What direction is the arrow on the sign pointing?
 	var/sign_arrow_direction = null
 	/// If this sign has a support on the left or right, which side? null if niether
